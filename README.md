@@ -1,1814 +1,81 @@
+<div align="center">
+
 # Rendifly Manager
+
+### Una forma más sencilla de entender y controlar tu PC con Windows.
 
 **Rendifly Manager 0.1 Beta — B1**
 
-Rendifly Manager is a Windows desktop application designed to bring useful PC information, monitoring, and management tools together in one place.
+🌐 **Idioma / Language:**  
+[🇪🇸 Español](README_ES.md) · [🇺🇸 English](README.md)
 
-The idea behind Rendifly is simple: make it easier for people to understand what is happening on their PC, check hardware and performance, manage applications and processes, clean temporary files, control startup apps, create profiles, switch power plans, and quickly access different Windows tools without having to search for every setting manually.
-
-This README documents the **actual state of Rendifly Manager B1**, based on the current code and build. It does not describe old plans or features that have not been implemented.
-
-> **Review status:** no files were modified, no code was fixed, and neither the executable nor the installer was rebuilt while preparing this documentation. Everything described here reflects what B1 currently contains.
+</div>
 
 ---
 
-# 1. How is Rendifly Manager built?
+# ¿Qué es Rendifly Manager?
 
-Rendifly Manager currently uses:
+Rendifly Manager es una aplicación para Windows creada para reunir en un solo lugar información y herramientas que normalmente están repartidas por diferentes partes del sistema.
 
-- **Python** for the backend.
-- **HTML, CSS, and JavaScript** for the frontend.
-- **pywebview** to display the interface using EdgeChromium/WebView2.
-- A `RendiflyAPI` class as the bridge between the frontend and backend.
-- **psutil**, Windows APIs, and WMI for system information and monitoring.
-- **JSON files** stored under `%APPDATA%\Rendifly` for local persistence.
+Con Rendifly puedes ver cómo está funcionando tu PC, conocer mejor sus componentes, revisar qué aplicaciones están usando recursos, limpiar archivos temporales, controlar programas que se inician con Windows, utilizar perfiles, cambiar planes de energía y acceder rápidamente a diferentes configuraciones del sistema.
 
-Rendifly Manager currently does not use a SQL database.
+La idea no es reemplazar Windows ni herramientas como el Administrador de tareas.
 
-The product is identified in both the application and installer as:
+La idea es hacer que muchas de esas funciones sean **más fáciles de encontrar, entender y utilizar**.
 
-**Rendifly Manager 0.1 Beta**
+Este documento describe el estado real de **Rendifly Manager B1** según la versión actual del programa.
 
-The main entry point is `main.py`.
+No incluye funciones imaginadas para el futuro ni características que todavía no estén disponibles.
 
-When the application starts, this file:
-
-- switches to the application's directory;
-- processes the `--startup` argument;
-- makes sure another Rendifly instance is not already running;
-- and starts `RendiflyApp`.
+> **Estado de esta versión:** este documento se creó revisando la versión actual de Rendifly Manager. Durante esa revisión no se modificó código ni se reconstruyeron el programa o el instalador.
 
 ---
 
-# 2. Project structure
+# 1. ¿Cómo funciona Rendifly por dentro?
 
-The main folders and files are:
+Aunque Rendifly intenta mantener una experiencia sencilla para el usuario, detrás utiliza diferentes tecnologías para comunicarse con Windows.
 
-### `backend/`
+Actualmente está construido con:
 
-Contains the logic for:
+- **Python** para la lógica principal del programa.
+- **HTML, CSS y JavaScript** para la interfaz.
+- **pywebview** junto con EdgeChromium/WebView2 para mostrar la interfaz dentro de una ventana de Windows.
+- Una clase llamada `RendiflyAPI`, que permite que la interfaz se comunique con las funciones internas.
+- **psutil**, Windows y WMI para obtener información del equipo.
+- Archivos **JSON** para guardar configuraciones y datos del usuario.
 
-- hardware;
-- monitoring;
-- processes;
-- recommendations;
-- optimization;
-- assistant;
-- system information;
-- services;
-- configuration.
-
-### `frontend/`
-
-Contains:
-
-- `index.html`;
-- styles;
-- icons;
-- components;
-- router;
-- application state;
-- frontend API;
-- individual pages.
-
-### `resources/`
-
-Contains:
-
-- the internal knowledge base;
-- the process database.
-
-### `tests/`
-
-Currently contains tests related to:
-
-- assistant intent detection;
-- profiles;
-- profile API behavior.
-
-### Packaging
-
-- `Rendifly.spec`: PyInstaller configuration.
-- `installer/RendiflyManager.iss`: Inno Setup installer project.
-
----
-
-# 3. Main navigation
-
-The interface currently registers exactly **eight main routes**:
-
-- Home
-- Performance
-- Processes
-- Optimization
-- System
-- Assistant
-- Feedback
-- Settings
-
-The sidebar groups these pages into:
-
-- **Home**
-- **Analysis**
-- **Tools**
-- **Rendifly**
-
----
-
-# 4. Home / Dashboard
-
-The main page is implemented in `home.js`.
-
-It serves as the main overview of the PC and shows the most important system information at a glance.
-
-## What does it show?
-
-### Greeting
-
-If the user has configured their name, Rendifly uses it in the Home greeting.
-
-### PC status
-
-Depending on the current metrics, Rendifly can show states such as:
-
-- normal operation;
-- high RAM usage;
-- high GPU temperature;
-- low battery.
-
-### Real-time metrics
-
-The Dashboard includes cards for:
-
-- CPU;
-- RAM;
-- GPU;
-- battery.
-
-On computers without a battery, the battery card can instead display storage or disk-read information.
-
-### CPU
-
-Shows:
-
-- usage percentage;
-- current frequency.
-
-### RAM
-
-Shows:
-
-- usage percentage;
-- used memory in GB;
-- total available memory.
-
-### GPU
-
-Shows:
-
-- utilization;
-- temperature.
-
-If the information cannot be retrieved, it appears as:
-
-**Not available**
-
-### Battery
-
-When Windows provides the information, Rendifly displays:
-
-- battery percentage;
-- charging/connection status;
-- estimated remaining time.
-
-### Quick actions
-
-Home provides direct shortcuts to:
-
-- Cleanup;
-- Processes;
-- Profiles;
-- Ask Rendifly.
-
-### Recommendations
-
-The Dashboard can display up to **three active recommendations**.
-
-### Improve performance
-
-There is also an action called **“Improve performance.”**
-
-This feature:
-
-1. analyzes eligible temporary files;
-2. performs the cleanup;
-3. provides an expandable explanation of what the action does.
-
-## Page updates
-
-Metrics update according to the monitoring interval selected by the user.
-
-The frontend enforces a minimum interval of **1 second**.
-
-Recommendations refresh approximately every **60 seconds**.
-
-When the application window is hidden and `document.hidden` is active, Dashboard updates functionally stop.
-
----
-
-# 5. Performance
-
-The Performance section is implemented in `performance.js`.
-
-Its purpose is to provide a more detailed view of what the computer is doing.
-
-It contains several tabs.
-
-## CPU
-
-Shows:
-
-- usage percentage;
-- frequency;
-- processor name;
-- historical graph;
-- processes with the highest usage.
-
-## RAM
-
-Shows:
-
-- usage percentage;
-- used GB;
-- total GB;
-- utilization bar;
-- historical graph.
-
-## GPU
-
-Shows:
-
-- utilization;
-- temperature;
-- GPU name;
-- historical graph.
-
-## Storage
-
-Shows detected drives along with:
-
-- drive type;
-- used storage;
-- free storage;
-- total capacity;
-- utilization bar whose appearance changes depending on occupancy.
-
-## Network
-
-Shows:
-
-- bytes sent per second;
-- bytes received per second;
-- activity graph.
-
-## Additional information
-
-The page also shows:
-
-- system uptime;
-- CPU temperature;
-- GPU temperature.
-
----
-
-# 6. How monitoring works
-
-The backend uses `SystemMonitor` to collect information about:
-
-- CPU;
-- RAM;
-- disk;
-- network;
-- battery;
-- uptime;
-- temperatures.
-
-For GPU information, Rendifly attempts to use `nvidia-smi`.
-
-Because continuously querying this utility would create unnecessary overhead, GPU-related information is refreshed less frequently.
-
-Rendifly also keeps a temporary metrics history through `MetricsHistory`.
-
-This history is stored **in memory** during the current session and can be queried using time windows measured in minutes.
-
----
-
-# 7. Processes
-
-The Processes section uses:
-
-- `processes.js`;
-- `ProcessManager`.
-
-The goal is not simply to recreate the entire Windows Task Manager process list. Instead, Rendifly tries to identify and present relevant applications currently running on the computer.
-
-## Available features
-
-The section currently supports:
-
-- viewing relevant running applications;
-- automatically refreshing the list;
-- manually refreshing the list;
-- searching by visible application name;
-- searching by executable name;
-- viewing aggregated memory usage per application;
-- viewing CPU usage for the main process;
-- terminating processes.
-
-The list automatically refreshes approximately every **2.5 seconds**.
-
-## Internal classification
-
-Although the interface prioritizes primary applications that can reasonably be closed, the backend can internally classify processes as:
-
-- `apps`;
-- `app_processes`;
-- `windows_services`;
-- `system_protected`;
-- `rendifly`;
-- `other`.
-
-Rendifly can also group helper processes underneath a main application.
-
-To do this, it analyzes information such as:
-
-- windows;
-- services;
-- process owner;
-- executable information.
-
-## Icons
-
-Rendifly attempts to extract application icons directly from the actual executable.
-
-The extracted icons are then cached under:
-
-`%LOCALAPPDATA%\Rendifly\process-icons`
-
-This prevents Rendifly from having to repeatedly extract the same icons.
-
-## Safety
-
-Process safety logic relies on:
-
-- `ProcessClassifier`;
-- `ProcessSafety`;
-- `ProcessKnowledge`.
-
-Processes can receive one of the following safety levels:
-
-- `normal`;
-- `caution`;
-- `critical`.
-
-Processes classified as critical are not presented as closable processes.
-
-Before terminating a process, Rendifly also performs identity checks to reduce the risk of acting on a PID that has already been reused by another process.
-
-Depending on the operation, Rendifly can:
-
-- send `WM_CLOSE`;
-- or forcefully terminate the process.
-
----
-
-# 8. Optimization
-
-The Optimization section is implemented in `optimization.js`.
-
-It currently contains four main areas:
-
-- Cleanup;
-- Startup;
-- Profiles;
-- Energy.
-
----
-
-# 9. Cleanup
-
-The cleanup system is designed to work only with temporary files considered eligible for removal.
-
-The general workflow is:
-
-1. analyze;
-2. build an inventory;
-3. clean;
-4. verify again.
-
-## Analyze now
-
-Rendifly can scan the system to determine:
-
-- how many temporary files can be removed;
-- how much disk space they occupy.
-
-## Cleanup
-
-During cleanup, the interface displays information such as:
-
-- progress;
-- processed files;
-- deleted files;
-- failed files;
-- errors.
-
-After cleanup is finished, the system scans again to determine how much eligible content remains.
-
-## What it should not touch
-
-The cleanup process does not modify:
-
-- documents;
-- downloads;
-- passwords;
-- critical folders.
-
-## Locations scanned
-
-`CleanupManager` currently checks:
-
-- user temporary files;
-- `Windows\Temp`;
-- crash dumps;
-- WER reports;
-- Explorer thumbnail cache;
-- explicit Chrome caches;
-- explicit Edge caches.
-
-## Exclusions
-
-The system excludes:
-
-- reparse points;
-- links;
-- protected files such as `desktop.ini`;
-- `ntuser.dat`;
-- files beginning with `~$`;
-- locked files;
-- files modified within the last 60 seconds.
-
-Cleanup operations are associated with a `scan_id` and are later verified.
-
----
-
-# 10. Startup applications
-
-Rendifly can inspect different Windows locations used to launch applications automatically.
-
-It currently checks:
-
-- user `Run` Registry entries;
-- machine `Run` Registry entries;
-- the user's Startup folder.
-
-For each entry, Rendifly attempts to display:
-
-- estimated impact;
-- known publisher;
-- path;
-- description.
-
-Impact can appear as:
-
-- High;
-- Medium;
-- Low;
-- Not measured.
-
-## Enabling and disabling
-
-Entries belonging to `HKCU` can be enabled or disabled directly from Rendifly.
-
-When an entry is disabled, it is temporarily moved to:
-
-`Run_Disabled`
-
-When enabled again, the entry is restored.
-
-The interface also provides a shortcut to:
-
-`ms-settings:startupapps`
-
-which is the official Windows Startup Apps settings page.
-
----
-
-# 11. Profiles
-
-Profiles allow users to create a set of applications that Rendifly should keep closed while a specific profile is active.
-
-Users can currently:
-
-- create profiles;
-- assign a name;
-- add a description;
-- select applications;
-- edit profiles;
-- delete profiles;
-- activate profiles;
-- deactivate profiles;
-- see which profile is active;
-- see detected closable applications.
-
-When a profile is activated, Rendifly attempts to close the selected applications.
-
-## Profile monitor
-
-`ProfileManager` currently uses persistence schema **version 2**.
-
-While a profile is active, a daemon monitor runs approximately every **5 seconds**.
-
-If an application included in the profile is opened again and is still considered safe to close, Rendifly attempts to terminate it again.
-
-The following information is persisted in `runtime.json`:
-
-- profiles;
-- currently active profile;
-- profile schema version.
-
----
-
-# 12. Energy
-
-The Energy section works directly with the real Windows power plans.
-
-It uses `powercfg`.
-
-## Reading power plans
-
-Commands equivalent to:
-
-`powercfg /list`
-
-are used to retrieve available power schemes.
-
-The currently active scheme is detected using:
-
-`/getactivescheme`
-
-## Changing power plans
-
-When the user selects another power plan, Rendifly uses:
-
-`/setactive`
-
-Afterward, it verifies that Windows actually confirmed the selected GUID.
-
-The list refreshes approximately every **30 seconds**.
-
-`EnergyManager` performs strict GUID validation before using a power scheme identifier.
-
----
-
-# 13. System / Know My PC
-
-This section is implemented in `system.js`.
-
-It currently contains three tabs:
-
-- My PC;
-- Drivers;
-- Windows Settings.
-
----
-
-# 14. My PC
-
-`HardwareDetector` collects information about:
-
-- CPU;
-- GPU;
-- RAM;
-- storage;
-- drive type;
-- battery;
-- display;
-- network;
-- operating system;
-- other available system information.
-
-The interface presents this information in expandable sections.
-
-Each component can display:
-
-- its main value;
-- technical information;
-- an educational explanation.
-
-A hardware summary cache is also used so Rendifly does not unnecessarily redetect all hardware information every time.
-
-This cache can be invalidated internally when necessary.
-
----
-
-# 15. Drivers
-
-`DriverDetector` mainly focuses on GPU drivers.
-
-Detection uses:
-
-`WMI Win32_VideoController`
-
-and can fall back to `nvidia-smi` when necessary.
-
-The interface can display:
-
-- name;
-- type;
-- version;
-- date;
-- provider;
-- status.
-
-For GPUs from:
-
-- NVIDIA;
-- AMD / Radeon;
-- Intel;
-
-Rendifly can provide official links or attempt to detect the manufacturer's installed application.
-
-There is also a button for opening **Windows Update**.
-
-Rendifly currently does not include its own automatic driver update engine.
-
-The visible status is limited to information such as driver detection and checking for available updates.
-
----
-
-# 16. Windows Settings
-
-`WindowsConfigManager` reads and explains several Windows configuration areas.
-
-It currently works with information related to:
-
-- visual effects and animations;
-- transparency;
-- power plan;
-- Fast Startup;
-- Storage Sense;
-- Windows Update.
-
-The information is read using:
-
-- the Windows Registry;
-- `powercfg`.
-
-Rendifly **does not directly modify every one of these Windows options**.
-
-Instead, when appropriate, it opens:
-
-- the corresponding official Windows Settings page;
-- or the relevant Control Panel page.
-
----
-
-# 17. Ask Rendifly
-
-The assistant is implemented using:
-
-- `assistant.js`;
-- `AssistantEngine`.
-
-## Current features
-
-The interface includes:
-
-- a question input field;
-- quick questions about RAM;
-- quick questions about CPU;
-- quick questions about processes;
-- conversation history stored in frontend state;
-- an option to clear the chat;
-- responses labeled as local or AI-generated;
-- suggested actions that can navigate to other Rendifly pages;
-- sources or links when the backend provides them;
-- follow-up recommendations;
-- direct navigation from certain responses.
-
-## Local assistant
-
-The local assistant can classify user intents and use real information from:
-
-- current metrics;
-- hardware;
-- processes;
-- built-in knowledge.
-
-It currently recognizes questions related to:
-
-- CPU;
-- RAM;
-- disk;
-- battery;
-- processes;
-- startup;
-- slow PC performance;
-- game compatibility.
-
-Conversation context keeps track of the last discussed topic so follow-up questions can be interpreted more naturally.
-
-## External providers
-
-The project also contains a provider abstraction and clients for:
-
-- Gemini;
-- OpenAI-compatible APIs.
-
-Related files include:
-
-- `provider.py`;
-- `gemini_client.py`;
-- `openai_client.py`.
-
-### Actual B1 status
-
-Although this backend infrastructure exists, external AI configuration is currently disabled in the interface.
-
-The UI displays this feature as:
-
-**Coming soon**
-
-`feature_flags.py` causes external operations to return `coming_soon` when the corresponding feature is disabled.
-
-Therefore:
-
-- **the local assistant is implemented and operational**;
-- **external AI providers are not available through the B1 interface**.
-
----
-
-# 18. Feedback
-
-The Feedback page is implemented in `feedback.js`.
-
-To submit feedback, the user must provide:
-
-- problem type;
-- affected section or detail;
-- description.
-
-These fields are required.
-
-A screenshot can also be selected optionally.
-
-Currently, Rendifly sends **the selected file name**, not the actual binary image attachment.
-
-## Sending options
-
-Rendifly can:
-
-- open the default email application using `mailto:`;
-- open Gmail through a compose URL.
-
-The currently configured destination address is:
-
-`rendiflypcmanager@gmail.com`
-
-The interface also displays a privacy notice recommending that users avoid including personal information.
-
----
-
-# 19. Settings
-
-Settings are implemented in `settings.js`.
-
-The section currently allows users to modify several aspects of Rendifly.
-
-## User
-
-- Name or nickname.
-
-## Language
-
-- Español.
-- English.
-
-## Appearance
-
-### Theme
-
-- Modern.
-- Decorative.
-
-### Accent color
-
-- predefined color palette;
-- custom accent color.
-
-### Interface size
-
-Rendifly supports:
-
-- compact mode;
-- comfortable/normal mode.
-
-Compact mode changes the native window approximately between:
-
-**438 × 687**
-
-and:
-
-**1280 × 800**
-
-## Windows behavior
-
-Users can configure:
-
-- Start with Windows;
-- Start minimized;
-- Minimize to tray;
-- Close to tray.
-
-## Monitoring
-
-The monitoring interval can be configured between:
-
-**1 and 10 seconds**
-
-## Notifications
-
-Users can:
-
-- enable or disable notifications;
-- define the maximum number of notifications per hour.
-
-The limit can be configured between:
-
-**1 and 20**
-
-## External AI assistant
-
-The corresponding settings section exists, but it is currently:
-
-- disabled;
-- marked as coming soon.
-
-## About Rendifly
-
-The Settings page also contains product information.
-
-## Official guide
-
-A button opens the YouTube video configured in the source code as the official Rendifly guide.
-
-## Saving settings
-
-Changes made in Settings are automatically saved through:
-
-- the page code;
-- the backend `save_settings` method.
-
----
-
-# 20. About Rendifly
-
-There is currently **no independent `about` route**.
-
-The information is displayed as a card inside Settings.
-
-It shows:
-
-**Version:**  
-0.1 Beta
-
-**Developer:**  
-Ariel Arce
-
-It also includes:
-
-**How to use Rendifly — Official Guide**
-
-and the tagline:
-
-> Every PC is different. Rendifly should be too.
-
----
-
-# 21. Global Search
-
-Global Search is not a separate sidebar page.
-
-It can be opened through:
-
-- the search icon;
-- `Ctrl + K`;
-- `Cmd + K`.
-
-`global_search` uses an internal index containing sections and concepts related to:
-
-- Home;
-- Performance;
-- Processes;
-- Cleanup;
-- Startup applications;
-- Profiles;
-- Power plans;
-- My PC;
-- Drivers;
-- Battery;
-- Assistant;
-- Feedback;
-- Settings.
-
-Queries must contain at least **two characters**.
-
-Search also normalizes accented characters to improve matching.
-
----
-
-# 22. Main API
-
-`RendiflyAPI` acts as the main bridge between the interface and the different backend systems.
-
-It currently exposes the following functions.
-
-## Configuration
-
-- `set_compact_window`
-- `is_first_run`
-- `complete_onboarding`
-- `get_settings`
-- `save_settings`
-- `get_user_name`
-
-## AI
-
-- `get_ai_settings`
-- `save_ai_provider`
-- `validate_ai_provider`
-- `disconnect_ai_provider`
-
-## Hardware
-
-- `detect_hardware`
-- `get_hardware_summary`
-
-## Metrics
-
-- `get_current_metrics`
-- `get_metrics_history`
-
-## Processes
-
-- `get_processes`
-- `get_process_details`
-- `explain_process`
-- `terminate_process`
-
-## Recommendations
-
-- `get_recommendations`
-- `dismiss_recommendation`
-- `execute_recommendation`
-
-## Cleanup
-
-- `analyze_cleanup`
-- `start_cleanup`
-- `get_cleanup_progress`
-- `verify_cleanup`
-- `perform_cleanup`
-
-## Startup
-
-- `get_startup_apps`
-- `toggle_startup_app`
-
-## Profiles
-
-- `list_profiles`
-- `get_profile`
-- `list_profile_apps`
-- `get_active_profile`
-- `create_profile`
-- `update_profile`
-- `delete_profile`
-- `activate_profile`
-- `deactivate_profile`
-
-## Energy
-
-- `get_energy_plans`
-- `set_energy_plan`
-
-## Assistant
-
-- `ask_rendifly`
-- `reset_assistant_context`
-
-## Feedback
-
-- `send_feedback`
-- `send_feedback_gmail`
-
-## System
-
-- `get_system_info`
-- `get_drivers`
-- `get_windows_configs`
-
-## Integration
-
-- `open_external_uri`
-- `open_windows_settings`
-
-## Utilities
-
-- `global_search`
-- `get_notifications`
-- `mark_notification_read`
-- `minimize_to_tray`
-- `quit_app`
-
----
-
-# 23. Managers initialized by the application
-
-`app.py` currently initializes:
-
-- `HardwareDetector`
-- `SystemMonitor`
-- `EnergyManager`
-- `CleanupManager`
-- `StartupManager`
-- `ProcessManager`
-- `ProfileManager`
-- `RecommendationEngine`
-- `AssistantEngine`
-- `DriverDetector`
-- `WindowsConfigManager`
-- `ConfigManager`
-- `PersistenceManager`
-- `LoggingService`
-- `NotificationService`
-
-When the required dependencies are available, it also initializes:
-
-- `SystemTrayService`
-
----
-
-# 24. Recommendation system
-
-`RecommendationRules` analyzes several system conditions to decide when a recommendation should be shown.
-
-It currently checks:
-
-### RAM
-
-Sustained usage above:
-
-**90%**
-
-### Disk
-
-When:
-
-- disk usage exceeds 90%;
-- or less than 10 GB of free space remains.
-
-### Startup applications
-
-When there are more than:
-
-**10 applications**
-
-### Battery
-
-When battery level is:
-
-**20% or lower**
-
-and the computer is not connected to power.
-
-### CPU
-
-When usage exceeds:
-
-**80%**
-
-### Temperature
-
-When temperature exceeds:
-
-**85°C**
-
-### Temporary files
-
-When there is at least:
-
-**1 GB**
-
-of eligible temporary files.
-
-### Uptime
-
-When the computer has been running for at least:
-
-**7 days**
-
-without restarting.
-
-## Dismissing recommendations
-
-Recommendations can be dismissed.
-
-Dismissed states are persisted in the application configuration.
-
-The temporary-files recommendation can directly execute the real cleanup system.
-
----
-
-# 25. Persistence and stored data
-
-Rendifly Manager B1 does not use SQLite or another relational database.
-
-`PersistenceManager` mainly uses:
+Los datos principales se guardan dentro de:
 
 `%APPDATA%\Rendifly`
 
-If that location is unavailable, fallback locations include:
+Actualmente Rendifly **no utiliza una base de datos SQL**.
 
-- `LOCALAPPDATA`;
-- the user's home directory.
-
----
-
-# 26. `settings.json`
-
-`ConfigManager` stores the main user configuration here.
-
-It can currently contain:
-
-- name;
-- user preferences;
-- language;
-- theme;
-- accent color;
-- compact mode;
-- Dashboard cards/layout;
-- Start with Windows;
-- Start minimized;
-- Minimize to tray;
-- Close to tray;
-- monitoring interval;
-- configured history settings;
-- privacy preferences;
-- AI consent and state;
-- AI provider;
-- model;
-- endpoint;
-- timeout;
-- onboarding state;
-- first-run state;
-- notification limits;
-- notification state;
-- dismissed recommendations;
-- configuration version.
-
-## Stored languages
-
-The main configuration currently accepts only:
-
-- `es`;
-- `en`.
-
-Some additional internal catalogs contain other translated strings, but these languages are not currently selectable through the interface.
-
-## Atomic writes
-
-Configuration files are written atomically.
-
-The process is:
-
-1. write to a `.tmp` file;
-2. call `fsync`;
-3. use `os.replace`.
-
-This reduces the risk of leaving a partially written configuration file.
-
----
-
-# 27. AI key protection
-
-If an API key is configured through the backend, Rendifly protects it using:
-
-**Windows DPAPI (`CryptProtectData`)**
-
-The API key is not returned to the interface afterward.
-
-In B1, the interface controls used to enter these credentials are disabled, so this configuration is not normally available through the UI.
-
----
-
-# 28. `runtime.json`
-
-This file is used for auxiliary runtime information and profile persistence.
-
-It can currently store:
-
-- custom profile list;
-- active profile;
-- profile schema version;
-- other values managed through `PersistenceManager.get/set`.
-
----
-
-# 29. `notification_history.json`
-
-`NotificationService` can keep up to:
-
-**50 notifications**
-
-For each notification, it stores:
-
-- ID;
-- title;
-- message;
-- icon or type;
-- timestamp;
-- read/unread status.
-
-It also enforces the configured maximum number of notifications per hour.
-
----
-
-# 30. Other local data
-
-## Log
-
-Rendifly keeps a log file at:
-
-`%APPDATA%\Rendifly\rendifly.log`
-
-This file is managed by `LoggingService`.
-
-## Process icons
-
-Icons extracted from executables are stored in:
-
-`%LOCALAPPDATA%\Rendifly\process-icons`
-
-## Metrics history
-
-Historical metric samples currently remain in memory during the application session.
-
-No disk persistence is currently used for these samples.
-
-## Knowledge databases
-
-The files:
-
-- `process_database.json`;
-- `knowledge_base.json`;
-
-are internal Rendifly resources.
-
-They are not databases containing personal user information.
-
----
-
-# 31. Onboarding
-
-The initial onboarding experience is implemented in `onboarding.js`.
-
-It currently consists of **four steps**.
-
-## Step 1 — Welcome
-
-The introduction is shown together with the:
-
-**Get started**
-
-button.
-
-## Step 2 — Name
-
-The user can optionally enter their name.
-
-## Step 3 — Starting section
-
-The user can select a section to open after onboarding:
-
-- Home;
-- Performance;
-- Processes;
-- Optimization;
-- System;
-- Settings.
-
-## Step 4 — Visual hardware scan
-
-Rendifly displays detected hardware progressively.
-
-This can include:
-
-- CPU;
-- GPU;
-- RAM;
-- storage;
-- other components returned by the detector.
-
-## When onboarding finishes
-
-Rendifly:
-
-- saves the user's name;
-- sets `onboarding_completed=true`;
-- sets `first_run=false`;
-- initially forces compact mode;
-- hides the onboarding interface;
-- renders the sidebar;
-- opens the selected page, or Optimization to display recommendations.
-
-The selected section acts as the initial destination.
-
-According to the existing code comment, it is not persisted as a separate permanent preference.
-
----
-
-# 32. Languages
-
-Rendifly B1 is currently focused on:
-
-- **Español**
-- **English**
-
-## Frontend
-
-`i18n.js` handles visible translations.
-
-It can translate:
-
-- text;
-- titles;
-- placeholders;
-- `aria-label` attributes.
-
-It also observes DOM changes so dynamically created elements can be translated.
-
-## Backend
-
-`backend/i18n.py` translates:
-
-- responses;
-- statuses;
-- recommendations;
-- assistant text.
-
-## Valid languages
-
-The current configuration considers the following languages valid:
-
-- `es`;
-- `en`.
-
-Some partial internal response or knowledge catalogs also exist for:
-
-- `zh`;
-- `pt`;
-- `fr`.
-
-However, **these languages cannot currently be selected through the B1 interface**.
-
-When the user changes the language:
-
-1. the new value is saved;
-2. the sidebar is rendered again;
-3. Rendifly navigates back to the current page.
-
----
-
-# 33. Startup and single-instance behavior
-
-`main.py` recognizes the:
-
-`--startup`
-
-argument.
-
-Rendifly prevents multiple copies of the application from running simultaneously through `single_instance.py`.
-
-## Mutex
-
-It uses the Windows mutex:
-
-`Local\RendiflyManager.SingleInstance`
-
-## Named pipe
-
-The primary instance creates:
-
-`\\.\pipe\RendiflyManager.SingleInstance`
-
-If the user attempts to launch Rendifly while another instance is already running:
-
-- a second application window is not created;
-- the new process attempts to activate the existing instance for up to approximately five seconds.
-
-When the launch uses `--startup`, the secondary process does not show an additional notification.
-
----
-
-# 34. Rendifly window
-
-Rendifly uses:
-
-**pywebview + EdgeChromium/WebView2**
-
-## Normal size
-
-`1280 × 800`
-
-## Approximate compact size
-
-`438 × 687`
-
-## Minimum size
-
-`438 × 520`
-
-## Native background
-
-`#0a0a12`
-
----
-
-# 35. System tray
-
-`SystemTrayService` uses `pystray`.
-
-The tray icon currently provides a menu containing:
-
-- **Open Rendifly**
-- **Exit**
-
-The system tray is used when appropriate for:
-
-- starting minimized;
-- minimizing the application;
-- closing the window while tray-related preferences are enabled.
-
-The service attempts to load the tray icon from packaged resources.
-
-If that fails, it uses a fallback icon.
-
----
-
-# 36. Closing the application
-
-Closing behavior depends on the user's preferences.
-
-## X button
-
-The X button normally hides Rendifly to the tray when:
-
-`close_to_tray`
-
-is enabled.
-
-## Minimize
-
-Minimizing normally sends the application to the tray when:
-
-`minimize_to_tray`
-
-is enabled.
-
-## Full shutdown
-
-The options:
-
-- **Close application** from the sidebar;
-- **Exit** from the tray;
-
-perform a complete shutdown.
-
-During this process, Rendifly stops:
-
-- the monitor;
-- the profile monitor;
-- the tray service.
-
-It then destroys the pywebview windows.
-
-There is also a safety timer of approximately **two seconds**.
-
-The monitor is also stopped when the application window is actually closed.
-
----
-
-# 37. Real Windows integrations
-
-Rendifly Manager B1 uses several real Windows features and interfaces.
-
-Current integrations include:
-
-### Windows Registry
-
-Used for information or operations involving:
-
-- automatic startup;
-- startup applications;
-- animations;
-- transparency;
-- Fast Startup;
-- Storage Sense.
-
-### `powercfg`
-
-Used for:
-
-- reading Windows power plans;
-- switching the active plan.
-
-### WMI
-
-Used mainly for:
-
-- GPU driver information;
-- system information.
-
-### `nvidia-smi`
-
-Used, when available, to retrieve:
-
-- GPU utilization;
-- GPU temperature;
-- GPU memory;
-- NVIDIA driver information.
-
-### `psutil`
-
-Used for:
-
-- processes;
-- CPU;
-- memory;
-- disk;
-- network;
-- battery;
-- uptime;
-- available sensors.
-
-### DPAPI
-
-`CryptProtectData` is used to protect API keys.
-
-### Windows Settings
-
-Rendifly can open Windows Settings pages through:
-
-`ms-settings:`
-
-### Control Panel
-
-Rendifly can also use:
-
-- `control.exe`;
-- selected allowed `.cpl` panels.
-
-### Hardware manufacturers
-
-Official links are available for:
-
-- NVIDIA;
-- AMD;
-- Intel.
-
-### External communication
-
-Rendifly can open:
-
-- the default email application;
-- Gmail;
-- the external browser.
-
-### Single instance
-
-Rendifly uses:
-
-- a native Windows mutex;
-- a named pipe.
-
-## External URI security
-
-`open_external_uri` applies an allowlist of:
-
-- approved schemes;
-- approved commands.
-
-It does not arbitrarily execute any string provided as a system command.
-
----
-
-# 38. Actual B1 build status
-
-The current project tree contains several historical PyInstaller build directories created during previous rebuilds.
-
-These include:
-
-- `build`;
-- `build-rebuild`;
-- `build-rebuild2`;
-- `build-rebuild3`;
-
-along with their corresponding `dist-*` directories.
-
-The current primary packaged folder is:
-
-`dist/Rendifly`
-
-## Current executable
-
-The following executable was found:
-
-`dist\Rendifly\Rendifly.exe`
-
-Approximate size:
-
-**8.54 MB**
-
-Modification date:
-
-**17/09/2026 14:54:58**
-
-The distribution also contains:
-
-- the `_internal` directory;
-- packaged resources required to run the application.
-
-## Current installer
-
-The following installer was found:
-
-`installer\output\RendiflyManagerSetup.exe`
-
-Approximate size:
-
-**23.61 MB**
-
-Date:
-
-**17/09/2026 14:55:17**
-
----
-
-# 39. Installer
-
-The installer identifies the product as:
-
-**Rendifly Manager**
-
-Version:
-
-**0.1 Beta**
-
-The default installation path is:
-
-`Program Files\Rendifly\Rendifly Manager`
-
-The installer supports:
-
-- optional shortcuts;
-- configurable handling of user data during uninstallation.
-
-Depending on the installer configuration, user data can either be preserved or removed when uninstalling Rendifly.
-
----
-
-# 40. PyInstaller
-
-`Rendifly.spec` contains the main configuration used to build the executable.
-
-It currently packages:
-
-- frontend files;
-- resources;
-- `pystray`;
-- EdgeChromium;
-- the single-instance system;
-- assistant clients.
-
-The application is built with:
-
-`console=False`
-
-so the end user does not see an additional console window when Rendifly is launched.
-
----
-
-# 41. What does Rendifly Manager B1 actually include?
-
-The current build includes:
-
-- Dashboard;
-- system monitoring;
-- Processes;
-- recommendations;
-- cleanup;
-- startup application management;
-- profiles;
-- power plans;
-- PC information;
-- driver information;
-- shortcuts to Windows Settings;
-- local assistant;
-- feedback;
-- settings;
-- onboarding;
-- system tray;
-- notifications;
-- Global Search;
-- JSON-based persistence;
-- packaged executable;
-- installer.
-
----
-
-# 42. What is not included in B1?
-
-To make the real scope of this version clear, B1 currently **does not include**:
-
-- a separate About page;
-- a SQL database;
-- automatic driver updates;
-- direct modification of every Windows setting;
-- external AI connectivity enabled through the interface.
-
-Although part of the infrastructure for external AI providers exists in the project, this feature remains disabled in the B1 interface and is shown as **Coming soon**.
-
----
-
-# Rendifly Manager 0.1 Beta
-
-B1 represents the first packaged version of Rendifly Manager with its main systems connected: monitoring, management, optimization, PC information, and Windows-integrated tools.
-
-The goal of Rendifly is not to replace every tool that already exists in Windows. Instead, it aims to bring useful information and controls together in a more direct and understandable interface.
-
-> **Every PC is different. Rendifly should be too.**
->
-> # Rendifly Manager
-
-**Rendifly Manager 0.1 Beta — B1**
-
-Rendifly Manager es una aplicación de escritorio para Windows creada para reunir en un mismo lugar información, monitorización y herramientas útiles para gestionar una PC.
-
-La idea es que una persona pueda entender mejor qué está pasando en su equipo, consultar su hardware y rendimiento, controlar aplicaciones y procesos, limpiar archivos temporales, administrar programas de inicio, usar perfiles, cambiar planes de energía y acceder rápidamente a distintas herramientas de Windows sin tener que buscar cada opción por separado.
-
-Este README documenta el **estado real de Rendifly Manager B1** según el código y la build actual. No está basado en planes antiguos ni en funciones que todavía no existen.
-
-> **Estado de esta revisión:** no se modificó ningún archivo, no se corrigió código y no se reconstruyeron ni el ejecutable ni el instalador. Este documento representa lo que realmente contiene B1.
-
----
-
-# 1. ¿Cómo está construido Rendifly Manager?
-
-Actualmente Rendifly Manager utiliza:
-
-- **Backend en Python.**
-- **Frontend en HTML, CSS y JavaScript.**
-- **pywebview** para cargar la interfaz mediante EdgeChromium/WebView2.
-- Una clase `RendiflyAPI` como puente entre el frontend y el backend.
-- **psutil**, Windows y WMI para obtener información y monitorizar el sistema.
-- Archivos **JSON** guardados dentro de `%APPDATA%\Rendifly` para la persistencia local.
-
-Actualmente no se utiliza una base de datos SQL.
-
-El producto aparece identificado tanto en la aplicación como en el instalador como:
+La versión aparece identificada como:
 
 **Rendifly Manager 0.1 Beta**
 
-El punto de entrada principal es `main.py`.
+El archivo principal que inicia el programa es:
 
-Al arrancar, este archivo:
+`main.py`
 
-- cambia al directorio de la aplicación;
-- procesa el argumento `--startup`;
-- comprueba que no exista otra instancia de Rendifly abierta;
-- y finalmente inicia `RendiflyApp`.
+Cuando Rendifly se abre, este archivo se encarga de:
+
+- preparar la carpeta desde donde se ejecutará el programa;
+- detectar si se inició automáticamente con Windows;
+- comprobar que no exista otra instancia de Rendifly abierta;
+- iniciar la aplicación.
 
 ---
 
-# 2. Estructura general del proyecto
+# 2. Estructura del proyecto
 
-Las carpetas y archivos principales del proyecto son:
+El proyecto está dividido en varias partes.
 
-### `backend/`
+## `backend/`
 
-Contiene la lógica relacionada con:
+Aquí se encuentra gran parte de la lógica interna de Rendifly.
+
+Incluye sistemas relacionados con:
 
 - hardware;
 - monitorización;
@@ -1816,48 +83,55 @@ Contiene la lógica relacionada con:
 - recomendaciones;
 - optimización;
 - asistente;
-- sistema;
+- información del sistema;
 - servicios;
 - configuración.
 
-### `frontend/`
+## `frontend/`
 
-Contiene:
+Aquí se encuentra la interfaz que ve el usuario.
+
+Incluye:
 
 - `index.html`;
 - estilos;
 - iconos;
 - componentes;
-- router;
+- navegación;
 - estado de la aplicación;
-- API del frontend;
+- conexión con la API;
 - páginas de cada sección.
 
-### `resources/`
+## `resources/`
 
-Incluye:
+Contiene recursos que Rendifly utiliza internamente, como:
 
-- la base de conocimiento;
-- la base de procesos.
+- base de conocimiento;
+- base de información sobre procesos.
 
-### `tests/`
+## `tests/`
 
-Actualmente contiene pruebas relacionadas con:
+Incluye actualmente pruebas relacionadas con:
 
-- intención del asistente;
+- detección de intención del asistente;
 - perfiles;
 - API de perfiles.
 
-### Empaquetado
+## Archivos relacionados con la creación del programa
 
-- `Rendifly.spec`: configuración utilizada por PyInstaller.
-- `installer/RendiflyManager.iss`: proyecto del instalador mediante Inno Setup.
+`Rendifly.spec`
+
+Contiene la configuración utilizada por PyInstaller para crear el ejecutable.
+
+`installer/RendiflyManager.iss`
+
+Contiene la configuración del instalador creado con Inno Setup.
 
 ---
 
-# 3. Navegación principal
+# 3. Secciones principales
 
-La interfaz registra actualmente **ocho rutas principales**:
+Rendifly Manager tiene actualmente ocho rutas o páginas principales:
 
 - Inicio
 - Rendimiento
@@ -1868,7 +142,7 @@ La interfaz registra actualmente **ocho rutas principales**:
 - Feedback
 - Configuración
 
-La barra lateral organiza estas páginas dentro de las categorías:
+La barra lateral las organiza dentro de grupos como:
 
 - **Inicio**
 - **Análisis**
@@ -1879,219 +153,266 @@ La barra lateral organiza estas páginas dentro de las categorías:
 
 # 4. Inicio / Dashboard
 
-La página principal está implementada en `home.js`.
+La pantalla de Inicio está implementada principalmente en:
 
-Es el punto de entrada visual de Rendifly y busca mostrar rápidamente el estado general de la PC.
+`home.js`
 
-## ¿Qué muestra?
+Esta es la página que ofrece una vista rápida del estado general de la PC.
 
-### Saludo
+## Saludo
 
-Si el usuario ha configurado su nombre, Rendifly lo utiliza en el saludo de la página principal.
+Si el usuario ha configurado su nombre, Rendifly puede utilizarlo para personalizar el saludo.
 
-### Estado de la PC
+## Estado general de la PC
 
-Dependiendo de las métricas actuales puede mostrar estados como:
+Rendifly analiza algunas métricas y puede mostrar mensajes como:
 
 - funcionamiento normal;
 - RAM elevada;
 - GPU caliente;
 - batería baja.
 
-### Métricas en tiempo real
+La intención es que no sea necesario interpretar todos los números manualmente para saber si algo merece atención.
 
-El Dashboard muestra tarjetas para:
+---
+
+# 5. Información en tiempo real
+
+En Inicio aparecen tarjetas con información sobre:
 
 - CPU;
 - RAM;
 - GPU;
 - batería.
 
-Si el equipo no dispone de batería, esa tarjeta puede utilizarse para mostrar información de almacenamiento o lectura de disco.
-
-### CPU
-
-Muestra:
-
-- porcentaje de uso;
-- frecuencia actual.
-
-### RAM
-
-Muestra:
-
-- porcentaje utilizado;
-- GB utilizados;
-- memoria total disponible.
-
-### GPU
-
-Muestra:
-
-- utilización;
-- temperatura.
-
-Si la información no puede obtenerse, aparece como:
-
-**No disponible**
-
-### Batería
-
-Cuando Windows proporciona la información, se muestra:
-
-- porcentaje;
-- estado de conexión;
-- tiempo restante.
-
-### Acciones rápidas
-
-Desde Inicio se puede acceder directamente a:
-
-- Limpieza;
-- Procesos;
-- Perfiles;
-- Pregúntale a Rendifly.
-
-### Recomendaciones
-
-La página puede mostrar hasta **tres recomendaciones activas**.
-
-### Mejorar rendimiento
-
-Existe una acción llamada **“Mejorar rendimiento”**.
-
-Esta función:
-
-1. analiza archivos temporales elegibles;
-2. realiza la limpieza;
-3. muestra una explicación desplegable sobre lo que hace.
-
-## Actualización de la página
-
-Las métricas se actualizan utilizando el intervalo configurado por el usuario.
-
-En el frontend existe un mínimo de **1 segundo**.
-
-Las recomendaciones se actualizan aproximadamente cada **60 segundos**.
-
-Cuando la ventana está oculta y `document.hidden` está activo, la actualización del Dashboard se detiene funcionalmente.
-
----
-
-# 5. Rendimiento
-
-La sección está implementada en `performance.js`.
-
-Su objetivo es ofrecer una vista más detallada del comportamiento del equipo.
-
-Dispone de varias pestañas.
+Si el equipo no tiene batería, Rendifly puede mostrar en su lugar información de almacenamiento o actividad del disco.
 
 ## CPU
 
 Muestra:
 
 - porcentaje de uso;
-- frecuencia;
-- nombre del procesador;
-- gráfica histórica;
-- procesos con mayor utilización.
+- frecuencia del procesador.
 
 ## RAM
 
 Muestra:
 
-- porcentaje de uso;
+- porcentaje utilizado;
+- memoria utilizada en GB;
+- memoria total.
+
+## GPU
+
+Cuando la información está disponible, muestra:
+
+- porcentaje de utilización;
+- temperatura.
+
+Si Windows o el hardware no proporcionan esos datos, aparece:
+
+**No disponible**
+
+## Batería
+
+Cuando Windows ofrece la información necesaria, puede mostrar:
+
+- porcentaje;
+- si está conectada o cargando;
+- tiempo restante aproximado.
+
+---
+
+# 6. Acciones rápidas
+
+Desde Inicio se puede acceder directamente a funciones importantes como:
+
+- Limpieza;
+- Procesos;
+- Perfiles;
+- Pregúntale a Rendifly.
+
+También pueden aparecer hasta **tres recomendaciones activas**.
+
+---
+
+# 7. Mejorar rendimiento
+
+Inicio incluye una acción llamada:
+
+**Mejorar rendimiento**
+
+Esta función está relacionada con la limpieza de archivos temporales.
+
+El proceso consiste en:
+
+1. analizar los archivos temporales que Rendifly considera seguros para limpiar;
+2. realizar la limpieza;
+3. verificar el resultado.
+
+También existe una explicación desplegable que permite saber qué hace esta función antes de utilizarla.
+
+---
+
+# 8. Actualización del Dashboard
+
+Las métricas se actualizan utilizando el intervalo seleccionado en Configuración.
+
+El intervalo mínimo permitido en la interfaz es de:
+
+**1 segundo**
+
+Las recomendaciones se actualizan aproximadamente cada:
+
+**60 segundos**
+
+Cuando la ventana de Rendifly está oculta y `document.hidden` está activo, la actualización de esta página se detiene para evitar trabajo innecesario.
+
+---
+
+# 9. Rendimiento
+
+La sección Rendimiento está implementada en:
+
+`performance.js`
+
+Aquí se puede ver con más detalle cómo está trabajando el equipo.
+
+Está dividida en varias pestañas.
+
+---
+
+# 10. CPU
+
+La pestaña de CPU muestra:
+
+- porcentaje de utilización;
+- frecuencia;
+- nombre del procesador;
+- gráfica histórica;
+- procesos que más CPU están utilizando.
+
+---
+
+# 11. RAM
+
+La pestaña de RAM muestra:
+
+- porcentaje utilizado;
 - GB utilizados;
 - GB totales;
 - barra de utilización;
 - gráfica histórica.
 
-## GPU
+---
 
-Muestra:
+# 12. GPU
 
-- utilización;
+La pestaña de GPU puede mostrar:
+
+- porcentaje de utilización;
 - temperatura;
 - nombre de la GPU;
 - gráfica histórica.
 
-## Almacenamiento
+---
 
-Muestra las unidades detectadas junto con:
+# 13. Almacenamiento
 
-- tipo;
+Rendifly detecta las unidades de almacenamiento del equipo y muestra información como:
+
+- tipo de unidad;
 - espacio utilizado;
 - espacio libre;
-- capacidad total;
-- barra cuyo estado visual cambia según la ocupación.
+- capacidad total.
 
-## Red
+También se muestra una barra visual que cambia dependiendo de cuánto espacio esté ocupado.
 
-Muestra:
+---
 
-- bytes enviados por segundo;
-- bytes recibidos por segundo;
+# 14. Red
+
+La sección de red muestra:
+
+- datos enviados por segundo;
+- datos recibidos por segundo;
 - gráfica de actividad.
 
-## Información adicional
+---
 
-También se muestran:
+# 15. Información adicional de rendimiento
 
-- tiempo encendido del sistema;
+También pueden mostrarse datos como:
+
+- cuánto tiempo lleva encendida la PC;
 - temperatura de CPU;
 - temperatura de GPU.
 
 ---
 
-# 6. Cómo funciona la monitorización
+# 16. ¿Cómo obtiene Rendifly esta información?
 
-El backend utiliza `SystemMonitor` para recopilar información de:
+El sistema interno llamado `SystemMonitor` recopila información sobre:
 
 - CPU;
 - RAM;
 - disco;
 - red;
 - batería;
-- uptime;
-- temperaturas.
+- tiempo encendido;
+- temperaturas disponibles.
 
-Para la GPU se intenta utilizar `nvidia-smi`.
+Para algunas tarjetas gráficas NVIDIA, Rendifly puede utilizar:
 
-Como consultar constantemente esta herramienta tendría un coste innecesario, los datos relacionados con GPU se actualizan con menor frecuencia.
+`nvidia-smi`
 
-Rendifly también mantiene un historial temporal de métricas mediante `MetricsHistory`.
+Como consultar constantemente esta herramienta puede consumir recursos innecesariamente, la información de GPU se actualiza con menor frecuencia.
 
-Este historial se mantiene **en memoria** durante la ejecución y permite consultar ventanas de información expresadas en minutos.
+Rendifly también mantiene un historial temporal mediante:
+
+`MetricsHistory`
+
+Este historial se guarda en memoria mientras el programa está abierto.
+
+Permite consultar el comportamiento del equipo durante diferentes periodos de tiempo.
 
 ---
 
-# 7. Procesos
+# 17. Procesos
 
-La sección de procesos utiliza:
+La sección Procesos utiliza principalmente:
 
 - `processes.js`;
 - `ProcessManager`.
 
-El objetivo no es simplemente mostrar una copia completa del Administrador de tareas, sino identificar y presentar las aplicaciones relevantes que están ejecutándose.
+El objetivo de esta sección no es mostrar absolutamente todo lo que aparece en el Administrador de tareas.
 
-## Funciones disponibles
+Rendifly intenta centrarse principalmente en **aplicaciones reconocibles y relevantes para el usuario**.
 
-Actualmente permite:
+---
 
-- ver aplicaciones relevantes en ejecución;
+# 18. Qué puedes hacer en Procesos
+
+Actualmente puedes:
+
+- ver aplicaciones que están ejecutándose;
 - actualizar automáticamente la lista;
 - actualizarla manualmente;
-- buscar por nombre visible;
-- buscar por nombre del ejecutable;
-- consultar memoria agregada por aplicación;
-- consultar CPU del proceso principal;
-- finalizar procesos.
+- buscar por nombre;
+- buscar por ejecutable;
+- consultar el consumo de memoria;
+- consultar el uso de CPU del proceso principal;
+- cerrar procesos cuando es seguro hacerlo.
 
-La actualización automática ocurre aproximadamente cada **2,5 segundos**.
+La lista se actualiza aproximadamente cada:
 
-## Clasificación interna
+**2,5 segundos**
 
-Aunque la interfaz prioriza las aplicaciones principales que pueden cerrarse, internamente el backend puede clasificar procesos como:
+---
+
+# 19. Cómo identifica los procesos
+
+Internamente, Rendifly puede clasificar los procesos en diferentes grupos:
 
 - `apps`;
 - `app_processes`;
@@ -2100,55 +421,65 @@ Aunque la interfaz prioriza las aplicaciones principales que pueden cerrarse, in
 - `rendifly`;
 - `other`.
 
-También puede agrupar procesos auxiliares debajo de una misma aplicación.
+Aunque esta clasificación existe internamente, la interfaz intenta priorizar las aplicaciones más útiles para una persona normal.
 
-Para hacerlo inspecciona información como:
+Rendifly también puede agrupar varios procesos auxiliares debajo de una misma aplicación.
 
-- ventanas;
+Para ello analiza información como:
+
+- ventanas abiertas;
 - servicios;
 - propietario del proceso;
 - ejecutable.
 
-## Iconos
+---
 
-Rendifly intenta obtener el icono directamente desde el ejecutable real de la aplicación.
+# 20. Iconos de aplicaciones
 
-Después lo guarda en caché dentro de:
+Rendifly intenta obtener el icono directamente desde el ejecutable real de cada aplicación.
+
+Después guarda esos iconos temporalmente en:
 
 `%LOCALAPPDATA%\Rendifly\process-icons`
 
-Esto evita tener que volver a extraer continuamente los mismos iconos.
+De esta forma no necesita volver a extraer constantemente los mismos iconos.
 
-## Seguridad
+---
 
-La lógica relacionada con seguridad utiliza:
+# 21. Seguridad al cerrar procesos
+
+Cerrar procesos puede afectar al funcionamiento de Windows, por lo que Rendifly utiliza varios sistemas internos de seguridad:
 
 - `ProcessClassifier`;
 - `ProcessSafety`;
 - `ProcessKnowledge`.
 
-Los procesos pueden recibir uno de estos niveles:
+Los procesos pueden clasificarse como:
 
 - `normal`;
 - `caution`;
 - `critical`.
 
-Los procesos clasificados como críticos no se ofrecen como procesos cerrables.
+Los procesos considerados críticos no se presentan como procesos que el usuario pueda cerrar normalmente.
 
-Antes de terminar un proceso también se realizan comprobaciones de identidad para reducir el riesgo de actuar sobre un PID que ya no corresponda al mismo proceso.
+Rendifly también comprueba que el proceso siga siendo el mismo antes de cerrarlo.
 
-Dependiendo de la operación, Rendifly puede:
+Esto ayuda a evitar problemas relacionados con la reutilización de números PID en Windows.
 
-- enviar `WM_CLOSE`;
-- o finalizar el proceso de forma forzada.
+Dependiendo del tipo de proceso, Rendifly puede:
+
+- solicitar que la aplicación cierre normalmente mediante `WM_CLOSE`;
+- finalizar el proceso de forma forzada.
 
 ---
 
-# 8. Optimización
+# 22. Optimización
 
-La sección está implementada en `optimization.js`.
+La sección Optimización está implementada principalmente en:
 
-Actualmente contiene cuatro áreas principales:
+`optimization.js`
+
+Actualmente contiene cuatro herramientas importantes:
 
 - Limpieza;
 - Inicio;
@@ -2157,27 +488,35 @@ Actualmente contiene cuatro áreas principales:
 
 ---
 
-# 9. Limpieza
+# 23. Limpieza
 
-La limpieza está diseñada para trabajar únicamente con archivos temporales considerados elegibles.
+La limpieza está diseñada para eliminar únicamente archivos temporales considerados seguros.
 
-El flujo general es:
+El funcionamiento general es:
 
 1. analizar;
-2. crear un inventario;
+2. crear una lista de archivos elegibles;
 3. limpiar;
 4. verificar nuevamente.
 
-## Analizar ahora
+---
 
-Rendifly puede analizar el sistema para determinar:
+# 24. Analizar ahora
 
-- cuántos archivos temporales pueden eliminarse;
+Antes de eliminar nada, Rendifly puede analizar el equipo.
+
+Después muestra:
+
+- cuántos archivos pueden eliminarse;
 - cuánto espacio ocupan.
 
-## Limpieza
+Esto permite saber qué se va a limpiar antes de realizar la operación.
 
-Durante el proceso se muestra información como:
+---
+
+# 25. Proceso de limpieza
+
+Durante la limpieza se puede mostrar:
 
 - progreso;
 - archivos procesados;
@@ -2185,159 +524,196 @@ Durante el proceso se muestra información como:
 - archivos que no pudieron eliminarse;
 - errores.
 
-Después de terminar, el sistema vuelve a comprobar cuánto contenido elegible continúa presente.
+Cuando termina, Rendifly vuelve a comprobar cuánto contenido temporal sigue existiendo.
 
-## Qué no debería tocar
+---
 
-La limpieza no modifica:
+# 26. Qué no elimina Rendifly
 
-- documentos;
+El sistema está diseñado para no modificar:
+
+- documentos personales;
 - descargas;
 - contraseñas;
-- carpetas críticas.
+- carpetas críticas del sistema.
 
-## Ubicaciones revisadas
+---
 
-`CleanupManager` inspecciona actualmente:
+# 27. Qué lugares puede revisar
 
-- temporales del usuario;
+`CleanupManager` puede revisar actualmente:
+
+- archivos temporales del usuario;
 - `Windows\Temp`;
 - crash dumps;
 - informes WER;
 - caché de miniaturas del Explorador;
-- cachés explícitas de Chrome;
-- cachés explícitas de Edge.
-
-## Exclusiones
-
-Se excluyen:
-
-- puntos de reanálisis;
-- enlaces;
-- archivos protegidos como `desktop.ini`;
-- `ntuser.dat`;
-- archivos `~$...`;
-- archivos bloqueados;
-- archivos modificados durante los últimos 60 segundos.
-
-Las operaciones están asociadas a un `scan_id` y posteriormente se verifican.
+- cachés específicas de Chrome;
+- cachés específicas de Edge.
 
 ---
 
-# 10. Aplicaciones de inicio
+# 28. Archivos que se excluyen
 
-Rendifly puede consultar diferentes fuentes utilizadas por Windows para iniciar aplicaciones automáticamente.
+Por seguridad, Rendifly evita determinados elementos, entre ellos:
 
-Actualmente revisa:
+- puntos de reanálisis;
+- enlaces;
+- `desktop.ini`;
+- `ntuser.dat`;
+- archivos que comienzan con `~$`;
+- archivos bloqueados;
+- archivos modificados durante los últimos 60 segundos.
 
-- claves `Run` del Registro para usuario;
-- claves `Run` del Registro para máquina;
+Cada análisis genera un identificador llamado:
+
+`scan_id`
+
+Después de limpiar, Rendifly utiliza la información del análisis para verificar el resultado.
+
+---
+
+# 29. Aplicaciones de inicio
+
+Rendifly también puede mostrar programas configurados para iniciarse automáticamente con Windows.
+
+Para encontrarlos revisa:
+
+- entradas `Run` del Registro para el usuario;
+- entradas `Run` del Registro del sistema;
 - carpeta Startup del usuario.
 
-Para cada entrada intenta mostrar:
+---
+
+# 30. Información de las aplicaciones de inicio
+
+Cuando la información está disponible, Rendifly intenta mostrar:
 
 - impacto estimado;
-- editor conocido;
-- ruta;
+- fabricante o editor;
+- ubicación;
 - descripción.
 
-El impacto puede aparecer como:
+El impacto puede clasificarse como:
 
 - Alto;
 - Medio;
 - Bajo;
 - No medido.
 
-## Activar y desactivar
+---
 
-Las entradas pertenecientes a `HKCU` pueden habilitarse o deshabilitarse desde Rendifly.
+# 31. Activar o desactivar programas de inicio
 
-Al deshabilitar una entrada se mueve temporalmente a:
+Las entradas pertenecientes a `HKCU` pueden activarse o desactivarse desde Rendifly.
+
+Cuando se deshabilita una aplicación, su entrada se mueve temporalmente a:
 
 `Run_Disabled`
 
-Cuando se vuelve a habilitar, la entrada se restaura.
+Si se vuelve a activar, Rendifly la restaura.
 
-La interfaz también permite abrir:
+También existe un acceso directo a la configuración oficial de Windows:
 
 `ms-settings:startupapps`
 
-Esta es la página oficial de Windows para administrar las aplicaciones de inicio.
-
 ---
 
-# 11. Perfiles
+# 32. Perfiles
 
-Los perfiles permiten crear una configuración de aplicaciones que Rendifly debe mantener cerradas mientras el perfil esté activo.
+Los perfiles permiten seleccionar aplicaciones que Rendifly debe intentar mantener cerradas mientras un perfil esté activo.
 
-Actualmente se puede:
+Por ejemplo, se puede crear un perfil para trabajar, estudiar o jugar y seleccionar programas que no quieras ejecutándose mientras ese perfil esté activo.
 
-- crear un perfil;
-- asignarle nombre;
+Actualmente puedes:
+
+- crear perfiles;
+- ponerles un nombre;
 - añadir una descripción;
 - seleccionar aplicaciones;
-- editarlo;
-- eliminarlo;
-- activarlo;
-- desactivarlo;
-- consultar cuál está activo;
-- consultar las aplicaciones cerrables detectadas.
-
-Cuando un perfil se activa, Rendifly intenta cerrar las aplicaciones seleccionadas.
-
-## Monitor del perfil
-
-`ProfileManager` utiliza actualmente el esquema de persistencia **versión 2**.
-
-Mientras existe un perfil activo se ejecuta un monitor daemon aproximadamente cada **5 segundos**.
-
-Si una aplicación incluida en el perfil vuelve a abrirse y continúa siendo considerada cerrable, Rendifly intenta finalizarla nuevamente.
-
-Se guardan en `runtime.json`:
-
-- los perfiles;
-- el perfil actualmente activo;
-- la versión del esquema.
+- editar perfiles;
+- eliminar perfiles;
+- activarlos;
+- desactivarlos;
+- ver cuál está activo;
+- consultar qué aplicaciones pueden cerrarse.
 
 ---
 
-# 12. Energía
+# 33. Cómo funcionan los perfiles
 
-La sección de energía trabaja directamente con los planes reales de Windows.
+Cuando se activa un perfil, Rendifly intenta cerrar las aplicaciones seleccionadas.
 
-Para ello utiliza `powercfg`.
+`ProfileManager` utiliza actualmente el esquema de persistencia:
 
-## Lectura de planes
+**versión 2**
 
-Se utilizan comandos equivalentes a:
+Mientras el perfil permanece activo, Rendifly revisa aproximadamente cada:
+
+**5 segundos**
+
+si alguna de esas aplicaciones se ha vuelto a abrir.
+
+Si vuelve a aparecer y sigue siendo seguro cerrarla, Rendifly intenta cerrarla nuevamente.
+
+Los perfiles se guardan en:
+
+`runtime.json`
+
+junto con:
+
+- perfil activo;
+- versión del sistema de perfiles.
+
+---
+
+# 34. Energía
+
+La sección Energía trabaja con los planes de energía reales de Windows.
+
+Para hacerlo utiliza:
+
+`powercfg`
+
+---
+
+# 35. Consultar planes de energía
+
+Rendifly utiliza comandos equivalentes a:
 
 `powercfg /list`
 
-para obtener los esquemas disponibles.
+para consultar los planes disponibles.
 
-Para comprobar el esquema actualmente seleccionado se utiliza:
+Para saber cuál está activo utiliza:
 
 `/getactivescheme`
 
-## Cambiar de plan
+---
 
-Cuando el usuario selecciona otro plan, Rendifly utiliza:
+# 36. Cambiar el plan de energía
+
+Cuando seleccionas un plan diferente, Rendifly utiliza:
 
 `/setactive`
 
-Después comprueba que Windows haya confirmado correctamente el GUID seleccionado.
+Después verifica que Windows haya confirmado correctamente el cambio.
 
-La lista se actualiza aproximadamente cada **30 segundos**.
+Los planes se actualizan aproximadamente cada:
 
-`EnergyManager` realiza validación estricta de los GUID antes de utilizarlos.
+**30 segundos**
+
+`EnergyManager` también comprueba que los identificadores GUID utilizados sean válidos.
 
 ---
 
-# 13. Sistema / Conocer mi PC
+# 37. Sistema / Conocer mi PC
 
-Esta sección está implementada en `system.js`.
+Esta sección está implementada principalmente en:
 
-Actualmente contiene tres pestañas:
+`system.js`
+
+Actualmente contiene tres apartados:
 
 - Mi PC;
 - Drivers;
@@ -2345,9 +721,11 @@ Actualmente contiene tres pestañas:
 
 ---
 
-# 14. Mi PC
+# 38. Mi PC
 
-`HardwareDetector` recopila información sobre:
+`HardwareDetector` recopila información sobre los componentes del equipo.
+
+Puede detectar información relacionada con:
 
 - CPU;
 - GPU;
@@ -2358,31 +736,43 @@ Actualmente contiene tres pestañas:
 - pantalla;
 - red;
 - sistema operativo;
-- datos complementarios disponibles.
-
-La interfaz divide esta información en secciones expandibles.
-
-Cada componente puede mostrar:
-
-- su valor principal;
-- un dato técnico;
-- una explicación educativa.
-
-También existe una caché del resumen de hardware para evitar volver a detectar innecesariamente toda la información.
-
-Internamente esa caché puede invalidarse cuando es necesario.
+- otros datos disponibles.
 
 ---
 
-# 15. Drivers
+# 39. Explicaciones del hardware
 
-`DriverDetector` se concentra principalmente en los controladores de GPU.
+La información aparece organizada en secciones expandibles.
 
-La detección utiliza:
+Cada componente puede mostrar:
+
+- nombre o valor principal;
+- información técnica;
+- una explicación para ayudar al usuario a entender qué significa.
+
+Rendifly también mantiene temporalmente un resumen del hardware para no tener que detectar todo nuevamente cada vez.
+
+Ese resumen puede actualizarse internamente cuando sea necesario.
+
+---
+
+# 40. Drivers
+
+`DriverDetector` se centra principalmente en los controladores de tarjetas gráficas.
+
+Utiliza:
 
 `WMI Win32_VideoController`
 
-y, cuando es necesario, puede utilizar `nvidia-smi` como fallback.
+y, cuando es necesario:
+
+`nvidia-smi`
+
+como alternativa.
+
+---
+
+# 41. Información de drivers
 
 La interfaz puede mostrar:
 
@@ -2399,74 +789,82 @@ Para GPUs de:
 - AMD / Radeon;
 - Intel;
 
-Rendifly puede proporcionar enlaces oficiales o intentar detectar la aplicación del fabricante instalada en el equipo.
+Rendifly puede mostrar enlaces oficiales o intentar detectar si está instalada la aplicación correspondiente del fabricante.
 
-También existe un botón para abrir **Windows Update**.
+También existe un botón para abrir:
 
-Actualmente Rendifly no dispone de un motor propio encargado de instalar o actualizar drivers automáticamente.
+**Windows Update**
 
-El estado mostrado se limita a información como controlador detectado y posibilidad de comprobar actualizaciones.
+Rendifly actualmente **no instala drivers automáticamente**.
+
+La función se centra en mostrar información y ayudar al usuario a llegar a las herramientas oficiales.
 
 ---
 
-# 16. Ajustes de Windows
+# 42. Ajustes de Windows
 
-`WindowsConfigManager` consulta y explica diferentes configuraciones del sistema.
+`WindowsConfigManager` puede leer y explicar diferentes configuraciones del sistema.
 
-Actualmente puede trabajar con información relacionada con:
+Actualmente incluye información relacionada con:
 
-- efectos visuales y animaciones;
+- efectos visuales;
+- animaciones;
 - transparencia;
 - plan de energía;
 - inicio rápido;
 - Sensor de almacenamiento;
 - Windows Update.
 
-Para obtener esta información utiliza datos del:
+Para hacerlo utiliza información del:
 
-- Registro;
+- Registro de Windows;
 - `powercfg`.
 
-En estos apartados Rendifly **no cambia directamente todas las opciones**.
+Rendifly no modifica directamente todas estas opciones.
 
-En su lugar puede abrir:
-
-- las páginas oficiales correspondientes de Windows;
-- el Panel de control cuando es necesario.
+En muchos casos simplemente abre la página oficial de Windows donde el usuario puede realizar el cambio.
 
 ---
 
-# 17. Pregúntale a Rendifly
+# 43. Pregúntale a Rendifly
 
-El asistente está implementado utilizando:
+Rendifly incluye un asistente integrado.
+
+Está implementado principalmente mediante:
 
 - `assistant.js`;
 - `AssistantEngine`.
 
-## Funciones actuales
+---
 
-La interfaz dispone de:
+# 44. Qué puedes hacer con el asistente
+
+Actualmente incluye:
 
 - campo para escribir preguntas;
-- preguntas rápidas sobre RAM;
-- preguntas rápidas sobre CPU;
-- preguntas rápidas sobre procesos;
-- historial de conversación dentro del estado del frontend;
+- preguntas rápidas;
+- consultas sobre RAM;
+- consultas sobre CPU;
+- consultas sobre procesos;
+- historial de conversación mientras la aplicación está abierta;
 - opción para limpiar el chat;
-- respuestas identificadas como locales o provenientes de IA;
-- acciones sugeridas que pueden llevar a otras páginas de Rendifly;
-- fuentes o enlaces cuando el backend los devuelve;
-- recomendaciones de seguimiento;
-- navegación directa desde determinadas respuestas.
+- respuestas identificadas como locales o de IA;
+- acciones que pueden llevar directamente a otras partes de Rendifly;
+- fuentes o enlaces cuando estén disponibles;
+- sugerencias de preguntas relacionadas.
 
-## Asistente local
+---
 
-El asistente local puede clasificar intenciones y utilizar información real de:
+# 45. Asistente local
 
-- métricas actuales;
+El asistente local puede utilizar información real del equipo.
+
+Puede consultar:
+
+- métricas;
 - hardware;
 - procesos;
-- conocimiento incluido con la aplicación.
+- conocimiento incluido dentro de Rendifly.
 
 Actualmente reconoce preguntas relacionadas con:
 
@@ -2475,170 +873,195 @@ Actualmente reconoce preguntas relacionadas con:
 - disco;
 - batería;
 - procesos;
-- inicio;
-- lentitud;
+- aplicaciones de inicio;
+- problemas de lentitud;
 - compatibilidad de juegos.
 
-El contexto conversacional conserva el último tema tratado para poder interpretar preguntas de seguimiento.
+También recuerda temporalmente el tema de la conversación para interpretar preguntas de seguimiento.
 
-## Proveedores externos
+---
 
-El proyecto también contiene una abstracción de proveedores y clientes para:
+# 46. IA externa
+
+El proyecto contiene infraestructura preparada para proveedores externos como:
 
 - Gemini;
 - APIs compatibles con OpenAI.
 
-Los archivos relacionados incluyen:
+Algunos archivos relacionados son:
 
 - `provider.py`;
 - `gemini_client.py`;
 - `openai_client.py`.
 
-### Estado real en B1
+Sin embargo, en B1 esta función todavía no está disponible desde la interfaz.
 
-Aunque este backend existe, la configuración de IA externa está deshabilitada actualmente en la interfaz.
-
-La UI muestra esta función como:
+La sección aparece como:
 
 **Próximamente**
 
-`feature_flags.py` hace que las operaciones externas respondan `coming_soon` cuando la función correspondiente está desactivada.
+`feature_flags.py` hace que las funciones externas respondan con:
+
+`coming_soon`
+
+cuando están desactivadas.
 
 Por tanto:
 
-- **el asistente local sí está implementado y operativo**;
-- **la conexión a proveedores externos no está disponible desde la interfaz actual de B1**.
+- el asistente local sí funciona;
+- la conexión externa de IA todavía no está disponible desde la interfaz de B1.
 
 ---
 
-# 18. Feedback / Comentarios
+# 47. Feedback / Comentarios
 
-La página de comentarios está implementada en `feedback.js`.
+Rendifly incluye una sección para enviar comentarios o reportar problemas.
 
-Para enviar un comentario se solicita:
+Está implementada en:
+
+`feedback.js`
+
+Actualmente solicita:
 
 - tipo de problema;
-- detalle o sección afectada;
+- sección afectada;
 - descripción.
 
 Estos campos son obligatorios.
 
-También puede seleccionarse opcionalmente una captura de pantalla.
+---
 
-Actualmente se envía **el nombre del archivo seleccionado**, no el archivo binario adjunto.
+# 48. Capturas de pantalla en Feedback
 
-## Opciones de envío
+También se puede seleccionar opcionalmente una captura de pantalla.
 
-Rendifly permite:
+Actualmente se envía el **nombre del archivo seleccionado**, pero no se adjunta directamente el archivo binario.
+
+---
+
+# 49. Formas de enviar comentarios
+
+Rendifly puede:
 
 - abrir la aplicación de correo predeterminada mediante `mailto:`;
 - abrir Gmail mediante una URL de composición.
 
-El correo de destino configurado actualmente es:
+El correo configurado actualmente es:
 
 `rendiflypcmanager@gmail.com`
 
-La interfaz también muestra un aviso de privacidad recomendando no incluir información personal.
+También se muestra un aviso recomendando no incluir información personal innecesaria.
 
 ---
 
-# 19. Configuración
+# 50. Configuración
 
-La configuración está implementada en `settings.js`.
+La sección Configuración está implementada principalmente en:
 
-Actualmente permite modificar diferentes aspectos de Rendifly.
+`settings.js`
 
-## Usuario
+Desde aquí se pueden modificar diferentes aspectos de Rendifly.
 
-- Nombre o apodo.
+---
 
-## Idioma
+# 51. Nombre del usuario
 
-- Español.
+Puedes configurar el nombre o apodo que Rendifly utilizará dentro de la aplicación.
+
+---
+
+# 52. Idioma
+
+B1 permite seleccionar:
+
+- Español;
 - English.
 
-## Apariencia
+---
 
-### Tema
+# 53. Apariencia
 
-- Moderno.
+Actualmente existen dos temas:
+
+- Moderno;
 - Decorativo.
 
-### Color de acento
+También puede seleccionarse:
 
-- paleta de colores predefinida;
-- color personalizado.
+- un color de acento predefinido;
+- un color personalizado.
 
-### Tamaño de interfaz
+---
 
-Puede utilizarse:
+# 54. Tamaño de la interfaz
+
+Rendifly tiene:
 
 - modo compacto;
-- modo cómodo/normal.
+- modo normal o cómodo.
 
-El modo compacto cambia aproximadamente la ventana nativa entre:
+El modo compacto utiliza aproximadamente:
 
-**438 × 687**
+`438 × 687`
 
-y:
+El tamaño normal es aproximadamente:
 
-**1280 × 800**
+`1280 × 800`
 
-## Comportamiento de Windows
+---
 
-Se puede configurar:
+# 55. Comportamiento al iniciar o cerrar
+
+Desde Configuración se puede controlar:
 
 - iniciar con Windows;
 - iniciar minimizado;
 - minimizar a la bandeja;
 - cerrar a la bandeja.
 
-## Monitorización
+---
 
-El intervalo puede configurarse entre:
+# 56. Intervalo de monitorización
 
-**1 y 10 segundos**
+Puedes decidir cada cuánto tiempo Rendifly actualiza determinadas métricas.
 
-## Notificaciones
+El intervalo disponible es de:
 
-Se puede:
-
-- activar o desactivar las notificaciones;
-- establecer un máximo de avisos por hora.
-
-El límite puede configurarse entre:
-
-**1 y 20**
-
-## Asistente IA externo
-
-Existe el apartado correspondiente, pero actualmente se encuentra:
-
-- deshabilitado;
-- marcado como próximamente.
-
-## Acerca de Rendifly
-
-También se incluye información del producto.
-
-## Guía oficial
-
-Existe un botón que abre el vídeo de YouTube configurado en el código como guía oficial.
-
-## Guardado
-
-Los cambios realizados en Configuración se guardan automáticamente mediante:
-
-- el código de la propia página;
-- `save_settings` en el backend.
+**1 a 10 segundos**
 
 ---
 
-# 20. Acerca de Rendifly
+# 57. Notificaciones
 
-Actualmente **no existe una ruta independiente llamada `about`**.
+Las notificaciones pueden:
 
-La información se encuentra dentro de una tarjeta en Configuración.
+- activarse;
+- desactivarse.
+
+También se puede establecer un máximo de avisos por hora.
+
+El rango permitido es:
+
+**1 a 20**
+
+---
+
+# 58. Configuración de IA externa
+
+Existe un apartado preparado para configurar servicios de IA externos.
+
+En B1 está:
+
+- deshabilitado;
+- marcado como **Próximamente**.
+
+---
+
+# 59. Acerca de Rendifly
+
+Actualmente Acerca de Rendifly no tiene una página independiente.
+
+Se encuentra dentro de Configuración.
 
 Muestra:
 
@@ -2654,13 +1077,32 @@ También incluye:
 
 y el lema:
 
-> Cada PC es diferente. Rendifly también debería serlo.
+> **Cada PC es diferente. Rendifly también debería serlo.**
 
 ---
 
-# 21. Búsqueda global
+# 60. Guía oficial
 
-La búsqueda global no es una página independiente de la barra lateral.
+Existe un botón que abre el vídeo de YouTube configurado en el código como guía oficial de Rendifly.
+
+---
+
+# 61. Guardado automático
+
+Los cambios realizados en Configuración se guardan automáticamente.
+
+Para ello se utiliza:
+
+- código de la propia página;
+- `save_settings` en el backend.
+
+No es necesario guardar manualmente cada cambio.
+
+---
+
+# 62. Búsqueda global
+
+Rendifly incluye una búsqueda global para encontrar rápidamente herramientas y secciones.
 
 Puede abrirse utilizando:
 
@@ -2668,7 +1110,11 @@ Puede abrirse utilizando:
 - `Ctrl + K`;
 - `Cmd + K`.
 
-`global_search` utiliza un índice interno con secciones y conceptos relacionados con:
+---
+
+# 63. Qué puede encontrar la búsqueda
+
+`global_search` incluye términos relacionados con:
 
 - Inicio;
 - Rendimiento;
@@ -2680,21 +1126,27 @@ Puede abrirse utilizando:
 - Mi PC;
 - Drivers;
 - Batería;
-- asistente;
-- feedback;
-- configuración.
+- Asistente;
+- Feedback;
+- Configuración.
 
-La búsqueda requiere como mínimo **dos caracteres**.
+La búsqueda necesita al menos:
 
-También normaliza acentos para facilitar las coincidencias.
+**2 caracteres**
+
+También intenta ignorar diferencias por acentos para encontrar resultados con mayor facilidad.
 
 ---
 
-# 22. API principal
+# 64. Comunicación entre la interfaz y Rendifly
 
-`RendiflyAPI` funciona como la fachada que conecta la interfaz con las distintas partes del backend.
+La clase:
 
-Actualmente expone las siguientes funciones.
+`RendiflyAPI`
+
+es uno de los puntos principales que conecta la interfaz con las funciones internas.
+
+Actualmente permite utilizar las siguientes operaciones.
 
 ## Configuración
 
@@ -2781,7 +1233,7 @@ Actualmente expone las siguientes funciones.
 - `get_drivers`
 - `get_windows_configs`
 
-## Integración
+## Integración con Windows
 
 - `open_external_uri`
 - `open_windows_settings`
@@ -2796,9 +1248,11 @@ Actualmente expone las siguientes funciones.
 
 ---
 
-# 23. Managers inicializados por la aplicación
+# 65. Sistemas internos principales
 
-`app.py` inicializa actualmente:
+Cuando Rendifly se inicia, `app.py` prepara diferentes sistemas internos.
+
+Actualmente incluye:
 
 - `HardwareDetector`
 - `SystemMonitor`
@@ -2816,253 +1270,308 @@ Actualmente expone las siguientes funciones.
 - `LoggingService`
 - `NotificationService`
 
-Además, cuando las dependencias necesarias están disponibles:
+Cuando las dependencias necesarias están disponibles también utiliza:
 
 - `SystemTrayService`
 
 ---
 
-# 24. Sistema de recomendaciones
+# 66. Recomendaciones inteligentes
 
-`RecommendationRules` analiza diferentes situaciones para decidir cuándo mostrar una recomendación.
+Rendifly analiza diferentes situaciones para decidir cuándo mostrar una recomendación.
 
-Actualmente comprueba:
+El sistema utiliza:
 
-### RAM
+`RecommendationRules`
 
-Uso sostenido superior al:
+---
+
+# 67. RAM elevada
+
+Puede mostrar una recomendación cuando la RAM permanece por encima del:
 
 **90 %**
 
-### Disco
+---
 
-Cuando:
+# 68. Poco almacenamiento
 
-- se supera el 90 % de utilización;
-- o quedan menos de 10 GB libres.
+Puede aparecer una recomendación cuando:
 
-### Aplicaciones de inicio
+- el disco supera el 90 % de uso;
+- quedan menos de 10 GB libres.
 
-Cuando existen más de:
+---
 
-**10 aplicaciones**
+# 69. Muchas aplicaciones de inicio
 
-### Batería
+Puede mostrar una recomendación cuando existen más de:
 
-Cuando está en:
+**10 aplicaciones de inicio**
+
+---
+
+# 70. Batería baja
+
+Puede avisar cuando la batería se encuentra en:
 
 **20 % o menos**
 
-y el equipo no está conectado.
+y el equipo no está conectado a la corriente.
 
-### CPU
+---
 
-Cuando supera:
+# 71. CPU elevada
+
+Puede detectar cuando la CPU supera:
 
 **80 %**
 
-### Temperatura
+---
 
-Cuando supera:
+# 72. Temperatura elevada
+
+Puede mostrar una advertencia cuando una temperatura supera:
 
 **85 °C**
 
-### Archivos temporales
+---
 
-Cuando existen al menos:
+# 73. Archivos temporales
+
+Puede recomendar una limpieza cuando existen al menos:
 
 **1 GB**
 
 de archivos temporales elegibles.
 
-### Tiempo encendido
+---
 
-Cuando el sistema lleva al menos:
+# 74. Mucho tiempo sin reiniciar
+
+Puede recomendar reiniciar el equipo cuando lleva al menos:
 
 **7 días**
 
-sin reiniciarse.
+encendido.
 
-## Descartar recomendaciones
+---
+
+# 75. Descartar recomendaciones
 
 Las recomendaciones pueden descartarse.
 
-El estado de descarte se guarda dentro de la configuración.
+Rendifly guarda esta decisión dentro de la configuración.
 
 La recomendación relacionada con archivos temporales puede ejecutar directamente la limpieza real.
 
 ---
 
-# 25. Persistencia y datos guardados
+# 76. Cómo guarda Rendifly los datos
 
-Rendifly Manager B1 no utiliza SQLite ni otra base de datos relacional.
+Rendifly Manager B1 no utiliza:
 
-`PersistenceManager` utiliza principalmente:
+- SQLite;
+- una base de datos SQL tradicional.
+
+En su lugar utiliza archivos locales.
+
+La carpeta principal es:
 
 `%APPDATA%\Rendifly`
 
-Si esa ubicación no está disponible, existen alternativas utilizando:
+Si esa ubicación no está disponible, puede utilizar ubicaciones alternativas como:
 
 - `LOCALAPPDATA`;
 - carpeta del usuario.
 
 ---
 
-# 26. `settings.json`
+# 77. `settings.json`
 
-`ConfigManager` mantiene aquí la configuración principal del usuario.
+Aquí se guarda gran parte de la configuración.
 
-Actualmente puede guardar:
+Puede incluir:
 
 - nombre;
-- preferencias del usuario;
+- preferencias;
 - idioma;
 - tema;
 - color de acento;
 - modo compacto;
-- tarjetas y layout del Dashboard;
-- inicio con Windows;
-- inicio minimizado;
+- organización del Dashboard;
+- iniciar con Windows;
+- iniciar minimizado;
 - minimizar a bandeja;
 - cerrar a bandeja;
 - intervalo de monitorización;
-- historial configurado;
+- configuración del historial;
 - privacidad;
-- consentimiento y estado de IA;
+- estado y consentimiento de IA;
 - proveedor de IA;
 - modelo;
 - endpoint;
 - timeout;
-- estado de onboarding;
-- primer arranque;
+- estado del onboarding;
+- primer inicio;
 - límite de notificaciones;
 - estado de notificaciones;
 - recomendaciones descartadas;
 - versión de configuración.
 
-## Idiomas guardados
+---
 
-La configuración principal admite únicamente:
+# 78. Idiomas guardados
+
+Actualmente los idiomas válidos de la configuración principal son:
 
 - `es`;
 - `en`.
 
-Aunque existen algunos textos adicionales dentro de catálogos internos, no forman parte de los idiomas seleccionables actualmente desde la interfaz.
+Existen algunos textos internos en:
 
-## Escrituras atómicas
+- `zh`;
+- `pt`;
+- `fr`.
 
-El guardado utiliza escrituras atómicas.
-
-El proceso es:
-
-1. escribir primero un archivo `.tmp`;
-2. ejecutar `fsync`;
-3. utilizar `os.replace`.
-
-Esto reduce el riesgo de dejar un archivo de configuración parcialmente escrito.
+Sin embargo, esos idiomas todavía no pueden seleccionarse desde la interfaz de B1.
 
 ---
 
-# 27. Protección de claves de IA
+# 79. Protección del archivo de configuración
+
+Rendifly intenta evitar que el archivo de configuración quede dañado si ocurre un problema mientras se está guardando.
+
+Para ello utiliza escrituras atómicas.
+
+El proceso consiste en:
+
+1. crear un archivo temporal `.tmp`;
+2. ejecutar `fsync`;
+3. reemplazar el archivo anterior mediante `os.replace`.
+
+---
+
+# 80. Protección de claves de IA
 
 Si se configura una API key desde el backend, Rendifly utiliza:
 
-**DPAPI de Windows (`CryptProtectData`)**
+**DPAPI de Windows**
+
+mediante:
+
+`CryptProtectData`
 
 para protegerla.
 
-La clave no se devuelve posteriormente a la interfaz.
+La clave tampoco se devuelve posteriormente a la interfaz.
 
-En B1, los controles de la interfaz para introducir estas credenciales están deshabilitados, por lo que esta configuración no está disponible normalmente desde la UI.
+En B1 la interfaz para introducir estas claves está deshabilitada.
 
 ---
 
-# 28. `runtime.json`
+# 81. `runtime.json`
 
-Este archivo se utiliza para información auxiliar de ejecución y para los perfiles.
+Este archivo se utiliza principalmente para información relacionada con la ejecución del programa.
 
-Actualmente puede almacenar:
+Puede guardar:
 
-- lista de perfiles personalizados;
+- perfiles personalizados;
 - perfil activo;
-- versión del esquema de perfiles;
-- otros valores administrados mediante `PersistenceManager.get/set`.
+- versión del sistema de perfiles;
+- otros valores utilizados mediante `PersistenceManager.get/set`.
 
 ---
 
-# 29. `notification_history.json`
+# 82. `notification_history.json`
 
-`NotificationService` puede conservar hasta:
+Rendifly puede guardar un historial de hasta:
 
 **50 notificaciones**
 
-Para cada una guarda:
+Cada notificación puede incluir:
 
 - ID;
 - título;
 - mensaje;
-- icono o tipo;
-- timestamp;
+- tipo o icono;
+- fecha y hora;
 - estado leído/no leído.
 
-También aplica el máximo configurable de notificaciones por hora.
+También se respeta el límite máximo de avisos por hora configurado por el usuario.
 
 ---
 
-# 30. Otros datos locales
+# 83. Otros datos locales
 
-## Log
+## Registro de actividad
 
-Rendifly mantiene un archivo de log en:
+Rendifly utiliza:
 
 `%APPDATA%\Rendifly\rendifly.log`
 
-Este archivo es gestionado por `LoggingService`.
+para guardar información técnica útil para detectar problemas.
 
-## Iconos de procesos
+Este archivo es gestionado por:
 
-Los iconos obtenidos desde ejecutables se almacenan en:
+`LoggingService`
+
+## Iconos
+
+Los iconos extraídos de aplicaciones se guardan en:
 
 `%LOCALAPPDATA%\Rendifly\process-icons`
 
 ## Historial de métricas
 
-Actualmente las muestras históricas se mantienen en memoria durante la ejecución.
+Actualmente las métricas históricas se mantienen en memoria mientras Rendifly está abierto.
 
-No se presenta persistencia en disco para estas muestras.
+No se guardan permanentemente en disco.
 
-## Bases de conocimiento
+## Bases internas
 
 Los archivos:
 
 - `process_database.json`;
 - `knowledge_base.json`;
 
-son recursos internos utilizados por Rendifly.
+son recursos internos de Rendifly.
 
-No son una base de datos con información personal del usuario.
+No son bases de datos personales del usuario.
 
 ---
 
-# 31. Onboarding
+# 84. Onboarding
 
-El onboarding inicial está implementado en `onboarding.js`.
+Cuando Rendifly se abre por primera vez, aparece un proceso inicial de configuración.
 
-Actualmente está compuesto por **cuatro pasos**.
+Está implementado principalmente en:
 
-## Paso 1 — Bienvenida
+`onboarding.js`
 
-Se muestra la introducción junto al botón:
+Actualmente contiene cuatro pasos.
+
+---
+
+# 85. Paso 1 — Bienvenida
+
+Se muestra una pantalla de bienvenida con el botón:
 
 **Comenzar**
 
-## Paso 2 — Nombre
+---
 
-El usuario puede introducir opcionalmente su nombre.
+# 86. Paso 2 — Nombre
 
-## Paso 3 — Sección inicial
+El usuario puede indicar cómo quiere que Rendifly lo llame.
 
-Se puede seleccionar una sección para abrir al finalizar:
+Este paso es opcional.
+
+---
+
+# 87. Paso 3 — Sección inicial
+
+El usuario puede seleccionar una sección para abrir después del onboarding:
 
 - Inicio;
 - Rendimiento;
@@ -3071,329 +1580,384 @@ Se puede seleccionar una sección para abrir al finalizar:
 - Sistema;
 - Configuración.
 
-## Paso 4 — Escaneo visual
+---
 
-Rendifly realiza una presentación progresiva del hardware detectado.
+# 88. Paso 4 — Escaneo del equipo
 
-Puede mostrar:
+Rendifly muestra progresivamente información del hardware detectado.
+
+Puede incluir:
 
 - CPU;
 - GPU;
 - RAM;
 - almacenamiento;
-- otros componentes devueltos por el detector.
-
-## Al finalizar
-
-Rendifly:
-
-- guarda el nombre;
-- establece `onboarding_completed=true`;
-- establece `first_run=false`;
-- fuerza inicialmente el modo compacto;
-- oculta el onboarding;
-- renderiza la barra lateral;
-- abre la sección seleccionada o Optimización para mostrar recomendaciones.
-
-La selección de sección funciona como destino inicial.
-
-Según el comentario existente en el código, no se guarda como una preferencia independiente permanente.
+- otros componentes disponibles.
 
 ---
 
-# 32. Idiomas
+# 89. Qué ocurre después del onboarding
 
-Rendifly B1 está centrado actualmente en:
+Al finalizar:
+
+- se guarda el nombre;
+- `onboarding_completed=true`;
+- `first_run=false`;
+- se activa inicialmente el modo compacto;
+- se oculta el onboarding;
+- se muestra la barra lateral;
+- se abre la sección seleccionada o Optimización.
+
+La sección seleccionada funciona como destino inicial.
+
+Actualmente no se guarda como una preferencia independiente permanente.
+
+---
+
+# 90. Idiomas de Rendifly
+
+B1 está enfocada actualmente en:
 
 - **Español**
 - **English**
 
-## Frontend
+---
 
-`i18n.js` controla las traducciones visibles.
+# 91. Traducción de la interfaz
 
-Puede traducir:
+El frontend utiliza:
+
+`i18n.js`
+
+Este sistema puede traducir:
 
 - textos;
 - títulos;
 - placeholders;
 - `aria-label`.
 
-También observa cambios en el DOM para poder traducir elementos añadidos dinámicamente.
+También observa cambios en la interfaz para traducir elementos que aparezcan dinámicamente.
 
-## Backend
+---
 
-`backend/i18n.py` traduce:
+# 92. Traducción del backend
+
+El backend utiliza:
+
+`backend/i18n.py`
+
+para traducir:
 
 - respuestas;
 - estados;
 - recomendaciones;
 - textos del asistente.
 
-## Idiomas válidos
-
-La configuración actual considera válidos:
-
-- `es`;
-- `en`.
-
-Existen algunos catálogos parciales adicionales relacionados con respuestas o conocimiento:
-
-- `zh`;
-- `pt`;
-- `fr`.
-
-Sin embargo, **estos idiomas no pueden seleccionarse actualmente desde la interfaz de B1**.
-
 Cuando el usuario cambia de idioma:
 
-1. se guarda el nuevo valor;
-2. se vuelve a renderizar la barra lateral;
-3. se vuelve a navegar a la página actual.
+1. se guarda la configuración;
+2. se vuelve a crear la barra lateral;
+3. se vuelve a abrir la página actual.
 
 ---
 
-# 33. Arranque e instancia única
+# 93. Inicio con Windows
 
 `main.py` reconoce el argumento:
 
 `--startup`
 
-Rendifly evita que varias copias de la aplicación se ejecuten simultáneamente mediante `single_instance.py`.
+Esto permite que Rendifly pueda saber cuándo ha sido iniciado automáticamente con Windows.
 
-## Mutex
+---
 
-Se utiliza el mutex de Windows:
+# 94. Una sola instancia
+
+Rendifly evita que se abran varias copias de la aplicación al mismo tiempo.
+
+Para ello utiliza:
+
+`single_instance.py`
+
+---
+
+# 95. Mutex de Windows
+
+Rendifly utiliza:
 
 `Local\RendiflyManager.SingleInstance`
 
-## Named pipe
+como identificador de instancia.
+
+---
+
+# 96. Named Pipe
 
 La instancia principal crea:
 
 `\\.\pipe\RendiflyManager.SingleInstance`
 
-Si el usuario intenta abrir Rendifly mientras ya existe una instancia ejecutándose:
+Si intentas abrir Rendifly nuevamente:
 
-- no se crea una segunda ventana;
-- el nuevo proceso intenta activar la instancia existente durante un máximo aproximado de cinco segundos.
+- no se crea otra ventana;
+- la nueva ejecución intenta activar la ventana que ya estaba abierta.
 
-Cuando el lanzamiento ocurre mediante `--startup`, el segundo proceso no muestra una notificación adicional.
+Este intento puede durar aproximadamente:
+
+**5 segundos**
+
+Cuando Rendifly se inicia mediante `--startup`, una segunda instancia no muestra una notificación adicional.
 
 ---
 
-# 34. Ventana de Rendifly
+# 97. Ventana de Rendifly
 
-Rendifly utiliza:
+La interfaz se ejecuta utilizando:
 
 **pywebview + EdgeChromium/WebView2**
 
-## Tamaño normal
+Tamaño normal:
 
 `1280 × 800`
 
-## Tamaño compacto aproximado
+Tamaño compacto aproximado:
 
 `438 × 687`
 
-## Tamaño mínimo
+Tamaño mínimo:
 
 `438 × 520`
 
-## Fondo nativo
+Color de fondo nativo:
 
 `#0a0a12`
 
 ---
 
-# 35. Bandeja del sistema
+# 98. Bandeja del sistema
 
-`SystemTrayService` utiliza `pystray`.
+Rendifly puede mantenerse funcionando desde la bandeja de Windows.
 
-El icono de bandeja dispone actualmente de un menú con:
+Para ello utiliza:
+
+`SystemTrayService`
+
+junto con:
+
+`pystray`
+
+---
+
+# 99. Menú de la bandeja
+
+Actualmente incluye:
 
 - **Abrir Rendifly**
 - **Salir**
 
-La bandeja se utiliza cuando corresponde en situaciones como:
+La bandeja puede utilizarse cuando:
 
-- iniciar minimizado;
-- minimizar;
-- cerrar la ventana cuando las preferencias indican que debe mantenerse en bandeja.
+- Rendifly inicia minimizado;
+- se minimiza;
+- se cierra la ventana pero está activada la opción de continuar en bandeja.
 
-El servicio intenta cargar el icono desde los recursos empaquetados.
+Rendifly intenta utilizar su icono empaquetado.
 
-Si no puede encontrarlo, utiliza un icono de fallback.
+Si no puede cargarlo, utiliza un icono alternativo.
 
 ---
 
-# 36. Cierre de la aplicación
+# 100. Botón de cerrar
 
-El comportamiento depende de las preferencias configuradas.
+El comportamiento depende de la configuración.
 
-## Botón X
-
-Normalmente oculta Rendifly en la bandeja cuando:
+Si:
 
 `close_to_tray`
 
-está activado.
+está activado, el botón X normalmente oculta Rendifly en la bandeja en lugar de cerrar completamente el programa.
 
-## Minimizar
+---
 
-Normalmente envía la aplicación a la bandeja cuando:
+# 101. Minimizar
+
+Si:
 
 `minimize_to_tray`
 
-está activado.
+está activado, minimizar la ventana puede ocultarla en la bandeja.
 
-## Cierre completo
+---
+
+# 102. Cerrar completamente Rendifly
 
 Las opciones:
 
 - **Cerrar aplicación** desde la barra lateral;
 - **Salir** desde la bandeja;
 
-realizan un cierre completo.
+cierran completamente el programa.
 
-Durante este proceso se detienen:
+Durante el cierre se detienen:
 
-- el monitor;
-- el monitor de perfiles;
-- la bandeja.
+- monitorización;
+- monitor de perfiles;
+- servicio de bandeja.
 
 Después se destruyen las ventanas de pywebview.
 
-También existe un temporizador de seguridad de aproximadamente **dos segundos**.
+También existe un temporizador de seguridad de aproximadamente:
 
-El monitor se detiene igualmente cuando la ventana realmente se cierra.
+**2 segundos**
 
 ---
 
-# 37. Integraciones reales con Windows
+# 103. Integración real con Windows
 
-Rendifly Manager B1 utiliza varias funciones reales del sistema operativo.
+Rendifly no trabaja únicamente con información simulada.
 
-Actualmente existen integraciones con:
+B1 utiliza varias funciones reales de Windows.
 
-### Registro de Windows
+---
 
-Se utiliza para información o acciones relacionadas con:
+# 104. Registro de Windows
+
+Rendifly puede consultar o utilizar el Registro para funciones relacionadas con:
 
 - inicio automático;
-- aplicaciones de startup;
+- programas de inicio;
 - animaciones;
 - transparencia;
 - inicio rápido;
 - Storage Sense.
 
-### `powercfg`
+---
 
-Utilizado para:
+# 105. `powercfg`
 
-- consultar planes de energía;
+Se utiliza para:
+
+- leer planes de energía;
 - cambiar el plan activo.
 
-### WMI
+---
 
-Utilizado principalmente para:
+# 106. WMI
 
-- controladores GPU;
-- información del sistema.
+Se utiliza principalmente para:
 
-### `nvidia-smi`
+- detectar información de drivers de GPU;
+- consultar información del sistema.
 
-Utilizado para obtener cuando está disponible:
+---
 
-- utilización GPU;
-- temperatura GPU;
-- memoria GPU;
-- información de driver NVIDIA.
+# 107. `nvidia-smi`
 
-### `psutil`
+Cuando está disponible, puede utilizarse para obtener:
 
-Utilizado para:
+- uso de GPU;
+- temperatura;
+- memoria;
+- versión del driver NVIDIA.
+
+---
+
+# 108. `psutil`
+
+Se utiliza para consultar:
 
 - procesos;
 - CPU;
-- memoria;
-- disco;
+- RAM;
+- almacenamiento;
 - red;
 - batería;
-- uptime;
+- tiempo encendido;
 - sensores disponibles.
 
-### DPAPI
+---
 
-`CryptProtectData` se utiliza para proteger claves de API.
+# 109. DPAPI
 
-### Windows Settings
+Rendifly utiliza:
 
-Rendifly puede abrir páginas mediante:
+`CryptProtectData`
+
+para proteger determinadas claves sensibles, como API keys.
+
+---
+
+# 110. Windows Settings
+
+Rendifly puede abrir páginas oficiales de Configuración mediante:
 
 `ms-settings:`
 
-### Panel de control
+---
 
-También puede utilizar:
+# 111. Panel de control
+
+También puede abrir determinados elementos utilizando:
 
 - `control.exe`;
-- determinados paneles `.cpl` permitidos.
+- archivos `.cpl` permitidos.
 
-### Fabricantes
+---
 
-Existen enlaces oficiales hacia:
+# 112. Fabricantes
+
+Rendifly incluye enlaces oficiales relacionados con:
 
 - NVIDIA;
 - AMD;
 - Intel.
 
-### Comunicación externa
+---
 
-Puede abrir:
+# 113. Correo y navegador
+
+Rendifly puede abrir:
 
 - aplicación de correo predeterminada;
 - Gmail;
-- navegador externo.
-
-### Instancia única
-
-Utiliza:
-
-- mutex nativo de Windows;
-- named pipe.
-
-## Seguridad de URI externas
-
-`open_external_uri` aplica una lista de:
-
-- esquemas permitidos;
-- comandos permitidos.
-
-No ejecuta arbitrariamente cualquier cadena proporcionada como comando.
+- navegador web.
 
 ---
 
-# 38. Estado real de la build B1
+# 114. Seguridad de enlaces externos
 
-El árbol actual contiene varios directorios históricos generados durante diferentes reconstrucciones con PyInstaller.
+La función:
 
-Entre ellos existen:
+`open_external_uri`
+
+utiliza una lista de esquemas y comandos permitidos.
+
+Esto significa que Rendifly no ejecuta cualquier texto arbitrario como si fuera un comando del sistema.
+
+---
+
+# 115. Estado real de la build B1
+
+Durante el desarrollo se generaron varias carpetas históricas de compilación.
+
+Entre ellas existen:
 
 - `build`;
 - `build-rebuild`;
 - `build-rebuild2`;
 - `build-rebuild3`;
 
-junto con sus equivalentes `dist-*`.
+junto con distintas carpetas `dist-*`.
 
-La carpeta empaquetada principal actual es:
+La distribución principal actual se encuentra en:
 
 `dist/Rendifly`
 
-## Ejecutable actual
+---
 
-Se observó:
+# 116. Ejecutable actual
+
+El ejecutable actual observado es:
 
 `dist\Rendifly\Rendifly.exe`
 
@@ -3405,14 +1969,16 @@ Fecha de modificación:
 
 **17/09/2026 14:54:58**
 
-La distribución también contiene:
+La carpeta también contiene:
 
-- carpeta `_internal`;
-- recursos empaquetados necesarios para ejecutar Rendifly.
+- `_internal`;
+- recursos necesarios para ejecutar Rendifly.
 
-## Instalador actual
+---
 
-Se observó:
+# 117. Instalador actual
+
+El instalador actual observado es:
 
 `installer\output\RendiflyManagerSetup.exe`
 
@@ -3426,7 +1992,7 @@ Fecha:
 
 ---
 
-# 39. Instalador
+# 118. Instalación
 
 El instalador identifica el producto como:
 
@@ -3440,20 +2006,24 @@ La instalación predeterminada se realiza en:
 
 `Program Files\Rendifly\Rendifly Manager`
 
-El instalador incluye:
+El instalador también puede incluir:
 
 - accesos directos opcionales;
-- manejo configurable de los datos del usuario durante la desinstalación.
+- opciones relacionadas con los datos del usuario al desinstalar.
 
-Es posible conservar o eliminar esos datos según la configuración del instalador.
+Dependiendo de la configuración, esos datos pueden conservarse o eliminarse.
 
 ---
 
-# 40. PyInstaller
+# 119. Cómo se crea el ejecutable
 
-`Rendifly.spec` define la configuración principal utilizada para generar el ejecutable.
+Rendifly utiliza:
 
-Actualmente empaqueta:
+`Rendifly.spec`
+
+para definir cómo PyInstaller debe construir el programa.
+
+Actualmente se empaquetan:
 
 - frontend;
 - resources;
@@ -3462,60 +2032,73 @@ Actualmente empaqueta:
 - sistema de instancia única;
 - clientes del asistente.
 
-La aplicación se genera con:
+La aplicación se crea con:
 
 `console=False`
 
-por lo que el usuario final no recibe una consola adicional al ejecutar Rendifly.
+Esto evita que aparezca una ventana de consola junto con Rendifly cuando un usuario normal abre el programa.
 
 ---
 
-# 41. ¿Qué incluye realmente Rendifly Manager B1?
+# 120. ¿Qué incluye realmente B1?
 
-La build actual incluye:
+La versión actual de Rendifly Manager B1 incluye:
 
 - Dashboard;
-- monitorización;
+- monitorización del sistema;
 - Procesos;
 - recomendaciones;
 - limpieza;
-- aplicaciones de inicio;
+- control de aplicaciones de inicio;
 - perfiles;
 - planes de energía;
-- información de la PC;
-- drivers;
+- información de hardware;
+- información de drivers;
 - accesos a Windows Settings;
 - asistente local;
-- feedback;
-- configuración;
+- Feedback;
+- Configuración;
 - onboarding;
 - bandeja del sistema;
 - notificaciones;
 - búsqueda global;
-- persistencia mediante JSON;
-- ejecutable empaquetado;
+- almacenamiento mediante JSON;
+- ejecutable;
 - instalador.
 
 ---
 
-# 42. ¿Qué no incluye B1?
+# 121. ¿Qué todavía no incluye B1?
 
-Para dejar claro el alcance real de esta versión, actualmente **no incluye**:
+Para dejar claro qué pertenece y qué no pertenece a esta versión, B1 actualmente **no incluye**:
 
 - una página independiente de Acerca de;
 - una base de datos SQL;
 - actualización automática de drivers;
-- modificación directa de todos los ajustes de Windows;
+- control directo de absolutamente todos los ajustes de Windows;
 - conexión externa de IA habilitada desde la interfaz.
 
-Aunque el proyecto contiene parte de la infraestructura necesaria para proveedores externos de IA, esta función permanece deshabilitada en la UI de B1 y aparece como **Próximamente**.
+Aunque parte de la infraestructura para IA externa ya existe dentro del proyecto, esta función continúa deshabilitada en B1 y aparece como:
+
+**Próximamente**
 
 ---
 
 # Rendifly Manager 0.1 Beta
 
-B1 representa la primera versión empaquetada de Rendifly Manager con sus sistemas principales conectados: monitorización, administración, optimización, información del equipo y herramientas integradas con Windows.
+B1 representa la primera versión empaquetada de Rendifly Manager con sus sistemas principales trabajando juntos.
 
-El objetivo de Rendifly no es sustituir cada herramienta que ya ofrece Windows, sino reunir información y funciones útiles en una interfaz más directa y comprensible para el usuario.
+Incluye monitorización, optimización, información del hardware, administración de aplicaciones y diferentes herramientas conectadas con funciones reales de Windows.
 
-> **Cada PC es diferente. Rendifly también debería serlo.**
+Rendifly no busca reemplazar cada herramienta que ya existe en Windows.
+
+Busca reunir muchas de ellas en un lugar más sencillo, ayudar al usuario a entender qué está pasando en su PC y hacer que algunas tareas comunes sean más fáciles de encontrar y utilizar.
+
+<div align="center">
+
+### Cada PC es diferente. Rendifly también debería serlo.
+
+🌐 **Idioma / Language:**  
+[🇪🇸 Español](README_ES.md) · [🇺🇸 English](README.md)
+
+</div>
