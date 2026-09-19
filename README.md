@@ -3178,3 +3178,51 @@ Its goal is to bring useful features together in a simpler place and help users 
 [🇪🇸 Español](#rendifly-espanol) · [🇺🇸 English](#rendifly-english) · [⬆️ Top](#rendifly-top)
 
 </div>
+## Screenshots
+
+### Home
+![Rendifly Manager Home](assets/home.png)
+
+### Performance
+![Rendifly Manager Performance](assets/performance.png)
+![Rendifly Manager Performance](assets/performance-2.png)
+![Rendifly Manager Performance](assets/performance-3.png)
+![Rendifly Manager Performance](assets/performance-4.png)
+
+### Processes
+![Rendifly Manager Processes](assets/processes.png)
+
+### Optimization
+![Rendifly Manager Optimization](assets/optimization.png)
+
+### Startup Apps
+![Rendifly Manager Startup Apps](assets/startup-apps.png)
+
+### Profiles
+![Rendifly Manager Profiles](assets/profiles.png)
+![Rendifly Manager Profiles](assets/profiles-2.png)
+
+### Power
+![Rendifly Manager Power](assets/power.png)
+
+### Know My PC
+![Rendifly Manager Know My PC](assets/know-my-pc.png)
+
+### Drivers
+![Rendifly Manager Drivers](assets/drivers.png)
+
+### Windows Settings
+![Rendifly Manager Windows Settings](assets/windows-settings.png)
+
+### Ask Rendifly
+![Ask Rendifly](assets/ask-rendifly.png)
+![Ask Rendifly](assets/ask-rendifly-2.png)
+
+### Feedback
+![Rendifly Manager Feedback](assets/feedback.png)
+
+### Settings
+![Rendifly Manager Settings](assets/settings.png)
+![Rendifly Manager Settings](assets/settings-2.png)
+![Rendifly Manager Settings](assets/settings-3.png)
+![Rendifly Manager Settings](assets/settings-4.png)
