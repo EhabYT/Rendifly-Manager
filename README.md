@@ -1,5 +1,7 @@
 <a id="rendifly-top"></a>
 
+![Rendifly Manager — Banner oficial](assets/Imagen%20de%20Codex%2017%20sept%202026%2C%2017_10_54.png)
+
 <div align="center">
 
 # Rendifly Manager
