@@ -13,6 +13,10 @@
 
 [🇪🇸 Español](#rendifly-espanol) · [🇺🇸 English](#rendifly-english)
 
+### 📸 Capturas / Screenshots
+
+[🇪🇸 Ver capturas](#rendifly-screenshots) · [🇺🇸 View screenshots](#rendifly-screenshots)
+
 </div>
 
 ---
@@ -3178,52 +3182,54 @@ Its goal is to bring useful features together in a simpler place and help users 
 [🇪🇸 Español](#rendifly-espanol) · [🇺🇸 English](#rendifly-english) · [⬆️ Top](#rendifly-top)
 
 </div>
-## Screenshots
+<a id="rendifly-screenshots"></a>
+
+## 📸 Capturas / Screenshots
 
 ### Home
-![Rendifly Manager Home](assets/home.png)
+![Rendifly Manager Home](assets/Inicio%20%20Home.png)
 
 ### Performance
-![Rendifly Manager Performance](assets/performance.png)
-![Rendifly Manager Performance](assets/performance-2.png)
-![Rendifly Manager Performance](assets/performance-3.png)
-![Rendifly Manager Performance](assets/performance-4.png)
+![Rendifly Manager Performance](assets/Rendimiento%20Performance.png)
+![Rendifly Manager Performance](assets/Rendimiento%20Performance%202.png)
+![Rendifly Manager Performance](assets/Rendimiento%20Performance%203.png)
+![Rendifly Manager Performance](assets/Rendimiento%20Performance%204.png)
 
 ### Processes
-![Rendifly Manager Processes](assets/processes.png)
+![Rendifly Manager Processes](assets/Procesos%20Processes.png)
 
 ### Optimization
-![Rendifly Manager Optimization](assets/optimization.png)
+![Rendifly Manager Optimization](assets/Optimizaci%C3%B3n%20Optimization%20Limpieza%20Cleanup.png)
 
 ### Startup Apps
-![Rendifly Manager Startup Apps](assets/startup-apps.png)
+![Rendifly Manager Startup Apps](assets/Aplicaciones%20de%20inicio%20Startup%20Apps.png)
 
 ### Profiles
-![Rendifly Manager Profiles](assets/profiles.png)
-![Rendifly Manager Profiles](assets/profiles-2.png)
+![Rendifly Manager Profiles](assets/Perfiles%20Profiles.png)
+![Rendifly Manager Profiles](assets/Perfiles%20Profiles%202.png)
 
 ### Power
-![Rendifly Manager Power](assets/power.png)
+![Rendifly Manager Power](assets/Energ%C3%ADa%20Power.png)
 
 ### Know My PC
-![Rendifly Manager Know My PC](assets/know-my-pc.png)
+![Rendifly Manager Know My PC](assets/Conocer%20mi%20PC%20Know%20My%20PC.png)
 
 ### Drivers
-![Rendifly Manager Drivers](assets/drivers.png)
+![Rendifly Manager Drivers](assets/Drivers%20Drivers.png)
 
 ### Windows Settings
-![Rendifly Manager Windows Settings](assets/windows-settings.png)
+![Rendifly Manager Windows Settings](assets/Ajustes%20de%20Windows%20Windows%20Settings.png)
 
 ### Ask Rendifly
-![Ask Rendifly](assets/ask-rendifly.png)
-![Ask Rendifly](assets/ask-rendifly-2.png)
+![Ask Rendifly](assets/Preg%C3%BAntale%20a%20Rendifly%20Ask%20Rendifly.png)
+![Ask Rendifly](assets/Preg%C3%BAntale%20a%20Rendifly%20Ask%20Rendifly%202.png)
 
 ### Feedback
-![Rendifly Manager Feedback](assets/feedback.png)
+![Rendifly Manager Feedback](assets/Comentarios%20Feedback.png)
 
 ### Settings
-![Rendifly Manager Settings](assets/settings.png)
-![Rendifly Manager Settings](assets/settings-2.png)
-![Rendifly Manager Settings](assets/settings-3.png)
-![Rendifly Manager Settings](assets/settings-4.png)
+![Rendifly Manager Settings](assets/Configuraci%C3%B3n%20Settings.png)
+![Rendifly Manager Settings](assets/Configuraci%C3%B3n%20Settings%202.png)
+![Rendifly Manager Settings](assets/Configuraci%C3%B3n%20Settings3.png)
+![Rendifly Manager Settings](assets/Configuraci%C3%B3n%20Settings4.png)
 
