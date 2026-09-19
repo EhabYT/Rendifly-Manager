@@ -256,6 +256,14 @@ You can write in Spanish or English. Include your Rendifly version, Windows vers
 
 [Licencia y aviso de derechos / License and rights notice](LICENSE.md) · [Registro de cambios / Changelog](CHANGELOG.md)
 
+<a id="rendifly-creator"></a>
+
+## Creador / Creator
+
+**Ariel Arce es el creador y único desarrollador de Rendifly Manager.** Es un proyecto independiente desarrollado por una sola persona; actualmente no hay otros integrantes en el equipo.
+
+**Ariel Arce is the creator and sole developer of Rendifly Manager.** It is an independent project developed by one person; there are currently no other team members.
+
 <a id="rendifly-brand"></a>
 
 ## La identidad de Rendifly / The Rendifly identity
