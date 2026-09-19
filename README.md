@@ -21,6 +21,101 @@
 
 ---
 
+
+<p align="center"><strong>Windows 10 · Windows 11 &nbsp; | &nbsp; 0.1 Beta — B1 &nbsp; | &nbsp; Código cerrado / Closed source</strong></p>
+
+<p align="center">
+  Tu PC, más fácil de entender y gestionar.<br>
+  Your PC, easier to understand and manage.
+</p>
+
+<p align="center">
+  <img src="assets/Inicio%20%20Home.png" width="360" alt="Rendifly Manager — Inicio / Home">
+</p>
+
+<p align="center"><em>Cada PC es diferente. Rendifly también debería serlo.<br>Every PC is different. Rendifly should be too.</em></p>
+
+[Inicio rápido / Quick start](#rendifly-quickstart) · [Privacidad / Privacy](#rendifly-privacy) · [Soporte / Support](#rendifly-support) · [Cambios / Changelog](CHANGELOG.md) · [Licencia / License](LICENSE.md)
+
+## Tu PC en un solo lugar / Your PC in one place
+
+Rendifly Manager reúne las herramientas que necesitas para conocer tu equipo y gestionar su funcionamiento desde una interfaz para Windows. Este repositorio público contiene documentación, capturas y un espacio para reportar problemas y proponer mejoras. El código fuente de la aplicación es privado.
+
+Rendifly Manager brings together tools to understand your computer and manage how it runs through one Windows interface. This public repository contains documentation, screenshots, and a place to report problems and suggest improvements. The application's source code is private.
+
+| | Español | English |
+| --- | --- | --- |
+| Monitorización / Monitoring | Consulta CPU, RAM, GPU, discos y red. | Check CPU, RAM, GPU, drives, and network activity. |
+| Gestión / Management | Revisa procesos, aplicaciones de inicio, perfiles y energía. | Review processes, startup apps, profiles, and power plans. |
+| Limpieza / Cleanup | Analiza temporales, revisa el resultado y ejecuta la limpieza. | Scan temporary files, review the results, and run cleanup. |
+| Asistente / Assistant | Consulta información del equipo con el asistente local. | Explore PC information with the local assistant. |
+
+> **Estado de B1 / B1 status:** La IA externa y la actualización automática de drivers no están disponibles. / External AI and automatic driver updates are not available.
+
+<a id="rendifly-quickstart"></a>
+
+## Primeros pasos / Quick start
+
+### Español
+
+**Sistema operativo:** Windows 10 o Windows 11.
+
+1. Ejecuta el instalador de Rendifly Manager y sigue el asistente, como con cualquier aplicación de Windows.
+2. Abre Rendifly Manager y completa la bienvenida inicial.
+3. Empieza en **Inicio** para consultar el estado del equipo; utiliza **Configuración** para ajustar idioma y apariencia.
+
+Para desinstalarlo, busca Rendifly Manager en la lista de aplicaciones instaladas de Configuración de Windows y selecciona **Desinstalar**. Algunas métricas dependen del hardware y de los datos que Windows permita consultar.
+
+### English
+
+**Operating system:** Windows 10 or Windows 11.
+
+1. Run the Rendifly Manager installer and follow the setup wizard, just like any other Windows application.
+2. Open Rendifly Manager and complete the welcome steps.
+3. Start with **Home** to check your PC's status; use **Settings** to adjust language and appearance.
+
+To uninstall, find Rendifly Manager in the installed apps list in Windows Settings and select **Uninstall**. Some metrics depend on your hardware and the information Windows makes available.
+
+<a id="rendifly-privacy"></a>
+
+## Privacidad y control / Privacy and control
+
+### Español
+
+- **Datos locales:** la configuración, los perfiles y el historial de notificaciones se guardan principalmente en archivos dentro de `%APPDATA%\Rendifly`. El historial de métricas se mantiene en memoria durante la sesión.
+- **Asistente:** B1 ofrece un asistente local. Las opciones de proveedores externos de IA permanecen deshabilitadas en la interfaz.
+- **Comentarios:** la función Feedback abre un borrador en tu correo o en Gmail. Revisa su contenido antes de enviarlo; la selección de una captura utiliza su nombre, pero no adjunta automáticamente la imagen.
+- **Acciones sobre el equipo:** la limpieza actúa sobre temporales elegibles y los perfiles pueden cerrar aplicaciones seleccionadas. Guarda tu trabajo antes de cerrar procesos o activar un perfil.
+- **Reportes públicos:** los Issues de GitHub son públicos. Oculta nombres de usuario, rutas personales y cualquier dato privado antes de añadir capturas o registros.
+
+### English
+
+- **Local data:** settings, profiles, and notification history are stored mainly in files under `%APPDATA%\Rendifly`. Metrics history stays in memory during the session.
+- **Assistant:** B1 provides a local assistant. External AI provider options remain disabled in the interface.
+- **Feedback:** the Feedback feature opens a draft in your email app or Gmail. Review it before sending; selecting a screenshot uses its filename but does not automatically attach the image.
+- **Actions on your PC:** cleanup processes eligible temporary files, and profiles can close selected applications. Save your work before closing processes or activating a profile.
+- **Public reports:** GitHub Issues are public. Remove usernames, personal paths, and private information before adding screenshots or logs.
+
+<a id="rendifly-support"></a>
+
+## Ayuda y sugerencias / Help and suggestions
+
+[Reportar un error / Report a bug](https://github.com/rendiflypcmanager-web/Rendifly-Manager/issues/new?template=bug_report.md) · [Proponer una mejora / Suggest a feature](https://github.com/rendiflypcmanager-web/Rendifly-Manager/issues/new?template=feature_request.md)
+
+Revisa los Issues existentes antes de abrir uno nuevo. Incluye tu versión de Rendifly, Windows y los pasos para reproducir el problema. Puedes escribir en español o en inglés.
+
+Check existing Issues before opening a new one. Include your Rendifly version, Windows version, and steps to reproduce the problem. Spanish and English reports are welcome.
+
+**Contacto / Contact:** [rendiflypcmanager@gmail.com](mailto:rendiflypcmanager@gmail.com)
+
+**Código cerrado / Closed source:** Rendifly Manager es software propietario. Consulta el [aviso de derechos](LICENSE.md). / Rendifly Manager is proprietary software. See the [rights notice](LICENSE.md).
+
+---
+
+## Documentación completa / Full documentation
+
+[🇪🇸 Español](#rendifly-espanol) · [🇺🇸 English](#rendifly-english) · [📸 Capturas / Screenshots](#rendifly-screenshots)
+
 <a id="rendifly-espanol"></a>
 
 # 🇪🇸 Español
