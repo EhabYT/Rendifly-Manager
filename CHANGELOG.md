@@ -10,6 +10,9 @@ This file documents repository changes and the status of Rendifly Manager versio
 
 ### Español
 
+- Portada reorganizada con navegación, requisitos, privacidad, soporte e identidad de marca.
+- Galería de 21 capturas agrupada por función y presentada en dos columnas.
+- Nueva guía bilingüe en USER_GUIDE.md y conservación íntegra del README anterior en DOCUMENTATION.md.
 - Presentación bilingüe con captura principal y accesos a instalación, privacidad y soporte.
 - Instrucciones de instalación para Windows 10 y Windows 11.
 - Corrección de las 21 rutas de capturas, respetando los espacios y acentos de los archivos originales.
@@ -20,6 +23,9 @@ Estos cambios corresponden al repositorio público; no representan una actualiza
 
 ### English
 
+- Reorganized overview with navigation, requirements, privacy, support, and brand identity.
+- Gallery of 21 screenshots grouped by function in two columns.
+- New bilingual USER_GUIDE.md and full preservation of the previous README in DOCUMENTATION.md.
 - Bilingual overview with a main screenshot and links to installation, privacy, and support.
 - Installation instructions for Windows 10 and Windows 11.
 - Corrected all 21 screenshot paths to match the spaces and accents in the original filenames.
