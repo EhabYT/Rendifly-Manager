@@ -45,16 +45,18 @@ This is the official repository for documentation, screenshots, and support. Ren
 
 ## Descarga / Download
 
+> **[⬇️ Descargar Rendifly Manager 0.1 Beta — B1 / Download Rendifly Manager 0.1 Beta — B1](https://github.com/rendiflypcmanager-web/Rendifly-Manager/releases/download/v0.1.0-beta.1/RendiflyManagerSetup.exe)**
+
 | | Español | English |
 | --- | --- | --- |
 | Versión / Version | Beta 0.1 — B1 | Beta 0.1 — B1 |
-| Estado / Status | En preparación; instalador aún no publicado. | In preparation; installer not published yet. |
+| Estado / Status | **Disponible como beta pública.** | **Available as a public beta.** |
 | Requisitos / Requirements | Windows 10 o Windows 11. | Windows 10 or Windows 11. |
-| Canal oficial / Official channel | [Consultar Releases](https://github.com/rendiflypcmanager-web/Rendifly-Manager/releases) | [Check Releases](https://github.com/rendiflypcmanager-web/Rendifly-Manager/releases) |
+| Release oficial / Official release | [Ver versión, notas y verificación](https://github.com/rendiflypcmanager-web/Rendifly-Manager/releases/tag/v0.1.0-beta.1) | [View release, notes, and verification](https://github.com/rendiflypcmanager-web/Rendifly-Manager/releases/tag/v0.1.0-beta.1) |
 
-**La descarga se habilitará en la Release oficial cuando B1 esté publicada.** El archivo «Source code» que GitHub pueda ofrecer corresponde al contenido de este repositorio, no al instalador de Rendifly.
+El instalador oficial ya está disponible en GitHub Releases. Descarga **`RendiflyManagerSetup.exe`** y consulta la [verificación de seguridad](#rendifly-security) antes de instalar. Los archivos «Source code» que GitHub ofrece contienen la documentación de este repositorio; no son el instalador.
 
-**The download will be available in the official Release once B1 is published.** Any “Source code” archive offered by GitHub contains this repository's files, not the Rendifly installer.
+The official installer is now available on GitHub Releases. Download **`RendiflyManagerSetup.exe`** and review the [security verification](#rendifly-security) before installing. GitHub’s “Source code” archives contain this repository’s documentation; they are not the installer.
 
 <a id="rendifly-quickstart"></a>
 
@@ -65,7 +67,7 @@ This is the official repository for documentation, screenshots, and support. Ren
 
 | Paso / Step | Español | English |
 | --- | --- | --- |
-| 1 | Cuando esté disponible, descarga el instalador de la Release oficial. | When available, download the installer from the official Release. |
+| 1 | Descarga `RendiflyManagerSetup.exe` desde la [Release oficial](https://github.com/rendiflypcmanager-web/Rendifly-Manager/releases/tag/v0.1.0-beta.1). | Download `RendiflyManagerSetup.exe` from the [official Release](https://github.com/rendiflypcmanager-web/Rendifly-Manager/releases/tag/v0.1.0-beta.1). |
 | 2 | Ejecuta el instalador y sigue el asistente de Windows. | Run the installer and follow the Windows setup wizard. |
 | 3 | Abre Rendifly Manager y completa la bienvenida. | Open Rendifly Manager and complete the welcome steps. |
 | 4 | Elige idioma y apariencia en Configuración. | Choose language and appearance in Settings. |
