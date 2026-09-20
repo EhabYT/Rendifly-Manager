@@ -14,7 +14,7 @@ A clearer way to understand, manage, and optimize your Windows PC.
 
 <p><code>Windows 10 / 11</code> · <code>Beta 0.1 — B1</code> · <code>ES / EN</code> · <code>Closed source</code></p>
 
-**[Descarga / Download](#rendifly-download)** · [Primeros pasos / Quick start](#rendifly-quickstart) · [📸 Capturas / Screenshots](#rendifly-screenshots) · [Guía / Guide](#rendifly-guide) · [Privacidad / Privacy](#rendifly-privacy) · [Ayuda / Support](#rendifly-support)
+**[Descarga / Download](#rendifly-download)** · [Primeros pasos / Quick start](#rendifly-quickstart) · [📸 Capturas / Screenshots](#rendifly-screenshots) · [Guía / Guide](#rendifly-guide) · [Privacidad / Privacy](#rendifly-privacy) · [Seguridad / Security](#rendifly-security) · [Creador / Creator](#rendifly-creator) · [Ayuda / Support](#rendifly-support)
 
 [🇪🇸 Español](#rendifly-espanol) · [🇺🇸 English](#rendifly-english)
 
@@ -199,6 +199,30 @@ The previous README content is preserved in full: monitoring, process management
 [Leer la referencia / Read the reference](DOCUMENTATION.md)
 
 </details>
+
+<a id="rendifly-security"></a>
+
+## Seguridad del instalador / Installer security
+
+La copia analizada de **RendiflyManagerSetup.exe** obtuvo un resultado de **0/68 detecciones** en VirusTotal: ningún proveedor de seguridad la marcó como maliciosa en ese análisis.
+
+The analyzed copy of **RendiflyManagerSetup.exe** received a **0/68 detection** result on VirusTotal: no security vendor flagged it as malicious in that scan.
+
+| Verificación / Verification | Resultado / Result |
+|---|---|
+| Archivo / File | `RendiflyManagerSetup.exe` |
+| Tamaño / Size | 22.58 MB |
+| SHA-256 | `3316e2d4191bb2a107043d38d295383fa7a9e8d970b6e81268ba66076bcd4044` |
+| VirusTotal | **[Ver análisis completo / View full analysis](https://www.virustotal.com/gui/file/3316e2d4191bb2a107043d38d295383fa7a9e8d970b6e81268ba66076bcd4044/detection)** |
+
+<table>
+<tr>
+<td align="center" width="50%"><strong>Resultado en español</strong><br><br><a href="assets/Captura%20de%20pantalla%202026-09-20%20082124.png"><img src="assets/Captura%20de%20pantalla%202026-09-20%20082124.png" width="560" alt="VirusTotal — resultado en español: 0 de 68 detecciones"></a></td>
+<td align="center" width="50%"><strong>English result</strong><br><br><a href="assets/Captura%20de%20pantalla%202026-09-20%20082139.png"><img src="assets/Captura%20de%20pantalla%202026-09-20%20082139.png" width="560" alt="VirusTotal — English result: 0 of 68 detections"></a></td>
+</tr>
+</table>
+
+> **Importante / Important:** este resultado corresponde exactamente al archivo con el SHA-256 indicado. VirusTotal es una comprobación adicional y no sustituye descargar únicamente desde los canales oficiales ni verificar que el hash coincida. / This result applies specifically to the file with the SHA-256 shown above. VirusTotal is an additional check and does not replace downloading only from official channels or verifying that the hash matches.
 
 <a id="rendifly-privacy"></a>
 
