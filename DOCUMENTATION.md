@@ -920,7 +920,7 @@ Muestra:
 0.1 Beta
 
 **Desarrollador:**  
-Ariel Arce
+EhabYT
 
 También incluye:
 
@@ -2498,7 +2498,7 @@ It displays:
 0.1 Beta
 
 **Developer:**  
-Ariel Arce
+EhabYT
 
 It also includes:
 

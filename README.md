@@ -286,9 +286,9 @@ You can write in Spanish or English. Include your EB-Manager version, Windows ve
 
 ## Creador / Creator
 
-**Ariel Arce es el creador y único desarrollador de EB-Manager.** Es un proyecto independiente desarrollado por una sola persona; actualmente no hay otros integrantes en el equipo.
+**EhabYT es el creador y único desarrollador de EB-Manager.** Es un proyecto independiente desarrollado por una sola persona; actualmente no hay otros integrantes en el equipo.
 
-**Ariel Arce is the creator and sole developer of EB-Manager.** It is an independent project developed by one person; there are currently no other team members.
+**EhabYT is the creator and sole developer of EB-Manager.** It is an independent project developed by one person; there are currently no other team members.
 
 <a id="eb-manager-brand"></a>
 
@@ -296,25 +296,25 @@ You can write in Spanish or English. Include your EB-Manager version, Windows ve
 
 ### ¿Qué significa EB-Manager?
 
-EB-Manager nace de unir dos ideas: “Rendi”, de rendimiento, y “Fly”, de volar.
+EB-Manager nace como una suite de herramientas avanzadas diseñadas para la gestión, el control y la optimización del rendimiento en entornos Windows.
 
 El nombre representa la idea de hacer que la relación con tu PC sea más fluida: entender qué está pasando, tener más control sobre el sistema y adaptar su funcionamiento a lo que realmente necesitas.
 
 EB-Manager no busca prometer que un PC simplemente será “más rápido”. La idea es ayudar a que cada equipo funcione de una forma más comprensible, controlable y personal.
 
-EB-Manager es una extensión de esa identidad: el producto de EB-Manager diseñado para reunir en un solo lugar herramientas para conocer, administrar y optimizar un PC con Windows.
+EB-Manager es una extensión de esa identidad: el producto diseñado para reunir en un solo lugar herramientas para conocer, administrar y optimizar un PC con Windows.
 
 “Cada PC es diferente. EB-Manager también debería serlo.”
 
 ### What does EB-Manager mean?
 
-EB-Manager comes from two ideas: “Rendi”, from rendimiento — Spanish for performance — and “Fly”, representing the idea of flying.
+EB-Manager is an advanced software suite engineered for system management, control, and performance optimization in Windows environments.
 
 The name represents making the relationship with your PC feel more fluid: understanding what's happening, having greater control over the system, and adapting how it works to what you actually need.
 
 EB-Manager isn't about simply promising to make a PC “faster.” The idea is to help make each computer more understandable, controllable, and personal.
 
-EB-Manager extends that identity: it is EB-Manager's product designed to bring together tools for understanding, managing, and optimizing a Windows PC in one place.
+EB-Manager extends that identity: it is engineered to bring together tools for understanding, managing, and optimizing a Windows PC in one place.
 
 “Every PC is different. EB-Manager should be too.”
 
