@@ -1,6 +1,6 @@
 ---
 name: "Proponer una mejora / Suggest a feature"
-about: "Comparte una idea para mejorar EB-Manager / Share an idea to improve EB-Manager"
+about: "Comparte una idea para mejorar EB Manager / Share an idea to improve EB Manager"
 title: "[Idea] "
 ---
 
@@ -25,7 +25,7 @@ Describe cómo debería funcionar. / Describe how it should work.
 
 ## Contexto adicional / Additional context
 
-Sección de EB-Manager, versión o capturas opcionales sin datos personales. / EB-Manager section, version, or optional screenshots without personal information.
+Sección de EB Manager, versión o capturas opcionales sin datos personales. / EB Manager section, version, or optional screenshots without personal information.
 
 ## Comprobaciones / Checklist
 

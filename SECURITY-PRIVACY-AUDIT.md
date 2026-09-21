@@ -1,8 +1,8 @@
 # Auditoría actual de privacidad, protección de datos, seguridad y documentación  
-## EB-Manager — estado posterior a las mejoras de Beta 2
+## EB Manager — estado posterior a las mejoras de Beta 2
 
 **Fecha de revisión:** 21 de septiembre de 2026  
-**Alcance:** implementación actual del proyecto EB-Manager.  
+**Alcance:** implementación actual del proyecto EB Manager.  
 **Modo:** auditoría de solo lectura. No se modificó ningún archivo durante esta revisión.  
 **Criterio:** cuando existe una diferencia entre la documentación y el código, prevalece el comportamiento real de la implementación.
 
@@ -10,7 +10,7 @@
 
 # 1. Resumen del estado actual
 
-EB-Manager funciona actualmente como una aplicación local de Windows.
+EB Manager funciona actualmente como una aplicación local de Windows.
 
 ## Funciones activas
 
@@ -23,7 +23,7 @@ Actualmente están activas las siguientes funciones:
 - Lectura de controladores y configuraciones de Windows.
 - Lectura de contadores globales de red.
 - Gestión local de preferencias.
-- Almacenamiento de configuración en `%APPDATA%\EB-Manager`.
+- Almacenamiento de configuración en `%APPDATA%\EB Manager`.
 - Logs locales rotatorios.
 - Historial local de notificaciones.
 - Gestión del inicio automático mediante el registro de Windows.
@@ -79,7 +79,7 @@ La aplicación no utiliza actualmente:
 - Servicio propio de analítica.
 - SDK de publicidad.
 - Servicio propio de telemetría.
-- Servidor HTTP público de EB-Manager.
+- Servidor HTTP público de EB Manager.
 
 La aplicación procesa localmente información técnica del equipo y guarda determinados datos en el perfil del usuario.
 
@@ -385,7 +385,7 @@ Añadir una tabla formal de inventario:
 La aplicación utiliza:
 
 ```text
-%APPDATA%\EB-Manager
+%APPDATA%\EB Manager
 ```
 
 La persistencia se gestiona mediante:
@@ -488,7 +488,7 @@ Documentar:
 No se encontró:
 
 - Servidor HTTP propio.
-- API central de EB-Manager.
+- API central de EB Manager.
 - Base de datos remota.
 - Sistema de cuentas.
 - Servicio de analítica.
@@ -532,7 +532,7 @@ Actualmente no debería producirse:
 
 ## 6.4 Feedback por Internet
 
-El feedback no se envía a un servidor propio de EB-Manager.
+El feedback no se envía a un servidor propio de EB Manager.
 
 La aplicación prepara:
 
@@ -675,7 +675,7 @@ Mostrar un aviso como:
 Los logs se guardan en:
 
 ```text
-%APPDATA%\EB-Manager\ebmanager.log
+%APPDATA%\EB Manager\ebmanager.log
 ```
 
 La implementación se encuentra en:
@@ -1329,14 +1329,14 @@ Las siguientes limitaciones continúan presentes:
 
 # 20. Conclusión documental
 
-El estado actual de EB-Manager es el de una aplicación de Windows principalmente local:
+El estado actual de EB Manager es el de una aplicación de Windows principalmente local:
 
 - La monitorización está activa localmente.
 - La configuración se almacena localmente.
 - Los logs se almacenan localmente.
 - El historial de notificaciones se almacena localmente.
 - No se encontró telemetría propia activa.
-- No existe un backend central de EB-Manager.
+- No existe un backend central de EB Manager.
 - El feedback requiere acción manual del usuario.
 - La IA externa está preparada en el código, pero desactivada actualmente.
 - Las API keys se protegen mediante DPAPI cuando la función está habilitada.

@@ -1,13 +1,13 @@
 # Licencia y aviso de derechos / License and rights notice
 
-Copyright © 2026 Titulares de EB-Manager / EB-Manager rights holders.
+Copyright © 2026 Titulares de EB Manager / EB Manager rights holders.
 Todos los derechos reservados. / All rights reserved.
 
 ## Español
 
-EB-Manager es software propietario de código cerrado. El código fuente de la aplicación no se publica en este repositorio.
+EB Manager es software propietario de código cerrado. El código fuente de la aplicación no se publica en este repositorio.
 
-Este repositorio público contiene documentación, capturas y recursos de soporte. Su disponibilidad pública no concede una licencia de código abierto sobre EB-Manager ni sobre los materiales originales del proyecto.
+Este repositorio público contiene documentación, capturas y recursos de soporte. Su disponibilidad pública no concede una licencia de código abierto sobre EB Manager ni sobre los materiales originales del proyecto.
 
 Salvo autorización expresa por escrito del titular o lo permitido por la legislación aplicable, no se concede permiso para reproducir, modificar, redistribuir, sublicenciar o vender el software o los materiales originales del proyecto, ni para crear obras derivadas de ellos.
 
@@ -19,9 +19,9 @@ Para solicitar autorización, utiliza el contacto oficial indicado en el [README
 
 ## English
 
-EB-Manager is proprietary, closed-source software. The application's source code is not published in this repository.
+EB Manager is proprietary, closed-source software. The application's source code is not published in this repository.
 
-This public repository contains documentation, screenshots, and support resources. Public availability does not grant an open-source license to EB-Manager or the project's original materials.
+This public repository contains documentation, screenshots, and support resources. Public availability does not grant an open-source license to EB Manager or the project's original materials.
 
 Except as expressly authorized in writing by the rights holder or permitted by applicable law, no permission is granted to reproduce, modify, redistribute, sublicense, or sell the software or the project's original materials, or to create derivative works from them.
 

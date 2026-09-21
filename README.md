@@ -1,10 +1,10 @@
 <a id="eb-manager-top"></a>
 
-![EB-Manager — Banner oficial](assets/Imagen%20de%20Codex%2017%20sept%202026%2C%2017_10_54.png)
+![EB Manager — Banner oficial](assets/Imagen%20de%20Codex%2017%20sept%202026%2C%2017_10_54.png)
 
 <div align="center">
 
-# EB-Manager
+# EB Manager
 
 ### Understand your PC. Control it your way.
 ### Entiende tu PC. Contrólala a tu manera.
@@ -18,10 +18,10 @@ A clearer way to understand, manage, and optimize your Windows PC.
 
 [🇪🇸 Español](#eb-manager-espanol) · [🇺🇸 English](#eb-manager-english)
 
-<a href="assets/Inicio%20%20Home.png"><img src="assets/Inicio%20%20Home.png" width="310" alt="EB-Manager — Inicio / Home"></a>
-<a href="assets/Rendimiento%20%20Performance.png"><img src="assets/Rendimiento%20%20Performance.png" width="310" alt="EB-Manager — Rendimiento / Performance"></a>
+<a href="assets/Inicio%20%20Home.png"><img src="assets/Inicio%20%20Home.png" width="310" alt="EB Manager — Inicio / Home"></a>
+<a href="assets/Rendimiento%20%20Performance.png"><img src="assets/Rendimiento%20%20Performance.png" width="310" alt="EB Manager — Rendimiento / Performance"></a>
 
-<sub>Interfaz real de EB-Manager B1 · Actual EB-Manager B1 interface</sub>
+<sub>Interfaz real de EB Manager B1 · Actual EB Manager B1 interface</sub>
 
 </div>
 
@@ -29,23 +29,23 @@ A clearer way to understand, manage, and optimize your Windows PC.
 
 ## Tu PC en un solo lugar
 
-EB-Manager reúne monitorización, procesos, limpieza, aplicaciones de inicio, perfiles, energía e información del equipo en una interfaz para Windows. Te ayuda a entender qué está pasando y a elegir cómo administrar tu PC.
+EB Manager reúne monitorización, procesos, limpieza, aplicaciones de inicio, perfiles, energía e información del equipo en una interfaz para Windows. Te ayuda a entender qué está pasando y a elegir cómo administrar tu PC.
 
-Este es el repositorio oficial de documentación, capturas y soporte. EB-Manager es un producto de **código cerrado**; su código fuente es privado.
+Este es el repositorio oficial de documentación, capturas y soporte. EB Manager es un producto de **código cerrado**; su código fuente es privado.
 
 <a id="eb-manager-english"></a>
 
 ## Your PC in one place
 
-EB-Manager brings monitoring, processes, cleanup, startup apps, profiles, power plans, and PC information into one Windows interface. It helps you understand what is happening and choose how to manage your computer.
+EB Manager brings monitoring, processes, cleanup, startup apps, profiles, power plans, and PC information into one Windows interface. It helps you understand what is happening and choose how to manage your computer.
 
-This is the official repository for documentation, screenshots, and support. EB-Manager is a **closed-source** product; its source code is private.
+This is the official repository for documentation, screenshots, and support. EB Manager is a **closed-source** product; its source code is private.
 
 <a id="eb-manager-download"></a>
 
 ## Descarga / Download
 
-> **[⬇️ Descargar EB-Manager 0.1 Beta — B1 / Download EB-Manager 0.1 Beta — B1](https://github.com/EhabYT/EB-Manager/releases/download/v0.1.0-beta.1/EBManagerSetup.exe)**
+> **[⬇️ Descargar EB Manager 0.1 Beta — B1 / Download EB Manager 0.1 Beta — B1](https://github.com/EhabYT/EB-Manager/releases/download/v0.1.0-beta.1/EBManagerSetup.exe)**
 
 | | Español | English |
 | --- | --- | --- |
@@ -69,7 +69,7 @@ The official installer is now available on GitHub Releases. Download **`EBManage
 | --- | --- | --- |
 | 1 | Descarga `EBManagerSetup.exe` desde la [Release oficial](https://github.com/EhabYT/EB-Manager/releases/tag/v0.1.0-beta.1). | Download `EBManagerSetup.exe` from the [official Release](https://github.com/EhabYT/EB-Manager/releases/tag/v0.1.0-beta.1). |
 | 2 | Ejecuta el instalador y sigue el asistente de Windows. | Run the installer and follow the Windows setup wizard. |
-| 3 | Abre EB-Manager y completa la bienvenida. | Open EB-Manager and complete the welcome steps. |
+| 3 | Abre EB Manager y completa la bienvenida. | Open EB Manager and complete the welcome steps. |
 | 4 | Elige idioma y apariencia en Configuración. | Choose language and appearance in Settings. |
 | 5 | Empieza en Inicio para consultar el estado de tu PC. | Start with Home to check your PC's status. |
 
@@ -154,12 +154,12 @@ Explora la interfaz por funciones. Pulsa una imagen para verla completa. / Explo
 </details>
 
 <details>
-<summary><strong>EB-Manager: asistente y comentarios / Assistant and feedback</strong> · 3 capturas / screenshots</summary>
+<summary><strong>EB Manager: asistente y comentarios / Assistant and feedback</strong> · 3 capturas / screenshots</summary>
 
 <table>
 <tr>
-<td align="center" width="50%"><strong>Pregúntale a EB-Manager / Ask EB-Manager</strong><br><br><a href="assets/Preg%C3%BAntale%20a%20EB-Manager%20%20Ask%20EB-Manager.png"><img src="assets/Preg%C3%BAntale%20a%20EB-Manager%20%20Ask%20EB-Manager.png" width="300" alt="Pregúntale a EB-Manager / Ask EB-Manager"></a></td>
-<td align="center" width="50%"><strong>Pregúntale a EB-Manager / Ask EB-Manager · 2</strong><br><br><a href="assets/Preg%C3%BAntale%20a%20EB-Manager%20%20Ask%20EB-Manager%202.png"><img src="assets/Preg%C3%BAntale%20a%20EB-Manager%20%20Ask%20EB-Manager%202.png" width="300" alt="Pregúntale a EB-Manager / Ask EB-Manager · 2"></a></td>
+<td align="center" width="50%"><strong>Pregúntale a EB Manager / Ask EB Manager</strong><br><br><a href="assets/Preg%C3%BAntale%20a%20EB Manager%20%20Ask%20EB Manager.png"><img src="assets/Preg%C3%BAntale%20a%20EB Manager%20%20Ask%20EB Manager.png" width="300" alt="Pregúntale a EB Manager / Ask EB Manager"></a></td>
+<td align="center" width="50%"><strong>Pregúntale a EB Manager / Ask EB Manager · 2</strong><br><br><a href="assets/Preg%C3%BAntale%20a%20EB Manager%20%20Ask%20EB Manager%202.png"><img src="assets/Preg%C3%BAntale%20a%20EB Manager%20%20Ask%20EB Manager%202.png" width="300" alt="Pregúntale a EB Manager / Ask EB Manager · 2"></a></td>
 </tr>
 <tr>
 <td align="center" width="50%"><strong>Comentarios / Feedback</strong><br><br><a href="assets/Comentarios%20%20Feedback.png"><img src="assets/Comentarios%20%20Feedback.png" width="300" alt="Comentarios / Feedback"></a></td>
@@ -232,17 +232,17 @@ The analyzed copy of **EBManagerSetup.exe** received a **0/68 detection** result
 
 ### Español
 
-EB-Manager consulta métricas del equipo, componentes de hardware, procesos, aplicaciones de inicio y planes de energía para mostrar su estado, explicar datos y ofrecer recomendaciones.
+EB Manager consulta métricas del equipo, componentes de hardware, procesos, aplicaciones de inicio y planes de energía para mostrar su estado, explicar datos y ofrecer recomendaciones.
 
-La configuración, los perfiles y las notificaciones se guardan principalmente en archivos locales bajo `%APPDATA%\EB-Manager`. El historial de métricas se mantiene en memoria durante la sesión. B1 utiliza un asistente local; los proveedores externos de IA están deshabilitados en la interfaz.
+La configuración, los perfiles y las notificaciones se guardan principalmente en archivos locales bajo `%APPDATA%\EB Manager`. El historial de métricas se mantiene en memoria durante la sesión. B1 utiliza un asistente local; los proveedores externos de IA están deshabilitados en la interfaz.
 
 Feedback abre un borrador en tu correo o Gmail para que lo revises y envíes. Seleccionar una captura utiliza su nombre, pero no adjunta automáticamente la imagen. Los enlaces externos y servicios que abras tienen sus propias condiciones y políticas.
 
 ### English
 
-EB-Manager reads PC metrics, hardware information, processes, startup applications, and power plans to display status, explain information, and provide recommendations.
+EB Manager reads PC metrics, hardware information, processes, startup applications, and power plans to display status, explain information, and provide recommendations.
 
-Settings, profiles, and notifications are stored mainly in local files under `%APPDATA%\EB-Manager`. Metrics history stays in memory during the session. B1 uses a local assistant; external AI providers are disabled in the interface.
+Settings, profiles, and notifications are stored mainly in local files under `%APPDATA%\EB Manager`. Metrics history stays in memory during the session. B1 uses a local assistant; external AI providers are disabled in the interface.
 
 Feedback opens a draft in your email app or Gmail for you to review and send. Selecting a screenshot uses its filename but does not automatically attach the image. External links and services you open have their own terms and policies.
 
@@ -268,17 +268,17 @@ Feedback opens a draft in your email app or Gmail for you to review and send. Se
 | Consultar reportes existentes / Check existing reports | [GitHub Issues](https://github.com/EhabYT/EB-Manager/issues) |
 | Compartir comentarios / Share feedback | Feedback en la aplicación o [correo oficial](mailto:ebmanager@gmail.com) / In-app Feedback or [official email](mailto:ebmanager@gmail.com) |
 
-Puedes escribir en español o inglés. Incluye la versión de EB-Manager, Windows y los pasos para reproducir el problema. Los Issues son públicos: oculta datos personales de capturas y registros.
+Puedes escribir en español o inglés. Incluye la versión de EB Manager, Windows y los pasos para reproducir el problema. Los Issues son públicos: oculta datos personales de capturas y registros.
 
-You can write in Spanish or English. Include your EB-Manager version, Windows version, and steps to reproduce the problem. Issues are public: remove personal information from screenshots and logs.
+You can write in Spanish or English. Include your EB Manager version, Windows version, and steps to reproduce the problem. Issues are public: remove personal information from screenshots and logs.
 
 <a id="eb-manager-legal"></a>
 
 ## Licencia y cambios / License and changes
 
-**EB-Manager es software propietario de código cerrado.** Este repositorio público reúne documentación, capturas y soporte; no publica el código fuente de la aplicación. Las condiciones de uso de los ejecutables se proporcionarán con su distribución.
+**EB Manager es software propietario de código cerrado.** Este repositorio público reúne documentación, capturas y soporte; no publica el código fuente de la aplicación. Las condiciones de uso de los ejecutables se proporcionarán con su distribución.
 
-**EB-Manager is proprietary, closed-source software.** This public repository contains documentation, screenshots, and support; it does not publish the application's source code. Executable usage terms will be provided with distribution.
+**EB Manager is proprietary, closed-source software.** This public repository contains documentation, screenshots, and support; it does not publish the application's source code. Executable usage terms will be provided with distribution.
 
 [Licencia y aviso de derechos / License and rights notice](LICENSE.md) · [Registro de cambios / Changelog](CHANGELOG.md)
 
@@ -286,46 +286,46 @@ You can write in Spanish or English. Include your EB-Manager version, Windows ve
 
 ## Creador / Creator
 
-**EhabYT es el creador y único desarrollador de EB-Manager.** Es un proyecto independiente desarrollado por una sola persona; actualmente no hay otros integrantes en el equipo.
+**EhabYT es el creador y único desarrollador de EB Manager.** Es un proyecto independiente desarrollado por una sola persona; actualmente no hay otros integrantes en el equipo.
 
-**EhabYT is the creator and sole developer of EB-Manager.** It is an independent project developed by one person; there are currently no other team members.
+**EhabYT is the creator and sole developer of EB Manager.** It is an independent project developed by one person; there are currently no other team members.
 
 <a id="eb-manager-brand"></a>
 
-## La identidad de EB-Manager / The EB-Manager identity
+## La identidad de EB Manager / The EB Manager identity
 
-### ¿Qué significa EB-Manager?
+### ¿Qué significa EB Manager?
 
-EB-Manager nace como una suite de herramientas avanzadas diseñadas para la gestión, el control y la optimización del rendimiento en entornos Windows.
+EB Manager nace como una suite de herramientas avanzadas diseñadas para la gestión, el control y la optimización del rendimiento en entornos Windows.
 
 El nombre representa la idea de hacer que la relación con tu PC sea más fluida: entender qué está pasando, tener más control sobre el sistema y adaptar su funcionamiento a lo que realmente necesitas.
 
-EB-Manager no busca prometer que un PC simplemente será “más rápido”. La idea es ayudar a que cada equipo funcione de una forma más comprensible, controlable y personal.
+EB Manager no busca prometer que un PC simplemente será “más rápido”. La idea es ayudar a que cada equipo funcione de una forma más comprensible, controlable y personal.
 
-EB-Manager es una extensión de esa identidad: el producto diseñado para reunir en un solo lugar herramientas para conocer, administrar y optimizar un PC con Windows.
+EB Manager es una extensión de esa identidad: el producto diseñado para reunir en un solo lugar herramientas para conocer, administrar y optimizar un PC con Windows.
 
-“Cada PC es diferente. EB-Manager también debería serlo.”
+“Cada PC es diferente. EB Manager también debería serlo.”
 
-### What does EB-Manager mean?
+### What does EB Manager mean?
 
-EB-Manager is an advanced software suite engineered for system management, control, and performance optimization in Windows environments.
+EB Manager is an advanced software suite engineered for system management, control, and performance optimization in Windows environments.
 
 The name represents making the relationship with your PC feel more fluid: understanding what's happening, having greater control over the system, and adapting how it works to what you actually need.
 
-EB-Manager isn't about simply promising to make a PC “faster.” The idea is to help make each computer more understandable, controllable, and personal.
+EB Manager isn't about simply promising to make a PC “faster.” The idea is to help make each computer more understandable, controllable, and personal.
 
-EB-Manager extends that identity: it is engineered to bring together tools for understanding, managing, and optimizing a Windows PC in one place.
+EB Manager extends that identity: it is engineered to bring together tools for understanding, managing, and optimizing a Windows PC in one place.
 
-“Every PC is different. EB-Manager should be too.”
+“Every PC is different. EB Manager should be too.”
 
 ---
 
 <div align="center">
 
-### EB-Manager
+### EB Manager
 
-Cada PC es diferente. EB-Manager también debería serlo.  
-Every PC is different. EB-Manager should be too.
+Cada PC es diferente. EB Manager también debería serlo.  
+Every PC is different. EB Manager should be too.
 
 [Descarga / Download](#eb-manager-download) · [Guía / Guide](#eb-manager-guide) · [Reportar un problema / Report a problem](#eb-manager-support) · [↑ Volver arriba / Back to top](#eb-manager-top)
 
