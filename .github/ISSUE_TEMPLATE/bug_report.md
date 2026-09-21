@@ -1,6 +1,6 @@
 ---
 name: "Reportar un error / Report a bug"
-about: "Ayúdanos a reproducir un problema de Rendifly / Help us reproduce a Rendifly problem"
+about: "Ayúdanos a reproducir un problema de EB-Manager / Help us reproduce a EB-Manager problem"
 title: "[Bug] "
 ---
 
@@ -13,7 +13,7 @@ title: "[Bug] "
 
 ## Entorno / Environment
 
-- Versión de Rendifly / Rendifly version:
+- Versión de EB-Manager / EB-Manager version:
 - Windows 10 u 11 y versión / Windows 10 or 11 and version:
 - Sección afectada / Affected section:
 - Hardware relevante, si aplica / Relevant hardware, if applicable:
