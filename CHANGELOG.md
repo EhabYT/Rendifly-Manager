@@ -2,9 +2,9 @@
 
 [Volver al README / Back to README](README.md)
 
-Este archivo documenta cambios del repositorio y el estado de las versiones de Rendifly Manager. Las notas de una versión en preparación no anuncian su publicación.
+Este archivo documenta cambios del repositorio y el estado de las versiones de EB Manager. Las notas de una versión en preparación no anuncian su publicación.
 
-This file documents repository changes and the status of Rendifly Manager versions. Notes for a version in preparation do not announce its release.
+This file documents repository changes and the status of EB Manager versions. Notes for a version in preparation do not announce its release.
 
 ## 2026-09-19 — Documentación / Documentation
 

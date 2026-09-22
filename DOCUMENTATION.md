@@ -2,24 +2,24 @@
 
 > Referencia completa de B1. Se conserva el contenido del README anterior, incluidas sus explicaciones técnicas. / Complete B1 reference. The previous README content is preserved, including its technical explanations.
 
-<a id="rendifly-top"></a>
+<a id="eb-manager-top"></a>
 
 <div align="center">
 
-# Rendifly Manager
+# EB Manager
 
 ### Understand your PC. Control it your way.  
 ### Entiende tu PC. Contrólala a tu manera.
 
-**Rendifly Manager 0.1 Beta — B1**
+**EB Manager 0.1 Beta — B1**
 
 ### 🌐 Language / Idioma
 
-[🇪🇸 Español](#rendifly-espanol) · [🇺🇸 English](#rendifly-english)
+[🇪🇸 Español](#eb-manager-espanol) · [🇺🇸 English](#eb-manager-english)
 
 ### 📸 Capturas / Screenshots
 
-[🇪🇸 Ver capturas](#rendifly-screenshots) · [🇺🇸 View screenshots](#rendifly-screenshots)
+[🇪🇸 Ver capturas](#eb-manager-screenshots) · [🇺🇸 View screenshots](#eb-manager-screenshots)
 
 </div>
 
@@ -34,18 +34,18 @@
 </p>
 
 <p align="center">
-  <img src="assets/Inicio%20%20Home.png" width="360" alt="Rendifly Manager — Inicio / Home">
+  <img src="assets/Inicio%20%20Home.png" width="360" alt="EB Manager — Inicio / Home">
 </p>
 
-<p align="center"><em>Cada PC es diferente. Rendifly también debería serlo.<br>Every PC is different. Rendifly should be too.</em></p>
+<p align="center"><em>Cada PC es diferente. EB Manager también debería serlo.<br>Every PC is different. EB Manager should be too.</em></p>
 
-[Inicio rápido / Quick start](#rendifly-quickstart) · [Privacidad / Privacy](#rendifly-privacy) · [Soporte / Support](#rendifly-support) · [Cambios / Changelog](CHANGELOG.md) · [Licencia / License](LICENSE.md)
+[Inicio rápido / Quick start](#eb-manager-quickstart) · [Privacidad / Privacy](#eb-manager-privacy) · [Soporte / Support](#eb-manager-support) · [Cambios / Changelog](CHANGELOG.md) · [Licencia / License](LICENSE.md)
 
 ## Tu PC en un solo lugar / Your PC in one place
 
-Rendifly Manager reúne las herramientas que necesitas para conocer tu equipo y gestionar su funcionamiento desde una interfaz para Windows. Este repositorio público contiene documentación, capturas y un espacio para reportar problemas y proponer mejoras. El código fuente de la aplicación es privado.
+EB Manager reúne las herramientas que necesitas para conocer tu equipo y gestionar su funcionamiento desde una interfaz para Windows. Este repositorio público contiene documentación, capturas y un espacio para reportar problemas y proponer mejoras. El código fuente de la aplicación es privado.
 
-Rendifly Manager brings together tools to understand your computer and manage how it runs through one Windows interface. This public repository contains documentation, screenshots, and a place to report problems and suggest improvements. The application's source code is private.
+EB Manager brings together tools to understand your computer and manage how it runs through one Windows interface. This public repository contains documentation, screenshots, and a place to report problems and suggest improvements. The application's source code is private.
 
 | | Español | English |
 | --- | --- | --- |
@@ -56,7 +56,7 @@ Rendifly Manager brings together tools to understand your computer and manage ho
 
 > **Estado de B1 / B1 status:** La IA externa y la actualización automática de drivers no están disponibles. / External AI and automatic driver updates are not available.
 
-<a id="rendifly-quickstart"></a>
+<a id="eb-manager-quickstart"></a>
 
 ## Primeros pasos / Quick start
 
@@ -64,29 +64,29 @@ Rendifly Manager brings together tools to understand your computer and manage ho
 
 **Sistema operativo:** Windows 10 o Windows 11.
 
-1. Ejecuta el instalador de Rendifly Manager y sigue el asistente, como con cualquier aplicación de Windows.
-2. Abre Rendifly Manager y completa la bienvenida inicial.
+1. Ejecuta el instalador de EB Manager y sigue el asistente, como con cualquier aplicación de Windows.
+2. Abre EB Manager y completa la bienvenida inicial.
 3. Empieza en **Inicio** para consultar el estado del equipo; utiliza **Configuración** para ajustar idioma y apariencia.
 
-Para desinstalarlo, busca Rendifly Manager en la lista de aplicaciones instaladas de Configuración de Windows y selecciona **Desinstalar**. Algunas métricas dependen del hardware y de los datos que Windows permita consultar.
+Para desinstalarlo, busca EB Manager en la lista de aplicaciones instaladas de Configuración de Windows y selecciona **Desinstalar**. Algunas métricas dependen del hardware y de los datos que Windows permita consultar.
 
 ### English
 
 **Operating system:** Windows 10 or Windows 11.
 
-1. Run the Rendifly Manager installer and follow the setup wizard, just like any other Windows application.
-2. Open Rendifly Manager and complete the welcome steps.
+1. Run the EB Manager installer and follow the setup wizard, just like any other Windows application.
+2. Open EB Manager and complete the welcome steps.
 3. Start with **Home** to check your PC's status; use **Settings** to adjust language and appearance.
 
-To uninstall, find Rendifly Manager in the installed apps list in Windows Settings and select **Uninstall**. Some metrics depend on your hardware and the information Windows makes available.
+To uninstall, find EB Manager in the installed apps list in Windows Settings and select **Uninstall**. Some metrics depend on your hardware and the information Windows makes available.
 
-<a id="rendifly-privacy"></a>
+<a id="eb-manager-privacy"></a>
 
 ## Privacidad y control / Privacy and control
 
 ### Español
 
-- **Datos locales:** la configuración, los perfiles y el historial de notificaciones se guardan principalmente en archivos dentro de `%APPDATA%\Rendifly`. El historial de métricas se mantiene en memoria durante la sesión.
+- **Datos locales:** la configuración, los perfiles y el historial de notificaciones se guardan principalmente en archivos dentro de `%APPDATA%\EB Manager`. El historial de métricas se mantiene en memoria durante la sesión.
 - **Asistente:** B1 ofrece un asistente local. Las opciones de proveedores externos de IA permanecen deshabilitadas en la interfaz.
 - **Comentarios:** la función Feedback abre un borrador en tu correo o en Gmail. Revisa su contenido antes de enviarlo; la selección de una captura utiliza su nombre, pero no adjunta automáticamente la imagen.
 - **Acciones sobre el equipo:** la limpieza actúa sobre temporales elegibles y los perfiles pueden cerrar aplicaciones seleccionadas. Guarda tu trabajo antes de cerrar procesos o activar un perfil.
@@ -94,49 +94,49 @@ To uninstall, find Rendifly Manager in the installed apps list in Windows Settin
 
 ### English
 
-- **Local data:** settings, profiles, and notification history are stored mainly in files under `%APPDATA%\Rendifly`. Metrics history stays in memory during the session.
+- **Local data:** settings, profiles, and notification history are stored mainly in files under `%APPDATA%\EB Manager`. Metrics history stays in memory during the session.
 - **Assistant:** B1 provides a local assistant. External AI provider options remain disabled in the interface.
 - **Feedback:** the Feedback feature opens a draft in your email app or Gmail. Review it before sending; selecting a screenshot uses its filename but does not automatically attach the image.
 - **Actions on your PC:** cleanup processes eligible temporary files, and profiles can close selected applications. Save your work before closing processes or activating a profile.
 - **Public reports:** GitHub Issues are public. Remove usernames, personal paths, and private information before adding screenshots or logs.
 
-<a id="rendifly-support"></a>
+<a id="eb-manager-support"></a>
 
 ## Ayuda y sugerencias / Help and suggestions
 
-[Reportar un error / Report a bug](https://github.com/rendiflypcmanager-web/Rendifly-Manager/issues/new?template=bug_report.md) · [Proponer una mejora / Suggest a feature](https://github.com/rendiflypcmanager-web/Rendifly-Manager/issues/new?template=feature_request.md)
+[Reportar un error / Report a bug](https://github.com/EhabYT/EB-Manager/issues/new?template=bug_report.md) · [Proponer una mejora / Suggest a feature](https://github.com/EhabYT/EB-Manager/issues/new?template=feature_request.md)
 
-Revisa los Issues existentes antes de abrir uno nuevo. Incluye tu versión de Rendifly, Windows y los pasos para reproducir el problema. Puedes escribir en español o en inglés.
+Revisa los Issues existentes antes de abrir uno nuevo. Incluye tu versión de EB Manager, Windows y los pasos para reproducir el problema. Puedes escribir en español o en inglés.
 
-Check existing Issues before opening a new one. Include your Rendifly version, Windows version, and steps to reproduce the problem. Spanish and English reports are welcome.
+Check existing Issues before opening a new one. Include your EB Manager version, Windows version, and steps to reproduce the problem. Spanish and English reports are welcome.
 
-**Contacto / Contact:** [rendiflypcmanager@gmail.com](mailto:rendiflypcmanager@gmail.com)
+**Contacto / Contact:** [ebmanager@gmail.com](mailto:ebmanager@gmail.com)
 
-**Código cerrado / Closed source:** Rendifly Manager es software propietario. Consulta el [aviso de derechos](LICENSE.md). / Rendifly Manager is proprietary software. See the [rights notice](LICENSE.md).
+**Código cerrado / Closed source:** EB Manager es software propietario. Consulta el [aviso de derechos](LICENSE.md). / EB Manager is proprietary software. See the [rights notice](LICENSE.md).
 
 ---
 
 ## Documentación completa / Full documentation
 
-[🇪🇸 Español](#rendifly-espanol) · [🇺🇸 English](#rendifly-english) · [📸 Capturas / Screenshots](#rendifly-screenshots)
+[🇪🇸 Español](#eb-manager-espanol) · [🇺🇸 English](#eb-manager-english) · [📸 Capturas / Screenshots](#eb-manager-screenshots)
 
-<a id="rendifly-espanol"></a>
+<a id="eb-manager-espanol"></a>
 
 # 🇪🇸 Español
 
-[🇺🇸 Cambiar a English](#rendifly-english) · [⬆️ Volver arriba](#rendifly-top)
+[🇺🇸 Cambiar a English](#eb-manager-english) · [⬆️ Volver arriba](#eb-manager-top)
 
-## ¿Qué es Rendifly Manager?
+## ¿Qué es EB Manager?
 
-Rendifly Manager es una aplicación para Windows creada para reunir en un solo lugar información y herramientas que normalmente están repartidas por diferentes partes del sistema.
+EB Manager es una aplicación para Windows creada para reunir en un solo lugar información y herramientas que normalmente están repartidas por diferentes partes del sistema.
 
-Con Rendifly puedes ver cómo está funcionando tu PC, conocer mejor sus componentes, revisar qué aplicaciones están usando recursos, limpiar archivos temporales, controlar programas que se inician con Windows, utilizar perfiles, cambiar planes de energía y acceder rápidamente a diferentes configuraciones del sistema.
+Con EB Manager puedes ver cómo está funcionando tu PC, conocer mejor sus componentes, revisar qué aplicaciones están usando recursos, limpiar archivos temporales, controlar programas que se inician con Windows, utilizar perfiles, cambiar planes de energía y acceder rápidamente a diferentes configuraciones del sistema.
 
 La intención no es reemplazar Windows ni herramientas como el Administrador de tareas.
 
-Rendifly busca hacer que muchas de esas funciones sean **más fáciles de encontrar, entender y utilizar**, especialmente para personas que simplemente quieren conocer mejor su PC sin tener que recorrer diferentes menús de Windows.
+EB Manager busca hacer que muchas de esas funciones sean **más fáciles de encontrar, entender y utilizar**, especialmente para personas que simplemente quieren conocer mejor su PC sin tener que recorrer diferentes menús de Windows.
 
-Este documento describe el estado real de **Rendifly Manager B1** según el código y la versión empaquetada actual.
+Este documento describe el estado real de **EB Manager B1** según el código y la versión empaquetada actual.
 
 No se basa en ideas antiguas ni incluye como disponibles funciones que todavía no forman parte de esta versión.
 
@@ -146,7 +146,7 @@ No se basa en ideas antiguas ni incluye como disponibles funciones que todavía 
 
 ## 🖥️ Inicio
 
-Inicio es la vista general de Rendifly.
+Inicio es la vista general de EB Manager.
 
 Su objetivo es responder rápidamente una pregunta sencilla:
 
@@ -178,7 +178,7 @@ Puedes ver:
 
 ### GPU
 
-Cuando el equipo permite obtener estos datos, Rendifly muestra:
+Cuando el equipo permite obtener estos datos, EB Manager muestra:
 
 - utilización;
 - temperatura.
@@ -204,7 +204,7 @@ Desde Inicio puedes ir directamente a:
 - Limpieza;
 - Procesos;
 - Perfiles;
-- Pregúntale a Rendifly.
+- Pregúntale a EB Manager.
 
 También pueden mostrarse hasta **tres recomendaciones activas**.
 
@@ -216,7 +216,7 @@ Inicio incluye la opción:
 
 **Mejorar rendimiento**
 
-Esta herramienta analiza archivos temporales que Rendifly considera seguros para eliminar.
+Esta herramienta analiza archivos temporales que EB Manager considera seguros para eliminar.
 
 El funcionamiento es:
 
@@ -277,7 +277,7 @@ Muestra, cuando los datos están disponibles:
 
 ### Almacenamiento
 
-Rendifly muestra las unidades detectadas junto con:
+EB Manager muestra las unidades detectadas junto con:
 
 - tipo de unidad;
 - espacio utilizado;
@@ -301,7 +301,7 @@ También puede mostrar:
 
 ---
 
-## ¿Cómo obtiene Rendifly estas métricas?
+## ¿Cómo obtiene EB Manager estas métricas?
 
 El sistema interno `SystemMonitor` obtiene información sobre:
 
@@ -313,13 +313,13 @@ El sistema interno `SystemMonitor` obtiene información sobre:
 - tiempo encendido;
 - temperaturas disponibles.
 
-Para determinadas GPUs NVIDIA, Rendifly también puede utilizar:
+Para determinadas GPUs NVIDIA, EB Manager también puede utilizar:
 
 `nvidia-smi`
 
 Como consultar constantemente esta herramienta sería innecesario, los datos de GPU se actualizan con menor frecuencia.
 
-Rendifly mantiene además un historial temporal mediante:
+EB Manager mantiene además un historial temporal mediante:
 
 `MetricsHistory`
 
@@ -353,13 +353,13 @@ La lista se actualiza aproximadamente cada:
 
 ### Cómo identifica las aplicaciones
 
-Internamente, Rendifly puede clasificar procesos como:
+Internamente, EB Manager puede clasificar procesos como:
 
 - `apps`;
 - `app_processes`;
 - `windows_services`;
 - `system_protected`;
-- `rendifly`;
+- `eb-manager`;
 - `other`.
 
 La interfaz intenta dar prioridad a las aplicaciones principales que tienen sentido para el usuario.
@@ -375,11 +375,11 @@ Para hacerlo puede revisar información como:
 
 ### Iconos
 
-Rendifly intenta obtener los iconos directamente desde los ejecutables reales.
+EB Manager intenta obtener los iconos directamente desde los ejecutables reales.
 
 Después los guarda en:
 
-`%LOCALAPPDATA%\Rendifly\process-icons`
+`%LOCALAPPDATA%\EB Manager\process-icons`
 
 Esto evita tener que extraer repetidamente el mismo icono.
 
@@ -389,7 +389,7 @@ Esto evita tener que extraer repetidamente el mismo icono.
 
 Cerrar un proceso incorrecto puede causar problemas en Windows.
 
-Por eso Rendifly utiliza:
+Por eso EB Manager utiliza:
 
 - `ProcessClassifier`;
 - `ProcessSafety`;
@@ -403,7 +403,7 @@ Los procesos pueden tener niveles como:
 
 Los procesos considerados críticos no aparecen normalmente como procesos que puedan cerrarse.
 
-Rendifly también comprueba la identidad del proceso antes de actuar para reducir problemas si Windows ha reutilizado un PID.
+EB Manager también comprueba la identidad del proceso antes de actuar para reducir problemas si Windows ha reutilizado un PID.
 
 Según la operación, puede:
 
@@ -435,7 +435,7 @@ El funcionamiento general es:
 
 **Analizar → Limpiar → Verificar**
 
-Antes de eliminar nada, Rendifly crea un inventario de los archivos detectados.
+Antes de eliminar nada, EB Manager crea un inventario de los archivos detectados.
 
 Puede mostrar:
 
@@ -466,7 +466,7 @@ Cuando termina, vuelve a analizar para comprobar cuánto contenido elegible cont
 
 ### Qué evita
 
-Rendifly no está diseñado para eliminar:
+EB Manager no está diseñado para eliminar:
 
 - documentos;
 - descargas;
@@ -493,7 +493,7 @@ que permite relacionar la limpieza con el análisis realizado y verificar poster
 
 ## 🚪 Aplicaciones de inicio
 
-Rendifly puede mostrar programas configurados para iniciarse junto con Windows.
+EB Manager puede mostrar programas configurados para iniciarse junto con Windows.
 
 Revisa:
 
@@ -519,7 +519,7 @@ El impacto puede aparecer como:
 
 Las entradas de `HKCU` pueden habilitarse o deshabilitarse.
 
-Al desactivar una entrada, Rendifly la mueve temporalmente a:
+Al desactivar una entrada, EB Manager la mueve temporalmente a:
 
 `Run_Disabled`
 
@@ -533,7 +533,7 @@ También puede abrir directamente la página oficial de Windows:
 
 ## 🎯 Perfiles
 
-Los perfiles permiten seleccionar aplicaciones que Rendifly debe intentar mantener cerradas mientras determinado perfil esté activo.
+Los perfiles permiten seleccionar aplicaciones que EB Manager debe intentar mantener cerradas mientras determinado perfil esté activo.
 
 Por ejemplo, un usuario puede crear perfiles para estudiar, trabajar o jugar.
 
@@ -550,7 +550,7 @@ Actualmente puedes:
 - consultar cuál está activo;
 - ver aplicaciones cerrables detectadas.
 
-Cuando se activa un perfil, Rendifly intenta cerrar las aplicaciones seleccionadas.
+Cuando se activa un perfil, EB Manager intenta cerrar las aplicaciones seleccionadas.
 
 `ProfileManager` utiliza actualmente el esquema de persistencia:
 
@@ -562,7 +562,7 @@ Mientras existe un perfil activo, un monitor interno comprueba aproximadamente c
 
 si alguna aplicación seleccionada volvió a abrirse.
 
-Si la aplicación continúa siendo segura para cerrar, Rendifly intenta finalizarla otra vez.
+Si la aplicación continúa siendo segura para cerrar, EB Manager intenta finalizarla otra vez.
 
 Los perfiles se guardan en:
 
@@ -577,7 +577,7 @@ junto con:
 
 ## ⚡ Energía
 
-Rendifly trabaja directamente con los planes de energía reales de Windows mediante:
+EB Manager trabaja directamente con los planes de energía reales de Windows mediante:
 
 `powercfg`
 
@@ -593,7 +593,7 @@ Cuando el usuario selecciona otro plan se utiliza:
 
 `/setactive`
 
-Después, Rendifly comprueba que Windows haya confirmado el GUID correspondiente.
+Después, EB Manager comprueba que Windows haya confirmado el GUID correspondiente.
 
 La lista se actualiza aproximadamente cada:
 
@@ -640,7 +640,7 @@ Cada componente puede tener:
 - dato técnico;
 - explicación fácil de entender.
 
-Rendifly mantiene además una caché del resumen de hardware para evitar detectar todo nuevamente cuando no es necesario.
+EB Manager mantiene además una caché del resumen de hardware para evitar detectar todo nuevamente cuando no es necesario.
 
 Esta caché puede invalidarse internamente.
 
@@ -675,13 +675,13 @@ Para hardware:
 - AMD / Radeon;
 - Intel;
 
-Rendifly puede proporcionar enlaces oficiales o intentar detectar si está instalada la aplicación correspondiente del fabricante.
+EB Manager puede proporcionar enlaces oficiales o intentar detectar si está instalada la aplicación correspondiente del fabricante.
 
 También incluye un botón para abrir:
 
 **Windows Update**
 
-Rendifly B1 **no instala ni actualiza drivers automáticamente**.
+EB Manager B1 **no instala ni actualiza drivers automáticamente**.
 
 Su función aquí es informar al usuario y ayudarlo a acceder a las herramientas oficiales.
 
@@ -704,15 +704,15 @@ Para obtener esta información puede utilizar:
 - Registro de Windows;
 - `powercfg`.
 
-Rendifly no modifica directamente todas estas configuraciones.
+EB Manager no modifica directamente todas estas configuraciones.
 
 En determinados casos abre la página oficial correspondiente de Windows o el Panel de control para que el usuario realice el cambio.
 
 ---
 
-## ✨ Pregúntale a Rendifly
+## ✨ Pregúntale a EB Manager
 
-Rendifly incluye un asistente integrado.
+EB Manager incluye un asistente integrado.
 
 Utiliza principalmente:
 
@@ -807,14 +807,14 @@ También puede seleccionarse opcionalmente una captura de pantalla.
 
 Actualmente se utiliza el **nombre del archivo**, pero no se adjunta el archivo binario directamente.
 
-Rendifly puede:
+EB Manager puede:
 
 - abrir la aplicación de correo predeterminada mediante `mailto:`;
 - abrir Gmail mediante una URL de composición.
 
 El correo configurado actualmente es:
 
-`rendiflypcmanager@gmail.com`
+`ebmanager@gmail.com`
 
 La interfaz también recomienda no incluir información personal innecesaria.
 
@@ -828,7 +828,7 @@ La sección Configuración está implementada en:
 
 ### Usuario
 
-Puedes establecer el nombre o apodo que Rendifly utilizará.
+Puedes establecer el nombre o apodo que EB Manager utilizará.
 
 ### Idioma
 
@@ -853,7 +853,7 @@ Se puede utilizar:
 
 ### Tamaño de la interfaz
 
-Rendifly dispone de:
+EB Manager dispone de:
 
 - modo compacto;
 - modo normal/cómodo.
@@ -908,7 +908,7 @@ Los cambios se guardan automáticamente mediante:
 
 ---
 
-## ℹ️ Acerca de Rendifly
+## ℹ️ Acerca de EB Manager
 
 Actualmente no existe una página independiente llamada `about`.
 
@@ -920,15 +920,15 @@ Muestra:
 0.1 Beta
 
 **Desarrollador:**  
-Ariel Arce
+EhabYT
 
 También incluye:
 
-**Cómo usar Rendifly — Guía oficial**
+**Cómo usar EB Manager — Guía oficial**
 
 y el lema:
 
-> **Cada PC es diferente. Rendifly también debería serlo.**
+> **Cada PC es diferente. EB Manager también debería serlo.**
 
 Existe además un botón que abre el vídeo de YouTube configurado en el código como guía oficial.
 
@@ -970,7 +970,7 @@ La búsqueda también normaliza acentos.
 
 ## 💡 Sistema de recomendaciones
 
-Rendifly analiza determinadas situaciones y puede mostrar recomendaciones.
+EB Manager analiza determinadas situaciones y puede mostrar recomendaciones.
 
 Actualmente comprueba:
 
@@ -994,13 +994,13 @@ La recomendación relacionada con archivos temporales puede ejecutar la limpieza
 
 ---
 
-## 💾 Cómo guarda Rendifly los datos
+## 💾 Cómo guarda EB Manager los datos
 
-Rendifly Manager B1 no utiliza SQLite ni otra base de datos SQL tradicional.
+EB Manager B1 no utiliza SQLite ni otra base de datos SQL tradicional.
 
 La información se guarda principalmente dentro de:
 
-`%APPDATA%\Rendifly`
+`%APPDATA%\EB Manager`
 
 Si esa ubicación no está disponible, puede utilizar:
 
@@ -1053,7 +1053,7 @@ pero no pueden seleccionarse actualmente desde la interfaz.
 
 ### Protección al guardar
 
-Rendifly utiliza escrituras atómicas.
+EB Manager utiliza escrituras atómicas.
 
 El proceso consiste en:
 
@@ -1067,7 +1067,7 @@ Esto ayuda a evitar archivos parcialmente escritos.
 
 ## Protección de API keys
 
-Si una clave de IA se configura mediante el backend, Rendifly utiliza:
+Si una clave de IA se configura mediante el backend, EB Manager utiliza:
 
 **Windows DPAPI (`CryptProtectData`)**
 
@@ -1092,7 +1092,7 @@ Se utiliza para almacenar:
 
 ## `notification_history.json`
 
-Rendifly puede almacenar hasta:
+EB Manager puede almacenar hasta:
 
 **50 notificaciones**
 
@@ -1113,7 +1113,7 @@ También se respeta el máximo configurable de notificaciones por hora.
 
 ### Log
 
-`%APPDATA%\Rendifly\rendifly.log`
+`%APPDATA%\EB Manager\ebmanager.log`
 
 Es gestionado por:
 
@@ -1121,7 +1121,7 @@ Es gestionado por:
 
 ### Iconos de procesos
 
-`%LOCALAPPDATA%\Rendifly\process-icons`
+`%LOCALAPPDATA%\EB Manager\process-icons`
 
 ### Historial de métricas
 
@@ -1154,7 +1154,7 @@ Muestra la introducción y el botón:
 
 ### 2. Nombre
 
-El usuario puede indicar opcionalmente cómo quiere que Rendifly lo llame.
+El usuario puede indicar opcionalmente cómo quiere que EB Manager lo llame.
 
 ### 3. Sección inicial
 
@@ -1169,7 +1169,7 @@ Puede seleccionar:
 
 ### 4. Escaneo visual
 
-Rendifly muestra progresivamente componentes detectados como:
+EB Manager muestra progresivamente componentes detectados como:
 
 - CPU;
 - GPU;
@@ -1231,17 +1231,17 @@ Al cambiar el idioma:
 
 `--startup`
 
-Rendifly evita abrir varias instancias mediante:
+EB Manager evita abrir varias instancias mediante:
 
 `single_instance.py`
 
 ### Mutex
 
-`Local\RendiflyManager.SingleInstance`
+`Local\EBManager.SingleInstance`
 
 ### Named Pipe
 
-`\\.\pipe\RendiflyManager.SingleInstance`
+`\\.\pipe\EBManager.SingleInstance`
 
 Si se intenta abrir otra copia:
 
@@ -1254,7 +1254,7 @@ En un arranque mediante `--startup`, la segunda instancia no muestra una notific
 
 ## Ventana
 
-Rendifly utiliza:
+EB Manager utiliza:
 
 **pywebview + EdgeChromium/WebView2**
 
@@ -1284,12 +1284,12 @@ Fondo nativo:
 
 El menú contiene:
 
-- **Abrir Rendifly**
+- **Abrir EB Manager**
 - **Salir**
 
 La bandeja puede utilizarse cuando:
 
-- Rendifly inicia minimizado;
+- EB Manager inicia minimizado;
 - el usuario minimiza;
 - el usuario cierra y tiene activado el cierre a bandeja.
 
@@ -1303,13 +1303,13 @@ Si:
 
 `close_to_tray`
 
-está activo, la X normalmente oculta Rendifly en la bandeja.
+está activo, la X normalmente oculta EB Manager en la bandeja.
 
 Si:
 
 `minimize_to_tray`
 
-está activo, minimizar puede enviar Rendifly a la bandeja.
+está activo, minimizar puede enviar EB Manager a la bandeja.
 
 Las opciones:
 
@@ -1334,7 +1334,7 @@ Existe también un temporizador de seguridad de aproximadamente:
 
 ## 🔗 Integraciones reales con Windows
 
-Rendifly utiliza diferentes componentes reales del sistema.
+EB Manager utiliza diferentes componentes reales del sistema.
 
 ### Registro de Windows
 
@@ -1391,7 +1391,7 @@ se utiliza para proteger API keys.
 
 ### Windows Settings
 
-Rendifly puede abrir:
+EB Manager puede abrir:
 
 `ms-settings:`
 
@@ -1428,7 +1428,7 @@ No ejecuta arbitrariamente cualquier cadena recibida.
 
 ## 🧱 Arquitectura y API
 
-Para quienes quieran conocer la parte más técnica, `RendiflyAPI` conecta la interfaz con el backend.
+Para quienes quieran conocer la parte más técnica, `EBManagerAPI` conecta la interfaz con el backend.
 
 ### Configuración
 
@@ -1501,7 +1501,7 @@ Para quienes quieran conocer la parte más técnica, `RendiflyAPI` conecta la in
 
 ### Asistente
 
-- `ask_rendifly`
+- `ask_eb-manager`
 - `reset_assistant_context`
 
 ### Feedback
@@ -1569,11 +1569,11 @@ junto con sus equivalentes `dist-*`.
 
 La distribución principal actual es:
 
-`dist/Rendifly`
+`dist/EB Manager`
 
 ### Ejecutable
 
-`dist\Rendifly\Rendifly.exe`
+`dist\EB Manager\EBManager.exe`
 
 Tamaño aproximado:
 
@@ -1586,11 +1586,11 @@ Fecha de modificación:
 La carpeta incluye también:
 
 - `_internal`;
-- recursos necesarios para ejecutar Rendifly.
+- recursos necesarios para ejecutar EB Manager.
 
 ### Instalador
 
-`installer\output\RendiflyManagerSetup.exe`
+`installer\output\EBManagerSetup.exe`
 
 Tamaño aproximado:
 
@@ -1602,7 +1602,7 @@ Fecha:
 
 El instalador identifica el producto como:
 
-**Rendifly Manager**
+**EB Manager**
 
 Versión:
 
@@ -1610,7 +1610,7 @@ Versión:
 
 Ruta predeterminada:
 
-`Program Files\Rendifly\Rendifly Manager`
+`Program Files\EB Manager\EB Manager`
 
 Puede incluir:
 
@@ -1621,7 +1621,7 @@ Puede incluir:
 
 ## PyInstaller
 
-`Rendifly.spec` incluye:
+`EBManager.spec` incluye:
 
 - frontend;
 - resources;
@@ -1682,39 +1682,39 @@ Aunque la infraestructura para proveedores externos de IA existe parcialmente en
 
 ---
 
-## Rendifly Manager 0.1 Beta
+## EB Manager 0.1 Beta
 
-B1 representa una versión empaquetada de Rendifly Manager donde sus sistemas principales trabajan juntos: monitorización, administración, optimización, información del equipo y herramientas conectadas con Windows.
+B1 representa una versión empaquetada de EB Manager donde sus sistemas principales trabajan juntos: monitorización, administración, optimización, información del equipo y herramientas conectadas con Windows.
 
-Rendifly no busca sustituir todo lo que ya existe en Windows.
+EB Manager no busca sustituir todo lo que ya existe en Windows.
 
 Busca reunir funciones útiles en un lugar más sencillo y ayudar a que el usuario pueda entender mejor qué está pasando en su propia PC.
 
-> ### Cada PC es diferente. Rendifly también debería serlo.
+> ### Cada PC es diferente. EB Manager también debería serlo.
 
-[🇺🇸 Continue in English](#rendifly-english) · [⬆️ Volver arriba](#rendifly-top)
-
----
+[🇺🇸 Continue in English](#eb-manager-english) · [⬆️ Volver arriba](#eb-manager-top)
 
 ---
 
-<a id="rendifly-english"></a>
+---
+
+<a id="eb-manager-english"></a>
 
 # 🇺🇸 English
 
-[🇪🇸 Cambiar a Español](#rendifly-espanol) · [⬆️ Back to top](#rendifly-top)
+[🇪🇸 Cambiar a Español](#eb-manager-espanol) · [⬆️ Back to top](#eb-manager-top)
 
-## What is Rendifly Manager?
+## What is EB Manager?
 
-Rendifly Manager is a Windows application designed to bring information and useful PC management tools together in one place instead of leaving them scattered across different parts of the operating system.
+EB Manager is a Windows application designed to bring information and useful PC management tools together in one place instead of leaving them scattered across different parts of the operating system.
 
-With Rendifly, you can see how your PC is performing, learn more about its hardware, check which applications are using resources, clean temporary files, manage startup apps, use profiles, switch power plans, and quickly reach different Windows settings.
+With EB Manager, you can see how your PC is performing, learn more about its hardware, check which applications are using resources, clean temporary files, manage startup apps, use profiles, switch power plans, and quickly reach different Windows settings.
 
 The goal is not to replace Windows or tools such as Task Manager.
 
-Rendifly is intended to make many of those features **easier to find, understand, and use**, especially for people who simply want to understand their PC without navigating through several different Windows menus.
+EB Manager is intended to make many of those features **easier to find, understand, and use**, especially for people who simply want to understand their PC without navigating through several different Windows menus.
 
-This document describes the actual state of **Rendifly Manager B1** based on the current code and packaged build.
+This document describes the actual state of **EB Manager B1** based on the current code and packaged build.
 
 It does not describe old plans or present unfinished features as if they were already available.
 
@@ -1724,7 +1724,7 @@ It does not describe old plans or present unfinished features as if they were al
 
 ## 🖥️ Home
 
-Home is the main overview of Rendifly.
+Home is the main overview of EB Manager.
 
 Its purpose is to quickly answer a simple question:
 
@@ -1756,7 +1756,7 @@ Shows:
 
 ### GPU
 
-When the information is available, Rendifly shows:
+When the information is available, EB Manager shows:
 
 - utilization;
 - temperature.
@@ -1767,7 +1767,7 @@ If the data cannot be obtained, it appears as:
 
 ### Battery
 
-When Windows provides the information, Rendifly can show:
+When Windows provides the information, EB Manager can show:
 
 - percentage;
 - connection/charging state;
@@ -1782,7 +1782,7 @@ Home provides direct access to:
 - Cleanup;
 - Processes;
 - Profiles;
-- Ask Rendifly.
+- Ask EB Manager.
 
 Up to **three active recommendations** can also be displayed.
 
@@ -1794,7 +1794,7 @@ Home contains an action called:
 
 **Improve performance**
 
-This tool analyzes temporary files that Rendifly considers safe to remove.
+This tool analyzes temporary files that EB Manager considers safe to remove.
 
 The process is:
 
@@ -1808,7 +1808,7 @@ Dashboard metrics update according to the configured monitoring interval, with a
 
 Recommendations refresh approximately every **60 seconds**.
 
-When the Rendifly window is hidden and `document.hidden` is active, this page functionally stops updating to avoid unnecessary work.
+When the EB Manager window is hidden and `document.hidden` is active, this page functionally stops updating to avoid unnecessary work.
 
 The page is mainly implemented in:
 
@@ -1871,7 +1871,7 @@ Shows:
 - bytes received per second;
 - activity graph.
 
-Rendifly can also show:
+EB Manager can also show:
 
 - system uptime;
 - CPU temperature;
@@ -1879,7 +1879,7 @@ Rendifly can also show:
 
 ---
 
-## How does Rendifly get these metrics?
+## How does EB Manager get these metrics?
 
 The internal `SystemMonitor` collects information about:
 
@@ -1891,13 +1891,13 @@ The internal `SystemMonitor` collects information about:
 - uptime;
 - available temperatures.
 
-For supported NVIDIA GPUs, Rendifly can also use:
+For supported NVIDIA GPUs, EB Manager can also use:
 
 `nvidia-smi`
 
 Because constantly querying this tool would create unnecessary overhead, GPU information is refreshed less frequently.
 
-Rendifly also keeps temporary metrics history through:
+EB Manager also keeps temporary metrics history through:
 
 `MetricsHistory`
 
@@ -1931,20 +1931,20 @@ The list refreshes approximately every:
 
 ### How applications are identified
 
-Internally, Rendifly can classify processes as:
+Internally, EB Manager can classify processes as:
 
 - `apps`;
 - `app_processes`;
 - `windows_services`;
 - `system_protected`;
-- `rendifly`;
+- `eb-manager`;
 - `other`.
 
 The interface prioritizes primary applications that make sense to normal users.
 
 Helper processes can also be grouped under their main application.
 
-Rendifly can inspect information such as:
+EB Manager can inspect information such as:
 
 - windows;
 - services;
@@ -1953,11 +1953,11 @@ Rendifly can inspect information such as:
 
 ### Icons
 
-Rendifly attempts to extract icons directly from the real executable.
+EB Manager attempts to extract icons directly from the real executable.
 
 They are then cached under:
 
-`%LOCALAPPDATA%\Rendifly\process-icons`
+`%LOCALAPPDATA%\EB Manager\process-icons`
 
 This avoids extracting the same icon repeatedly.
 
@@ -1967,7 +1967,7 @@ This avoids extracting the same icon repeatedly.
 
 Closing the wrong process can affect Windows.
 
-Rendifly therefore uses:
+EB Manager therefore uses:
 
 - `ProcessClassifier`;
 - `ProcessSafety`;
@@ -1981,7 +1981,7 @@ Processes can receive levels such as:
 
 Processes considered critical are not normally presented as closable.
 
-Rendifly also verifies process identity before acting, reducing problems caused by Windows reusing a PID.
+EB Manager also verifies process identity before acting, reducing problems caused by Windows reusing a PID.
 
 Depending on the operation, it can:
 
@@ -2013,7 +2013,7 @@ The general flow is:
 
 **Analyze → Clean → Verify**
 
-Before deleting anything, Rendifly builds an inventory of detected files.
+Before deleting anything, EB Manager builds an inventory of detected files.
 
 It can show:
 
@@ -2044,7 +2044,7 @@ Once finished, it scans again to determine how much eligible content remains.
 
 ### What it avoids
 
-Rendifly is not designed to remove:
+EB Manager is not designed to remove:
 
 - personal documents;
 - downloads;
@@ -2071,7 +2071,7 @@ to associate cleanup with the original scan and verify the final result.
 
 ## 🚪 Startup applications
 
-Rendifly can display programs configured to start automatically with Windows.
+EB Manager can display programs configured to start automatically with Windows.
 
 It checks:
 
@@ -2103,7 +2103,7 @@ When disabled, the entry is temporarily moved to:
 
 When enabled again, it is restored.
 
-Rendifly can also open the official Windows page:
+EB Manager can also open the official Windows page:
 
 `ms-settings:startupapps`
 
@@ -2111,7 +2111,7 @@ Rendifly can also open the official Windows page:
 
 ## 🎯 Profiles
 
-Profiles allow users to select applications that Rendifly should attempt to keep closed while a specific profile is active.
+Profiles allow users to select applications that EB Manager should attempt to keep closed while a specific profile is active.
 
 For example, profiles can be created for studying, working, or gaming.
 
@@ -2128,7 +2128,7 @@ Users can currently:
 - see which profile is active;
 - view detected closable applications.
 
-When a profile is activated, Rendifly attempts to close its selected applications.
+When a profile is activated, EB Manager attempts to close its selected applications.
 
 `ProfileManager` currently uses persistence schema:
 
@@ -2140,7 +2140,7 @@ While a profile is active, an internal monitor checks approximately every:
 
 to see whether one of the selected applications has started again.
 
-If it is still considered safe to close, Rendifly attempts to terminate it again.
+If it is still considered safe to close, EB Manager attempts to terminate it again.
 
 Profiles are stored in:
 
@@ -2155,7 +2155,7 @@ together with:
 
 ## ⚡ Energy
 
-Rendifly works directly with the real Windows power plans using:
+EB Manager works directly with the real Windows power plans using:
 
 `powercfg`
 
@@ -2167,7 +2167,7 @@ The active plan is detected using:
 
 `/getactivescheme`
 
-When another plan is selected, Rendifly uses:
+When another plan is selected, EB Manager uses:
 
 `/setactive`
 
@@ -2218,7 +2218,7 @@ Each component can include:
 - technical information;
 - an easier-to-understand explanation.
 
-Rendifly also keeps a hardware summary cache to avoid detecting everything again when it is unnecessary.
+EB Manager also keeps a hardware summary cache to avoid detecting everything again when it is unnecessary.
 
 The cache can be internally invalidated.
 
@@ -2253,13 +2253,13 @@ For:
 - AMD / Radeon;
 - Intel;
 
-Rendifly can provide official links or attempt to detect the manufacturer's installed application.
+EB Manager can provide official links or attempt to detect the manufacturer's installed application.
 
 There is also a button for opening:
 
 **Windows Update**
 
-Rendifly B1 **does not automatically install or update drivers**.
+EB Manager B1 **does not automatically install or update drivers**.
 
 Its role here is to provide information and help users reach the official tools.
 
@@ -2282,15 +2282,15 @@ It can obtain this information through:
 - Windows Registry;
 - `powercfg`.
 
-Rendifly does not directly modify all these settings.
+EB Manager does not directly modify all these settings.
 
 In some cases it opens the corresponding Windows Settings or Control Panel page so the user can make the change there.
 
 ---
 
-## ✨ Ask Rendifly
+## ✨ Ask EB Manager
 
-Rendifly contains a built-in assistant.
+EB Manager contains a built-in assistant.
 
 It mainly uses:
 
@@ -2307,7 +2307,7 @@ The interface includes:
 - conversation history during the current session;
 - clear chat option;
 - local or AI source labels;
-- actions that can navigate to other Rendifly pages;
+- actions that can navigate to other EB Manager pages;
 - sources or links when available;
 - follow-up suggestions.
 
@@ -2383,16 +2383,16 @@ These fields are required.
 
 A screenshot can also be optionally selected.
 
-Currently, Rendifly uses the **selected file name**, but it does not directly attach the binary image.
+Currently, EB Manager uses the **selected file name**, but it does not directly attach the binary image.
 
-Rendifly can:
+EB Manager can:
 
 - open the default email application using `mailto:`;
 - open Gmail using a compose URL.
 
 The currently configured destination is:
 
-`rendiflypcmanager@gmail.com`
+`ebmanager@gmail.com`
 
 The interface also recommends avoiding unnecessary personal information.
 
@@ -2406,7 +2406,7 @@ Settings are implemented in:
 
 ### User
 
-The user can set the name or nickname Rendifly will use.
+The user can set the name or nickname EB Manager will use.
 
 ### Language
 
@@ -2431,7 +2431,7 @@ Users can choose:
 
 ### Interface size
 
-Rendifly supports:
+EB Manager supports:
 
 - compact mode;
 - normal/comfortable mode.
@@ -2486,7 +2486,7 @@ Changes are automatically saved through:
 
 ---
 
-## ℹ️ About Rendifly
+## ℹ️ About EB Manager
 
 There is currently no separate `about` page.
 
@@ -2498,15 +2498,15 @@ It displays:
 0.1 Beta
 
 **Developer:**  
-Ariel Arce
+EhabYT
 
 It also includes:
 
-**How to use Rendifly — Official Guide**
+**How to use EB Manager — Official Guide**
 
 and the tagline:
 
-> **Every PC is different. Rendifly should be too.**
+> **Every PC is different. EB Manager should be too.**
 
 A button also opens the YouTube video configured in the code as the official guide.
 
@@ -2548,7 +2548,7 @@ Search also normalizes accented characters.
 
 ## 💡 Recommendation system
 
-Rendifly analyzes certain conditions and can display recommendations.
+EB Manager analyzes certain conditions and can display recommendations.
 
 It currently checks:
 
@@ -2572,15 +2572,15 @@ The temporary-files recommendation can directly execute the real cleanup system.
 
 ---
 
-## 💾 How Rendifly stores data
+## 💾 How EB Manager stores data
 
-Rendifly Manager B1 does not use SQLite or another traditional SQL database.
+EB Manager B1 does not use SQLite or another traditional SQL database.
 
 Information is mainly stored under:
 
-`%APPDATA%\Rendifly`
+`%APPDATA%\EB Manager`
 
-If that location is unavailable, Rendifly can fall back to:
+If that location is unavailable, EB Manager can fall back to:
 
 - `LOCALAPPDATA`;
 - the user's home directory.
@@ -2631,7 +2631,7 @@ but these languages cannot currently be selected through the interface.
 
 ### Safe configuration writes
 
-Rendifly uses atomic writes.
+EB Manager uses atomic writes.
 
 The process is:
 
@@ -2645,7 +2645,7 @@ This helps prevent partially written configuration files.
 
 ## API key protection
 
-If an AI API key is configured through the backend, Rendifly protects it using:
+If an AI API key is configured through the backend, EB Manager protects it using:
 
 **Windows DPAPI (`CryptProtectData`)**
 
@@ -2668,7 +2668,7 @@ This file stores:
 
 ## `notification_history.json`
 
-Rendifly can store up to:
+EB Manager can store up to:
 
 **50 notifications**
 
@@ -2689,7 +2689,7 @@ The configured maximum number of notifications per hour is also enforced.
 
 ### Log
 
-`%APPDATA%\Rendifly\rendifly.log`
+`%APPDATA%\EB Manager\ebmanager.log`
 
 Managed by:
 
@@ -2697,7 +2697,7 @@ Managed by:
 
 ### Process icons
 
-`%LOCALAPPDATA%\Rendifly\process-icons`
+`%LOCALAPPDATA%\EB Manager\process-icons`
 
 ### Metrics history
 
@@ -2732,7 +2732,7 @@ button.
 
 ### 2. Name
 
-The user can optionally choose what Rendifly should call them.
+The user can optionally choose what EB Manager should call them.
 
 ### 3. Starting section
 
@@ -2747,7 +2747,7 @@ The user can select:
 
 ### 4. Visual hardware scan
 
-Rendifly progressively displays detected components such as:
+EB Manager progressively displays detected components such as:
 
 - CPU;
 - GPU;
@@ -2799,7 +2799,7 @@ When the language changes:
 
 1. the setting is saved;
 2. the sidebar is rendered again;
-3. Rendifly navigates back to the current page.
+3. EB Manager navigates back to the current page.
 
 ---
 
@@ -2809,17 +2809,17 @@ When the language changes:
 
 `--startup`
 
-Rendifly prevents multiple running instances through:
+EB Manager prevents multiple running instances through:
 
 `single_instance.py`
 
 ### Mutex
 
-`Local\RendiflyManager.SingleInstance`
+`Local\EBManager.SingleInstance`
 
 ### Named Pipe
 
-`\\.\pipe\RendiflyManager.SingleInstance`
+`\\.\pipe\EBManager.SingleInstance`
 
 If another copy is launched:
 
@@ -2832,7 +2832,7 @@ When launched through `--startup`, the secondary process does not display an add
 
 ## Window
 
-Rendifly uses:
+EB Manager uses:
 
 **pywebview + EdgeChromium/WebView2**
 
@@ -2862,32 +2862,32 @@ Native background:
 
 The menu currently contains:
 
-- **Open Rendifly**
+- **Open EB Manager**
 - **Exit**
 
 The tray can be used when:
 
-- Rendifly starts minimized;
+- EB Manager starts minimized;
 - the user minimizes the application;
 - the user closes the window while Close to tray is enabled.
 
-If the normal icon cannot be loaded, Rendifly uses a fallback icon.
+If the normal icon cannot be loaded, EB Manager uses a fallback icon.
 
 ---
 
-## Closing Rendifly
+## Closing EB Manager
 
 If:
 
 `close_to_tray`
 
-is enabled, the X button normally hides Rendifly in the system tray.
+is enabled, the X button normally hides EB Manager in the system tray.
 
 If:
 
 `minimize_to_tray`
 
-is enabled, minimizing can send Rendifly to the tray.
+is enabled, minimizing can send EB Manager to the tray.
 
 The options:
 
@@ -2896,7 +2896,7 @@ The options:
 
 perform a complete shutdown.
 
-During shutdown, Rendifly stops:
+During shutdown, EB Manager stops:
 
 - monitoring;
 - profile monitoring;
@@ -2912,7 +2912,7 @@ There is also a safety timer of approximately:
 
 ## 🔗 Real Windows integrations
 
-Rendifly uses several real Windows components.
+EB Manager uses several real Windows components.
 
 ### Windows Registry
 
@@ -2969,7 +2969,7 @@ is used to protect API keys.
 
 ### Windows Settings
 
-Rendifly can open:
+EB Manager can open:
 
 `ms-settings:`
 
@@ -2990,7 +2990,7 @@ Official links can be opened for:
 
 ### External communication
 
-Rendifly can open:
+EB Manager can open:
 
 - default email application;
 - Gmail;
@@ -3006,7 +3006,7 @@ It does not arbitrarily execute any received string as a system command.
 
 ## 🧱 Architecture and API
 
-For anyone interested in the more technical side, `RendiflyAPI` connects the interface with the backend.
+For anyone interested in the more technical side, `EBManagerAPI` connects the interface with the backend.
 
 ### Configuration
 
@@ -3079,7 +3079,7 @@ For anyone interested in the more technical side, `RendiflyAPI` connects the int
 
 ### Assistant
 
-- `ask_rendifly`
+- `ask_eb-manager`
 - `reset_assistant_context`
 
 ### Feedback
@@ -3147,11 +3147,11 @@ along with their corresponding `dist-*` directories.
 
 The current primary distribution is:
 
-`dist/Rendifly`
+`dist/EB Manager`
 
 ### Executable
 
-`dist\Rendifly\Rendifly.exe`
+`dist\EB Manager\EBManager.exe`
 
 Approximate size:
 
@@ -3164,11 +3164,11 @@ Modification date:
 The folder also contains:
 
 - `_internal`;
-- resources required to run Rendifly.
+- resources required to run EB Manager.
 
 ### Installer
 
-`installer\output\RendiflyManagerSetup.exe`
+`installer\output\EBManagerSetup.exe`
 
 Approximate size:
 
@@ -3180,7 +3180,7 @@ Date:
 
 The installer identifies the product as:
 
-**Rendifly Manager**
+**EB Manager**
 
 Version:
 
@@ -3188,7 +3188,7 @@ Version:
 
 Default installation path:
 
-`Program Files\Rendifly\Rendifly Manager`
+`Program Files\EB Manager\EB Manager`
 
 It can include:
 
@@ -3199,7 +3199,7 @@ It can include:
 
 ## PyInstaller
 
-`Rendifly.spec` includes:
+`EBManager.spec` includes:
 
 - frontend;
 - resources;
@@ -3212,7 +3212,7 @@ The application is built with:
 
 `console=False`
 
-so normal users do not see an additional console window when Rendifly starts.
+so normal users do not see an additional console window when EB Manager starts.
 
 ---
 
@@ -3260,75 +3260,75 @@ Although some infrastructure for external AI providers already exists in the pro
 
 ---
 
-## Rendifly Manager 0.1 Beta
+## EB Manager 0.1 Beta
 
-B1 represents a packaged version of Rendifly Manager where its main systems work together: monitoring, management, optimization, PC information, and tools integrated with Windows.
+B1 represents a packaged version of EB Manager where its main systems work together: monitoring, management, optimization, PC information, and tools integrated with Windows.
 
-Rendifly is not intended to replace everything that already exists in Windows.
+EB Manager is not intended to replace everything that already exists in Windows.
 
 Its goal is to bring useful features together in a simpler place and help users better understand what is happening on their own PC.
 
-> ### Every PC is different. Rendifly should be too.
+> ### Every PC is different. EB Manager should be too.
 
-[🇪🇸 Leer en Español](#rendifly-espanol) · [⬆️ Back to top](#rendifly-top)
+[🇪🇸 Leer en Español](#eb-manager-espanol) · [⬆️ Back to top](#eb-manager-top)
 
 --- 
 
 <div align="center">
 
-**Rendifly Manager 0.1 Beta — B1**
+**EB Manager 0.1 Beta — B1**
 
-[🇪🇸 Español](#rendifly-espanol) · [🇺🇸 English](#rendifly-english) · [⬆️ Top](#rendifly-top)
+[🇪🇸 Español](#eb-manager-espanol) · [🇺🇸 English](#eb-manager-english) · [⬆️ Top](#eb-manager-top)
 
 </div>
-<a id="rendifly-screenshots"></a>
+<a id="eb-manager-screenshots"></a>
 
 ## 📸 Capturas / Screenshots
 
 ### Home
-![Rendifly Manager Home](assets/Inicio%20%20Home.png)
+![EB Manager Home](assets/Inicio%20%20Home.png)
 
 ### Performance
-![Rendifly Manager Performance](assets/Rendimiento%20%20Performance.png)
-![Rendifly Manager Performance](assets/Rendimiento%20%20Performance%202.png)
-![Rendifly Manager Performance](assets/Rendimiento%20%20Performance%203.png)
-![Rendifly Manager Performance](assets/Rendimiento%20%20Performance%204.png)
+![EB Manager Performance](assets/Rendimiento%20%20Performance.png)
+![EB Manager Performance](assets/Rendimiento%20%20Performance%202.png)
+![EB Manager Performance](assets/Rendimiento%20%20Performance%203.png)
+![EB Manager Performance](assets/Rendimiento%20%20Performance%204.png)
 
 ### Processes
-![Rendifly Manager Processes](assets/Procesos%20%20Processes.png)
+![EB Manager Processes](assets/Procesos%20%20Processes.png)
 
 ### Optimization
-![Rendifly Manager Optimization](assets/Optimizaci%C3%B3n%20%20%20Optimization%20%20%20Limpieza%20%20Cleanup.png)
+![EB Manager Optimization](assets/Optimizaci%C3%B3n%20%20%20Optimization%20%20%20Limpieza%20%20Cleanup.png)
 
 ### Startup Apps
-![Rendifly Manager Startup Apps](assets/Aplicaciones%20de%20inicio%20%20Startup%20Apps.png)
+![EB Manager Startup Apps](assets/Aplicaciones%20de%20inicio%20%20Startup%20Apps.png)
 
 ### Profiles
-![Rendifly Manager Profiles](assets/Perfiles%20%20Profiles.png)
-![Rendifly Manager Profiles](assets/Perfiles%20%20Profiles%202.png)
+![EB Manager Profiles](assets/Perfiles%20%20Profiles.png)
+![EB Manager Profiles](assets/Perfiles%20%20Profiles%202.png)
 
 ### Power
-![Rendifly Manager Power](assets/Energ%C3%ADa%20%20Power.png)
+![EB Manager Power](assets/Energ%C3%ADa%20%20Power.png)
 
 ### Know My PC
-![Rendifly Manager Know My PC](assets/Conocer%20mi%20PC%20%20Know%20My%20PC.png)
+![EB Manager Know My PC](assets/Conocer%20mi%20PC%20%20Know%20My%20PC.png)
 
 ### Drivers
-![Rendifly Manager Drivers](assets/Drivers%20%20Drivers.png)
+![EB Manager Drivers](assets/Drivers%20%20Drivers.png)
 
 ### Windows Settings
-![Rendifly Manager Windows Settings](assets/Ajustes%20de%20Windows%20%20Windows%20Settings.png)
+![EB Manager Windows Settings](assets/Ajustes%20de%20Windows%20%20Windows%20Settings.png)
 
-### Ask Rendifly
-![Ask Rendifly](assets/Preg%C3%BAntale%20a%20Rendifly%20%20Ask%20Rendifly.png)
-![Ask Rendifly](assets/Preg%C3%BAntale%20a%20Rendifly%20%20Ask%20Rendifly%202.png)
+### Ask EB Manager
+![Ask EB Manager](assets/Preg%C3%BAntale%20a%20EB%20Manager%20%20Ask%20EB%20Manager.png)
+![Ask EB Manager](assets/Preg%C3%BAntale%20a%20EB%20Manager%20%20Ask%20EB%20Manager%202.png)
 
 ### Feedback
-![Rendifly Manager Feedback](assets/Comentarios%20%20Feedback.png)
+![EB Manager Feedback](assets/Comentarios%20%20Feedback.png)
 
 ### Settings
-![Rendifly Manager Settings](assets/Configuraci%C3%B3n%20%20Settings.png)
-![Rendifly Manager Settings](assets/Configuraci%C3%B3n%20%20Settings%202.png)
-![Rendifly Manager Settings](assets/Configuraci%C3%B3n%20%20Settings3.png)
-![Rendifly Manager Settings](assets/Configuraci%C3%B3n%20%20Settings4.png)
+![EB Manager Settings](assets/Configuraci%C3%B3n%20%20Settings.png)
+![EB Manager Settings](assets/Configuraci%C3%B3n%20%20Settings%202.png)
+![EB Manager Settings](assets/Configuraci%C3%B3n%20%20Settings3.png)
+![EB Manager Settings](assets/Configuraci%C3%B3n%20%20Settings4.png)
 

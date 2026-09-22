@@ -1,8 +1,8 @@
 # Auditoría actual de privacidad, protección de datos, seguridad y documentación  
-## Rendifly Manager — estado posterior a las mejoras de Beta 2
+## EB Manager — estado posterior a las mejoras de Beta 2
 
 **Fecha de revisión:** 21 de septiembre de 2026  
-**Alcance:** implementación actual del proyecto Rendifly Manager.  
+**Alcance:** implementación actual del proyecto EB Manager.  
 **Modo:** auditoría de solo lectura. No se modificó ningún archivo durante esta revisión.  
 **Criterio:** cuando existe una diferencia entre la documentación y el código, prevalece el comportamiento real de la implementación.
 
@@ -10,7 +10,7 @@
 
 # 1. Resumen del estado actual
 
-Rendifly Manager funciona actualmente como una aplicación local de Windows.
+EB Manager funciona actualmente como una aplicación local de Windows.
 
 ## Funciones activas
 
@@ -23,7 +23,7 @@ Actualmente están activas las siguientes funciones:
 - Lectura de controladores y configuraciones de Windows.
 - Lectura de contadores globales de red.
 - Gestión local de preferencias.
-- Almacenamiento de configuración en `%APPDATA%\Rendifly`.
+- Almacenamiento de configuración en `%APPDATA%\EB Manager`.
 - Logs locales rotatorios.
 - Historial local de notificaciones.
 - Gestión del inicio automático mediante el registro de Windows.
@@ -79,7 +79,7 @@ La aplicación no utiliza actualmente:
 - Servicio propio de analítica.
 - SDK de publicidad.
 - Servicio propio de telemetría.
-- Servidor HTTP público de Rendifly.
+- Servidor HTTP público de EB Manager.
 
 La aplicación procesa localmente información técnica del equipo y guarda determinados datos en el perfil del usuario.
 
@@ -199,7 +199,7 @@ Existe:
 
 El instalador referencia ambos documentos mediante:
 
-`RendiflyManager.iss`
+`EBManager.iss`
 
 ```ini
 LicenseFile=..\LICENSE
@@ -385,7 +385,7 @@ Añadir una tabla formal de inventario:
 La aplicación utiliza:
 
 ```text
-%APPDATA%\Rendifly
+%APPDATA%\EB Manager
 ```
 
 La persistencia se gestiona mediante:
@@ -400,7 +400,7 @@ El código utiliza los siguientes archivos:
 - `settings.json`
 - `runtime.json`
 - `notification_history.json`
-- `rendifly.log`
+- `ebmanager.log`
 - Backups rotatorios de los logs.
 - Archivos temporales utilizados para guardado atómico.
 
@@ -488,7 +488,7 @@ Documentar:
 No se encontró:
 
 - Servidor HTTP propio.
-- API central de Rendifly.
+- API central de EB Manager.
 - Base de datos remota.
 - Sistema de cuentas.
 - Servicio de analítica.
@@ -532,7 +532,7 @@ Actualmente no debería producirse:
 
 ## 6.4 Feedback por Internet
 
-El feedback no se envía a un servidor propio de Rendifly.
+El feedback no se envía a un servidor propio de EB Manager.
 
 La aplicación prepara:
 
@@ -664,7 +664,7 @@ El usuario puede incluir accidentalmente:
 
 Mostrar un aviso como:
 
-> Se preparará un correo para `rendiflypcmanager@gmail.com`. El mensaje no se enviará automáticamente. La captura seleccionada no se adjunta actualmente; solo se incluirá su nombre. No incluyas contraseñas, tokens, API keys, información personal ni datos confidenciales.
+> Se preparará un correo para `ebmanager@gmail.com`. El mensaje no se enviará automáticamente. La captura seleccionada no se adjunta actualmente; solo se incluirá su nombre. No incluyas contraseñas, tokens, API keys, información personal ni datos confidenciales.
 
 ---
 
@@ -675,7 +675,7 @@ Mostrar un aviso como:
 Los logs se guardan en:
 
 ```text
-%APPDATA%\Rendifly\rendifly.log
+%APPDATA%\EB Manager\ebmanager.log
 ```
 
 La implementación se encuentra en:
@@ -908,7 +908,7 @@ HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run
 
 El instalador requiere administrador:
 
-`RendiflyManager.iss`
+`EBManager.iss`
 
 ```ini
 PrivilegesRequired=admin
@@ -1024,12 +1024,12 @@ Características:
 
 Archivos:
 
-- `RendiflyManager.iss`
+- `EBManager.iss`
 - `build-installer.ps1`
 
 ## 13.2 Firma digital
 
-El archivo `Rendifly.spec` contiene:
+El archivo `EBManager.spec` contiene:
 
 ```python
 codesign_identity=None
@@ -1316,7 +1316,7 @@ Las siguientes limitaciones continúan presentes:
 3. Las URLs de propietario, soporte y actualizaciones del instalador no son definitivas.
 4. `ISCC.exe` no está disponible en el entorno revisado.
 5. La firma Authenticode no está configurada por defecto.
-6. `codesign_identity=None` continúa presente en `Rendifly.spec`.
+6. `codesign_identity=None` continúa presente en `EBManager.spec`.
 7. El updater automático no está implementado.
 8. No se verificó una compilación nueva del instalador durante esta auditoría.
 9. No se verificó que los binarios existentes coincidan byte a byte con el código actual.
@@ -1329,14 +1329,14 @@ Las siguientes limitaciones continúan presentes:
 
 # 20. Conclusión documental
 
-El estado actual de Rendifly Manager es el de una aplicación de Windows principalmente local:
+El estado actual de EB Manager es el de una aplicación de Windows principalmente local:
 
 - La monitorización está activa localmente.
 - La configuración se almacena localmente.
 - Los logs se almacenan localmente.
 - El historial de notificaciones se almacena localmente.
 - No se encontró telemetría propia activa.
-- No existe un backend central de Rendifly.
+- No existe un backend central de EB Manager.
 - El feedback requiere acción manual del usuario.
 - La IA externa está preparada en el código, pero desactivada actualmente.
 - Las API keys se protegen mediante DPAPI cuando la función está habilitada.
